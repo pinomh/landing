@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RaízTech NEA — Slate + Yellow — V6 Hero Oscuro</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+// Keyboard support for clickable rows
+document.addEventListener('keydown', function(e) {
+  if(e.key === 'Enter' && e.target.hasAttribute('onclick')) {
+    e.target.click();
+  }
+});
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* SKILL: Semantic design tokens — not raw hex in components */
+:root {
+  --s-base:     #F7F7F4;
+  --s-alt:      #EEEEE8;
+  --s-card:     #FFFFFF;
+  --s-dark:     #1C2540;
+  --s-dark-card:#242E50;
+
+  --a:          #F7E848;
+  --a-hover:    #E6D630;
+  --a-soft:     #FEFBD8;
+  --a-on-dark:  #F7E848;
+
+  --t:          #1C2540;
+  --t-sec:      #485070;
+  --t-muted:    #8890A8;
+  --t-light:    #E8EBF5;
+  --t-light-dim:rgba(232,235,245,0.55);
+
+  --b:          rgba(28,37,64,0.10);
+  --b-dark:     rgba(232,235,245,0.10);
+
+  /* SKILL: 8pt spacing system */
+  --sp2:4px; --sp4:8px; --sp6:12px; --sp8:16px; --sp10:20px;
+  --sp12:24px; --sp16:32px; --sp20:40px; --sp24:48px;
+  --sp32:64px; --sp40:80px; --sp48:96px;
+
+  /* SKILL: consistent type scale */
+  --txs:11px; --tsm:13px; --tbase:15px; --tmd:18px;
+  --tlg:22px; --txl:28px; --t2xl:38px; --t3xl:56px;
+
+  --r-sm:8px; --r-md:14px; --r-lg:22px;
+  --sh-sm:0 1px 3px rgba(24,27,42,0.08);
+  --sh-md:0 4px 16px rgba(24,27,42,0.10);
+  --sh-lg:0 10px 40px rgba(24,27,42,0.12);
+
+  --z-sticky:40; --z-card:10;
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Outfit',sans-serif;
+  font-size:var(--tbase); line-height:1.65;
+  color:var(--t); background:var(--s-base);
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+svg { display:block; }
+a { color:inherit; text-decoration:none; }
+
+/* SKILL: visible focus rings on all interactive elements */
+:focus-visible { outline:2px solid var(--a); outline-offset:3px; border-radius:var(--r-sm); }
+
+.wrap { max-width:1100px; margin:0 auto; padding:0 var(--sp12); }
+
+/* SKILL: prefers-reduced-motion */
+@media(prefers-reduced-motion:reduce){ *,*::before,*::after { transition-duration:0.01ms !important; } }
+
+/* ─── HEADER ──────────────────────────────────────────────── */
+header {
+  position:sticky; top:0; z-index:var(--z-sticky);
+  background:rgba(247,247,244,0.93); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--b);
+}
+.hdr { display:flex; align-items:center; justify-content:space-between; padding:var(--sp10) 0; }
+
+.logo {
+  font-family:'Outfit',sans-serif; font-weight:700; font-size:17px;
+  color:var(--t); letter-spacing:-0.02em;
+  display:flex; align-items:center; gap:var(--sp4);
+}
+.logo-box {
+  width:30px; height:30px; border-radius:var(--r-sm);
+  background:var(--t); color:var(--s-base);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700;
+}
+.logo-em { color:var(--a); }
+
+.hdr-nav { display:flex; align-items:center; gap:var(--sp8); }
+.hdr-link {
+  font-size:var(--tsm); font-weight:600; color:var(--t);
+  padding:8px var(--sp12); border-radius:var(--r-sm);
+  border:1px solid var(--b);
+  min-height:38px; display:inline-flex; align-items:center; gap:var(--sp4);
+  transition:border-color 0.2s, background 0.2s;
+}
+.hdr-link:hover { border-color:var(--t); background:rgba(24,27,42,0.05); }
+@media(max-width:540px){ .hdr-link { display:none; } }
+
+.btn-a {
+  display:inline-flex; align-items:center; gap:var(--sp4);
+  background:var(--a); color:var(--s-dark);
+  font-family:'Outfit',sans-serif; font-size:var(--tsm); font-weight:600;
+  padding:10px var(--sp12); border-radius:var(--r-sm); border:none; cursor:pointer;
+  min-height:44px; transition:background 0.2s,transform 0.2s,box-shadow 0.2s;
+}
+.btn-a:hover { background:var(--a-hover); transform:translateY(-1px); box-shadow:0 4px 14px rgba(224,90,31,0.30); }
+
+/* ─── HERO — light bg, first time across v1/v2/v3 ────────────────── */
+.hero {
+  position:relative; overflow:hidden;
+  padding:var(--sp48) 0 var(--sp40);
+  background:var(--s-base);
+}
+/* SKILL signature: precision dot grid — depth without images */
+.hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(circle, rgba(24,27,42,0.11) 1.2px, transparent 1.2px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(ellipse 80% 80% at 62% 50%, black 30%, transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 62% 50%, black 30%, transparent 100%);
+}
+
+.hero-inner {
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:1fr; gap:var(--sp16);
+}
+@media(min-width:920px){
+  .hero-inner { grid-template-columns:1fr 260px; gap:var(--sp24); align-items:start; }
+}
+
+.eyebrow {
+  display:inline-flex; align-items:center; gap:var(--sp6);
+  font-size:var(--txs); font-weight:600;
+  text-transform:uppercase; letter-spacing:0.16em;
+  color:var(--a); margin-bottom:var(--sp10);
+}
+.eyebrow-rule { width:28px; height:1.5px; background:var(--a); }
+
+/* SKILL: Playfair Display only for h1 — editorial serif, not in v1-v3 */
+.hero h1 {
+  font-family:'Playfair Display',serif; font-weight:700;
+  font-size:clamp(2.4rem,5.5vw,3.8rem);
+  line-height:1.07; letter-spacing:-0.02em; color:var(--t); max-width:680px;
+}
+.hero h1 em { font-style:italic; color:var(--a); font-weight:700; }
+
+.hero-tagline {
+  margin-top:var(--sp10); font-size:var(--tmd); font-weight:600;
+  color:var(--t); max-width:480px; line-height:1.45;
+}
+.hero-desc {
+  margin-top:var(--sp6); font-size:var(--tbase);
+  color:var(--t-sec); max-width:520px; line-height:1.7;
+}
+
+.hero-cta-wrap { margin-top:var(--sp16); display:flex; flex-direction:column; gap:var(--sp6); }
+.hero-cta-row { display:flex; flex-wrap:wrap; gap:var(--sp6); }
+
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:var(--sp4);
+  background:transparent; border:1px solid var(--b); color:var(--t);
+  font-family:'Outfit',sans-serif; font-size:var(--tsm); font-weight:600;
+  padding:10px var(--sp12); border-radius:var(--r-sm); cursor:pointer; min-height:44px;
+  transition:border-color 0.2s,background 0.2s;
+}
+.btn-ghost:hover { border-color:var(--t); background:rgba(24,27,42,0.04); }
+
+.micro-copy {
+  display:flex; align-items:center; gap:var(--sp4);
+  font-size:var(--txs); color:var(--t-muted); font-weight:500;
+}
+.micro-dot { width:6px; height:6px; border-radius:50%; background:var(--a); flex-shrink:0; }
+
+/* Hero stats */
+.hero-stats { display:flex; flex-direction:column; gap:var(--sp6); padding-top:var(--sp8); }
+@media(max-width:919px){
+  .hero-stats { flex-direction:row; flex-wrap:wrap; padding-top:0; gap:var(--sp6); }
+  .stat-box { flex:1; min-width:140px; }
+}
+.stat-box {
+  border:1px solid var(--b); border-radius:var(--r-md);
+  padding:var(--sp10) var(--sp12); background:var(--s-card);
+  box-shadow:var(--sh-sm);
+}
+.stat-num {
+  font-family:'Outfit',sans-serif; font-size:var(--t2xl); font-weight:700;
+  color:var(--t); letter-spacing:-0.03em; line-height:1;
+}
+.stat-label { margin-top:var(--sp4); font-size:var(--txs); color:var(--t-sec); line-height:1.45; font-weight:500; }
+
+/* ─── SERVICES — dark bg, inverted from hero ─────────────────────── */
+.services { background:var(--s-dark); padding:var(--sp48) 0; }
+.section-tag { font-size:var(--txs); font-weight:600; text-transform:uppercase; letter-spacing:0.16em; margin-bottom:var(--sp8); }
+.services .section-tag { color:rgba(255,122,69,0.80); }
+.section-h2 { font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.7rem,3vw,2.3rem); line-height:1.14; max-width:640px; }
+.services .section-h2 { color:var(--t-light); }
+.services .sdesc { margin-top:var(--sp8); font-size:var(--tbase); color:var(--t-light-dim); max-width:540px; line-height:1.7; }
+
+.svc-list { margin-top:var(--sp24); }
+.svc-row {
+  display:grid; grid-template-columns:48px 1fr auto;
+  gap:var(--sp12); align-items:center;
+  padding:var(--sp16) 0;
+  border-top:1px solid var(--b-dark);
+  cursor:pointer; position:relative;
+}
+.svc-row:last-child { border-bottom:1px solid var(--b-dark); }
+.svc-row::before {
+  content:''; position:absolute; left:-4px; top:0; bottom:0; width:3px;
+  background:var(--a-on-dark); transform:scaleY(0); transform-origin:bottom;
+  border-radius:2px; transition:transform 0.25s cubic-bezier(0.22,1,0.36,1);
+}
+.svc-row:hover::before { transform:scaleY(1); }
+.svc-row:hover .svc-idx { color:var(--a-on-dark); }
+.svc-row:hover .svc-arrow { transform:translateX(4px) translateY(-4px); opacity:1; }
+.svc-row:hover .svc-icon { background:rgba(255,122,69,0.15); color:var(--a-on-dark); }
+@media(max-width:600px){ .svc-row { grid-template-columns:1fr; gap:var(--sp8); } .svc-idx,.svc-arrow { display:none; } }
+
+.svc-idx { font-size:var(--txs); font-weight:700; color:rgba(237,240,248,0.22); letter-spacing:0.08em; transition:color 0.2s; align-self:flex-start; padding-top:4px; }
+
+.svc-body { display:flex; align-items:flex-start; gap:var(--sp10); }
+.svc-icon {
+  width:48px; height:48px; flex-shrink:0; border-radius:var(--r-md);
+  background:rgba(237,240,248,0.07); color:var(--t-light-dim);
+  display:flex; align-items:center; justify-content:center;
+  transition:background 0.2s,color 0.2s;
+}
+.svc-icon svg { width:22px; height:22px; }
+.svc-text h3 { font-size:var(--tlg); font-weight:700; color:var(--t-light); letter-spacing:-0.015em; margin-bottom:var(--sp4); line-height:1.25; }
+.svc-text p { font-size:var(--tsm); color:var(--t-light-dim); line-height:1.7; max-width:500px; }
+.svc-arrow { color:var(--t-light-dim); flex-shrink:0; opacity:0.35; transition:transform 0.25s,opacity 0.25s; }
+
+/* ─── PROCESS ─────────────────────────────────────────────────────── */
+.process { padding:var(--sp48) 0; background:var(--s-base); }
+.process .section-tag { color:var(--a); }
+.process .section-h2 { color:var(--t); }
+
+.proc-list { margin-top:var(--sp24); }
+.proc-item {
+  display:grid; grid-template-columns:64px 1fr; gap:var(--sp16); align-items:start;
+  padding:var(--sp16) 0; border-top:1px solid var(--b); position:relative; overflow:hidden;
+}
+.proc-item:last-child { border-bottom:1px solid var(--b); }
+/* SKILL signature: huge bg number with outline only */
+.proc-bg-num {
+  position:absolute; right:-8px; top:50%; transform:translateY(-50%);
+  font-family:'Outfit',sans-serif; font-weight:700;
+  font-size:clamp(4rem,10vw,7rem); line-height:1; letter-spacing:-0.04em;
+  color:transparent; -webkit-text-stroke:1px rgba(24,27,42,0.05);
+  pointer-events:none; user-select:none;
+}
+.proc-step { font-size:var(--txs); font-weight:700; color:var(--a); letter-spacing:0.1em; padding-top:4px; }
+.proc-body h4 { font-size:var(--tmd); font-weight:700; color:var(--t); margin-bottom:var(--sp6); letter-spacing:-0.01em; line-height:1.3; }
+.proc-body p { font-size:var(--tbase); color:var(--t-sec); line-height:1.7; max-width:520px; }
+
+/* ─── CONTACT ─────────────────────────────────────────────────────── */
+.contact { padding:var(--sp48) 0; background:var(--s-alt); }
+.contact .section-tag { color:var(--a); }
+.contact .section-h2 { color:var(--t); }
+.contact-desc { margin-top:var(--sp8); font-size:var(--tbase); color:var(--t-sec); line-height:1.7; max-width:500px; }
+
+.contact-grid { margin-top:var(--sp24); display:grid; grid-template-columns:1fr; gap:var(--sp16); }
+@media(min-width:820px){ .contact-grid { grid-template-columns:1.1fr 0.9fr; gap:var(--sp20); align-items:start; } }
+
+.wa-btn {
+  display:flex; align-items:center; gap:var(--sp8);
+  background:var(--s-dark); color:var(--t-light);
+  border-radius:var(--r-md); padding:var(--sp10) var(--sp12);
+  min-height:72px; box-shadow:var(--sh-sm);
+  transition:transform 0.25s,box-shadow 0.25s;
+}
+.wa-btn:hover { transform:translateY(-2px); box-shadow:var(--sh-lg); }
+.wa-icon {
+  width:48px; height:48px; flex-shrink:0; background:var(--a-on-dark);
+  border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; color:#fff;
+}
+.wa-icon svg { width:22px; height:22px; }
+.wa-label { font-size:var(--txs); text-transform:uppercase; letter-spacing:0.1em; color:var(--t-light-dim); font-weight:600; }
+.wa-val { font-size:var(--tmd); font-weight:700; margin-top:3px; color:var(--t-light); }
+
+.divider-or {
+  display:flex; align-items:center; gap:var(--sp8);
+  margin:var(--sp16) 0;
+  font-size:var(--txs); text-transform:uppercase; letter-spacing:0.1em; color:var(--t-muted);
+}
+.divider-or::before,.divider-or::after { content:''; flex:1; height:1px; background:var(--b); }
+
+.lead-box { background:var(--s-card); border-radius:var(--r-lg); padding:var(--sp16); border:1px solid var(--b); box-shadow:var(--sh-sm); }
+.lead-box h3 { font-size:var(--tmd); font-weight:700; color:var(--t); margin-bottom:var(--sp4); }
+.lead-sub { font-size:var(--tsm); color:var(--t-sec); margin-bottom:var(--sp12); line-height:1.6; }
+
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--sp8); }
+@media(max-width:540px){ .form-grid { grid-template-columns:1fr; } }
+.field.full { grid-column:1/-1; }
+
+/* SKILL: visible labels — not placeholder-only */
+.field { display:flex; flex-direction:column; gap:var(--sp4); }
+.field label { font-size:var(--txs); font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--t-sec); }
+.field .opt { text-transform:none; letter-spacing:0; font-weight:400; color:var(--t-muted); }
+.field input, .field textarea {
+  padding:var(--sp6) var(--sp8); min-height:48px;
+  border-radius:var(--r-sm); border:1px solid var(--b);
+  background:var(--s-base); color:var(--t);
+  font-family:'Outfit',sans-serif; font-size:var(--tbase);
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.field textarea { resize:vertical; min-height:80px; }
+.field input::placeholder,.field textarea::placeholder { color:var(--t-muted); }
+.field input:hover,.field textarea:hover { border-color:rgba(24,27,42,0.22); }
+.field input:focus,.field textarea:focus {
+  outline:none; border-color:var(--a);
+  box-shadow:0 0 0 4px rgba(224,90,31,0.12);
+}
+.form-submit-row { grid-column:1/-1; display:flex; justify-content:flex-end; margin-top:var(--sp4); }
+.btn-submit {
+  background:var(--t); color:var(--s-base);
+  font-family:'Outfit',sans-serif; font-weight:700; font-size:var(--tbase);
+  padding:var(--sp8) var(--sp16); border-radius:var(--r-sm); border:none; cursor:pointer;
+  min-height:48px; transition:background 0.2s,transform 0.2s;
+}
+.btn-submit:hover { background:var(--s-dark-card); transform:translateY(-1px); }
+.lead-note { margin-top:var(--sp8); font-size:var(--txs); color:var(--t-muted); }
+.lead-box.done { display:none; }
+.lead-success { display:none; background:#EEFCE7; border:1px solid rgba(60,150,30,0.22); border-radius:var(--r-md); padding:var(--sp10) var(--sp12); font-size:var(--tbase); font-weight:600; color:#1A5A10; }
+.lead-success.show { display:block; }
+
+/* SKILL: QR hidden on mobile */
+.qr-card { background:var(--s-dark); border-radius:var(--r-lg); padding:var(--sp16); display:flex; flex-direction:column; align-items:center; text-align:center; }
+@media(max-width:819px){ .qr-card { display:none; } }
+.qr-card h3 { font-size:var(--tmd); font-weight:700; color:var(--t-light); margin-bottom:var(--sp4); }
+.qr-card p { font-size:var(--tsm); color:var(--t-light-dim); margin-bottom:var(--sp12); line-height:1.55; }
+#qrcode { background:#fff; padding:14px; border-radius:var(--r-sm); display:inline-block; }
+.qr-sub { margin-top:var(--sp8); font-size:var(--txs); color:var(--t-light-dim); display:flex; align-items:center; gap:var(--sp4); }
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid var(--b-dark); }
+.ftr { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--sp8); }
+.ftr-brand { font-size:var(--tsm); font-weight:700; color:var(--t-light); letter-spacing:-0.01em; }
+.ftr-text { font-size:var(--txs); color:var(--t-light-dim); }
+
+/* Scroll reveal */
+.reveal { opacity:0; transform:translateY(18px); transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1 { transition-delay:0.06s; } .d2 { transition-delay:0.14s; } .d3 { transition-delay:0.22s; }
+
+@media(max-width:540px){ .hero { padding:var(--sp40) 0 var(--sp24); } .services,.process,.contact { padding:var(--sp32) 0; } }
+
+/* ─── VIEW SYSTEM ─────────────────────────────────────── */
+.view { display:none; }
+.view.active { display:block; }
+
+/* Transition between views */
+.view.entering {
+  animation: viewIn 0.35s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes viewIn {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* Header nav active state */
+.hdr-link.nav-active {
+  background:var(--t); color:var(--s-base);
+  border-color:var(--t);
+}
+.hdr-link.nav-active:hover { background:var(--s-dark-card); }
+
+/* ─── SERVICES PAGE ────────────────────────────────────── */
+.svc-page { background:var(--s-base); min-height:100dvh; }
+.svc-page-hero {
+  background:var(--s-dark); padding:var(--sp24) 0 var(--sp16);
+  position:relative; overflow:hidden;
+}
+.svc-page-hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(circle, rgba(237,240,248,0.07) 1.2px, transparent 1.2px);
+  background-size:26px 26px;
+}
+.svc-page-hero-inner { position:relative; z-index:1; }
+.svc-page-label {
+  font-size:var(--txs); font-weight:600; text-transform:uppercase;
+  letter-spacing:0.16em; color:rgba(255,122,69,0.8); margin-bottom:var(--sp8);
+  display:flex; align-items:center; gap:var(--sp6);
+}
+.svc-page-label-rule { width:24px; height:1.5px; background:rgba(255,122,69,0.8); }
+.svc-page-hero h2 {
+  font-family:'Playfair Display',serif; font-weight:700;
+  font-size:clamp(2rem,4.5vw,3.2rem); line-height:1.1;
+  color:var(--t-light); max-width:600px; letter-spacing:-0.02em;
+}
+.svc-page-hero h2 em { color:var(--a-on-dark); font-style:italic; }
+.svc-page-desc {
+  margin-top:var(--sp8); font-size:var(--tbase);
+  color:var(--t-light-dim); max-width:520px; line-height:1.7;
+}
+.back-btn {
+  display:inline-flex; align-items:center; gap:var(--sp4);
+  margin-bottom:var(--sp12);
+  font-size:var(--tsm); font-weight:600; color:var(--t-light-dim);
+  cursor:pointer; border:none; background:transparent;
+  font-family:'Outfit',sans-serif;
+  transition:color 0.2s; padding:0;
+}
+.back-btn:hover { color:var(--t-light); }
+.back-btn svg { width:16px; height:16px; }
+
+/* ─── CATEGORY TABS ─────────────────────────────────────── */
+.svc-tabs-bar {
+  background:var(--s-base); border-bottom:1px solid var(--b);
+  position:sticky; top:60px; z-index:30;
+}
+.svc-tabs-inner { display:flex; gap:0; overflow-x:auto; scrollbar-width:none; }
+.svc-tabs-inner::-webkit-scrollbar { display:none; }
+.tab-btn {
+  display:inline-flex; align-items:center; gap:var(--sp4);
+  padding:var(--sp10) var(--sp12);
+  font-family:'Outfit',sans-serif; font-size:var(--tsm); font-weight:600;
+  color:var(--t-sec); background:none; border:none; cursor:pointer;
+  border-bottom:2px solid transparent; white-space:nowrap;
+  transition:color 0.2s, border-color 0.2s;
+  min-height:48px; /* SKILL: touch target */
+}
+.tab-btn svg { width:16px; height:16px; flex-shrink:0; opacity:0.6; transition:opacity 0.2s; }
+.tab-btn:hover { color:var(--t); }
+.tab-btn.active { color:var(--a); border-bottom-color:var(--a); }
+.tab-btn.active svg { opacity:1; }
+.tab-count {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:18px; height:18px; border-radius:50%; background:var(--b);
+  font-size:10px; font-weight:700; color:var(--t-muted);
+  transition:background 0.2s, color 0.2s;
+}
+.tab-btn.active .tab-count { background:var(--a-soft); color:var(--a); }
+
+/* ─── TAB PANELS ─────────────────────────────────────────── */
+.tab-panel { display:none; padding:var(--sp24) 0 var(--sp32); }
+.tab-panel.active { display:block; }
+
+.svc-cards-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+  gap:var(--sp8);
+}
+
+/* ─── SERVICE CARD ───────────────────────────────────────── */
+.svc-card {
+  background:var(--s-card); border:1px solid var(--b);
+  border-radius:var(--r-lg); padding:var(--sp10);
+  display:flex; flex-direction:column; gap:var(--sp6);
+  transition:transform 0.25s cubic-bezier(0.22,1,0.36,1),
+             box-shadow 0.25s cubic-bezier(0.22,1,0.36,1),
+             border-color 0.25s;
+  /* Stagger animation */
+  opacity:0; transform:translateY(14px);
+  animation:cardIn 0.45s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.svc-card:hover {
+  transform:translateY(-4px);
+  box-shadow:var(--sh-lg);
+  border-color:var(--a);
+}
+.svc-card:hover .card-icon-wrap { background:var(--a-soft); color:var(--a); }
+.svc-card:hover .card-icon-wrap svg { transform:scale(1.1) rotate(-5deg); }
+.svc-card:hover .card-arrow { opacity:1; transform:translateX(3px) translateY(-3px); }
+
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+/* Stagger delays */
+.svc-card:nth-child(1) { animation-delay:0ms; }
+.svc-card:nth-child(2) { animation-delay:55ms; }
+.svc-card:nth-child(3) { animation-delay:110ms; }
+.svc-card:nth-child(4) { animation-delay:165ms; }
+.svc-card:nth-child(5) { animation-delay:220ms; }
+.svc-card:nth-child(6) { animation-delay:275ms; }
+
+.card-header { display:flex; justify-content:space-between; align-items:flex-start; }
+.card-icon-wrap {
+  width:48px; height:48px; border-radius:var(--r-md);
+  background:var(--s-alt); color:var(--t-sec);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  transition:background 0.25s, color 0.25s;
+}
+.card-icon-wrap svg {
+  width:22px; height:22px;
+  transition:transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.card-arrow {
+  color:var(--t-muted); opacity:0;
+  transition:opacity 0.2s, transform 0.25s;
+  flex-shrink:0; margin-top:4px;
+}
+.card-arrow svg { width:16px; height:16px; }
+
+.card-title { font-size:var(--tmd); font-weight:700; color:var(--t); letter-spacing:-0.01em; line-height:1.3; }
+.card-desc { font-size:var(--tsm); color:var(--t-sec); line-height:1.65; flex:1; }
+
+/* Benefits list */
+.card-benefits { display:flex; flex-direction:column; gap:var(--sp4); margin-top:var(--sp2); }
+.benefit-item {
+  display:flex; align-items:flex-start; gap:var(--sp4);
+  font-size:var(--txs); color:var(--t-sec); line-height:1.5;
+}
+.benefit-dot {
+  width:5px; height:5px; border-radius:50%; background:var(--a);
+  flex-shrink:0; margin-top:5px;
+}
+
+/* AI badge */
+.ai-badge {
+  display:inline-flex; align-items:center; gap:var(--sp2);
+  font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+  color:var(--a); background:var(--a-soft);
+  padding:3px 8px; border-radius:var(--r-full); margin-top:auto;
+  width:fit-content;
+}
+.ai-badge svg { width:10px; height:10px; }
+
+/* ─── BOTTOM CTA ─────────────────────────────────────────── */
+.svc-bottom-cta {
+  background:var(--s-dark); border-radius:var(--r-lg);
+  padding:var(--sp16) var(--sp12);
+  display:flex; flex-wrap:wrap; justify-content:space-between;
+  align-items:center; gap:var(--sp8); margin-top:var(--sp12);
+}
+.svc-bottom-cta p { font-size:var(--tmd); font-weight:600; color:var(--t-light); max-width:480px; line-height:1.4; }
+.svc-bottom-cta p span { color:var(--a-on-dark); font-style:italic; font-family:'Playfair Display',serif; }
+
+
+/* Clickable row hint */
+.svc-row[onclick]::after {
+  content: 'Ver detalle';
+  position:absolute; bottom: var(--sp8); right: 0;
+  font-size:var(--txs); font-weight:600; color:var(--a-on-dark);
+  opacity:0; letter-spacing:0.04em;
+  transition:opacity 0.2s;
+  pointer-events:none;
+}
+.svc-row[onclick]:hover::after { opacity:1; }
+
+/* ─── V6: HERO OSCURO ──────────────────────────────────── */
+.hero { background:#22293E; }
+.hero::before {
+  background-image:radial-gradient(circle, rgba(255,255,255,0.085) 1.2px, transparent 1.2px);
+}
+.hero .eyebrow { color:#F7E848; }
+.hero h1 { color:#E4E8F5; }
+.hero h1 em { color:#F7E848; }
+.hero .hero-tagline { color:rgba(228,232,245,0.88); }
+.hero .hero-desc { color:rgba(228,232,245,0.55); }
+.hero .micro-copy { color:rgba(228,232,245,0.42); }
+.hero .micro-dot { background:#F7E848; }
+.hero .stat-box {
+  background:rgba(255,255,255,0.07);
+  border-color:rgba(255,255,255,0.11);
+  box-shadow:none;
+}
+.hero .stat-num { color:#E4E8F5; }
+.hero .stat-label { color:rgba(228,232,245,0.52); }
+.hero .btn-ghost {
+  border-color:rgba(228,232,245,0.22);
+  color:rgba(228,232,245,0.82);
+}
+.hero .btn-ghost:hover {
+  border-color:rgba(228,232,245,0.44);
+  background:rgba(255,255,255,0.05);
+}
+
+/* ─── HEADER OSCURO (consistente con hero) ──────────────── */
+header {
+  background:rgba(28,37,64,0.96) !important;
+  border-bottom-color:rgba(255,255,255,0.08) !important;
+}
+.logo { color:#E4E8F5; }
+.logo-box { background:#E4E8F5; color:#1C2540; }
+.logo-em { color:#F7E848; }
+.hdr-link {
+  color:#FFFFFF;
+  border-color:rgba(255,255,255,0.45);
+  background:transparent;
+  font-family:inherit;
+}
+.hdr-link:hover {
+  color:#E4E8F5;
+  border-color:rgba(255,255,255,0.38);
+  background:rgba(255,255,255,0.05);
+}
+.hdr-link.nav-active {
+  background:#E4E8F5;
+  color:#1C2540;
+  border-color:#E4E8F5;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap hdr">
+    <div class="logo"><div class="logo-box">R</div>RaízTech <span class="logo-em">NEA</span></div>
+    <nav class="hdr-nav">
+      <button onclick="showView('view-services')" class="hdr-link" id="nav-servicios">Servicios</button>
+      <a href="#contacto" class="hdr-link" onclick="if(document.getElementById('view-landing').classList.contains('active')){}" id="nav-contacto">Contacto</a>
+      <a href="https://wa.me/5493624361231" target="_blank" class="btn-a">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Hablemos
+      </a>
+    </nav>
+  </div>
+</header>
+
+<div id="view-landing" class="view active">
+<!-- HERO — light bg (differentiator #1 vs v1/v2/v3) -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow reveal"><span class="eyebrow-rule"></span>Tecnología con raíces en el NEA</div>
+        <h1 class="reveal d1">Hacé crecer<br>tu negocio.<br>Nosotros nos<br>ocupamos de la<br><em>tecnología</em>.</h1>
+        <p class="hero-tagline reveal d2">No vendemos software. Vendemos tranquilidad.</p>
+        <p class="hero-desc reveal d2">Brindamos soluciones de software, automatización e inteligencia artificial para optimizar operaciones, reducir errores y adaptarse al crecimiento de tu empresa.</p>
+        <div class="hero-cta-wrap reveal d3">
+          <div class="hero-cta-row">
+            <a href="https://wa.me/5493624361231" target="_blank" class="btn-a">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              Hablemos por WhatsApp
+            </a>
+            <a href="#servicios" class="btn-ghost">
+              Ver qué hacemos
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+          <div class="micro-copy"><span class="micro-dot"></span>Te responde un humano en menos de 15 minutos</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box reveal d1"><div class="stat-num">100%</div><div class="stat-label">Diagnóstico inicial sin costo ni compromiso</div></div>
+        <div class="stat-box reveal d2"><div class="stat-num">NEA</div><div class="stat-label">Presencia local — no somos de Buenos Aires</div></div>
+        <div class="stat-box reveal d3"><div class="stat-num">3–8</div><div class="stat-label">Semanas hasta tu primer sistema en producción</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES — dark bg (inverted from hero) -->
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-tag reveal">Qué ofrecemos</div>
+    <h2 class="section-h2 reveal">Tres formas de sacarte<br>trabajo manual de encima.</h2>
+    <p class="sdesc reveal">No vendemos software genérico. Construimos lo que tu operación necesita, empezando por el problema que más te duele hoy.</p>
+    <div class="svc-list">
+      <div class="svc-row reveal" onclick="goToTab('tab-sistemas')" title="Ver detalle de Sistemas de gestión" role="button" tabindex="0">
+        <div class="svc-idx">01</div>
+        <div class="svc-body">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="svc-text">
+            <h3>Sistemas de gestión</h3>
+            <p>Stock en tiempo real, pedidos desde el celular, turnos online, control de maquinaria y flota. Todo lo que hoy vive en un cuaderno o un Excel, digitalizado y disponible desde cualquier dispositivo.</p>
+          </div>
+        </div>
+        <div class="svc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      </div>
+      <div class="svc-row reveal" onclick="goToTab('tab-automatizaciones')" title="Ver detalle de Automatizaciones" role="button" tabindex="0">
+        <div class="svc-idx">02</div>
+        <div class="svc-body">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="svc-text">
+            <h3>Automatizaciones</h3>
+            <p>Cobranzas por WhatsApp, alertas de stock, reportes diarios redactados solos, recordatorios de mantenimiento. Procesos que corren sin que nadie los empuje, todos los días.</p>
+          </div>
+        </div>
+        <div class="svc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      </div>
+      <div class="svc-row reveal" onclick="goToTab('tab-ia')" title="Ver detalle de Inteligencia artificial" role="button" tabindex="0">
+        <div class="svc-idx">03</div>
+        <div class="svc-body">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49"/><path d="M7.76 7.76a6 6 0 0 0 0 8.49"/></svg>
+          </div>
+          <div class="svc-text">
+            <h3>Inteligencia artificial aplicada</h3>
+            <p>Detección de anomalías de consumo, sugerencias de venta en tiempo real, resúmenes diarios en lenguaje natural. IA que trabaja para tu negocio, no que necesita que aprendas a usarla.</p>
+          </div>
+        </div>
+        <div class="svc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="wrap">
+    <div class="section-tag reveal">Cómo trabajamos</div>
+    <h2 class="section-h2 reveal">Un proceso claro,<br>sin sorpresas.</h2>
+    <div class="proc-list">
+      <div class="proc-item reveal"><div class="proc-bg-num">01</div><div class="proc-step">01</div><div class="proc-body"><h4>Diagnóstico gratuito</h4><p>Conversamos sobre tu operación, identificamos qué proceso te genera más pérdida de tiempo o dinero, y te decimos honestamente si podemos ayudarte.</p></div></div>
+      <div class="proc-item reveal"><div class="proc-bg-num">02</div><div class="proc-step">02</div><div class="proc-body"><h4>Propuesta concreta</h4><p>Te mostramos una demo funcional de lo que construiríamos, con plazo y precio claro antes de que pagues un peso.</p></div></div>
+      <div class="proc-item reveal"><div class="proc-bg-num">03</div><div class="proc-step">03</div><div class="proc-body"><h4>Implementación por etapas</h4><p>Construimos entregando resultados visibles cada semana. Vos ves avances reales, no promesas a futuro.</p></div></div>
+      <div class="proc-item reveal"><div class="proc-bg-num">04</div><div class="proc-step">04</div><div class="proc-body"><h4>Acompañamiento continuo</h4><p>Una vez funcionando, seguimos cerca. Soporte, ajustes y mejoras según lo que tu negocio vaya necesitando.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="section-tag reveal">Hablemos</div>
+    <h2 class="section-h2 reveal">Contanos qué proceso<br>te está frenando hoy.</h2>
+    <p class="contact-desc reveal">El primer diagnóstico no tiene costo. Escribinos o dejanos tus datos.</p>
+    <div class="contact-grid">
+      <div>
+        <a href="https://wa.me/5493624361231" target="_blank" class="wa-btn reveal">
+          <div class="wa-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <div><div class="wa-label">WhatsApp</div><div class="wa-val">+54 9 362 436-1231</div></div>
+        </a>
+
+        <div class="divider-or reveal">o dejanos tus datos</div>
+
+        <div class="lead-box reveal" id="leadFormBox">
+          <h3>¿Preferís que te contactemos nosotros?</h3>
+          <p class="lead-sub">Te escribimos en menos de 24 horas. Sin compromiso.</p>
+          <iframe name="hidden_iframe" style="display:none;"></iframe>
+          <form id="leadForm" action="https://docs.google.com/forms/d/e/1FAIpQLScwf3_sNPTeAlpn5aOQycJbjmdAqhBQ4DqUVwr9w7r5D30Ieg/formResponse" method="POST" target="hidden_iframe" onsubmit="handleSubmit()">
+            <div class="form-grid">
+              <div class="field"><label for="lNombre">Nombre</label><input type="text" id="lNombre" name="entry.1340688883" placeholder="Tu nombre" required></div>
+              <div class="field"><label for="lEmpresa">Empresa</label><input type="text" id="lEmpresa" name="entry.1435270153" placeholder="Tu empresa" required></div>
+              <div class="field"><label for="lTel">Teléfono <span class="opt">(opcional)</span></label><input type="text" id="lTel" name="entry.1517723525" placeholder="Tu teléfono"></div>
+              <div class="field"><label for="lEmail">Email <span class="opt">(opcional)</span></label><input type="email" id="lEmail" name="entry.107540317" placeholder="tu@email.com"></div>
+              <div class="field full"><label for="lComent">Comentarios <span class="opt">(opcional)</span></label><textarea id="lComent" name="entry.688573081" placeholder="Contanos brevemente qué necesitás"></textarea></div>
+              <div class="form-submit-row"><button type="submit" class="btn-submit">Enviar</button></div>
+            </div>
+          </form>
+          <p class="lead-note">No compartimos tus datos con nadie.</p>
+        </div>
+        <div class="lead-success" id="leadSuccess">Gracias — recibimos tus datos. Te contactamos a la brevedad.</div>
+      </div>
+
+      <div class="qr-card reveal">
+        <h3>Escaneá para escribirnos</h3>
+        <p>Abre WhatsApp directo con un mensaje listo para enviar.</p>
+        <div id="qrcode"></div>
+        <div class="qr-sub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          Apuntá la cámara al código
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+</div>
+
+<!-- SERVICES VIEW -->
+<div id="view-services" class="view">
+<div class="svc-page">
+
+  <!-- Hero -->
+  <div class="svc-page-hero">
+    <div class="wrap svc-page-hero-inner">
+      <button class="back-btn" onclick="showView('view-landing')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Volver al inicio
+      </button>
+      <div class="svc-page-label"><span class="svc-page-label-rule"></span>Lo que hacemos</div>
+      <h2>Soluciones concretas<br>para tu operación <em>real</em>.</h2>
+      <p class="svc-page-desc">Elegí la categoría que más se acerca a lo que necesitás. Si no encontrás lo tuyo, hablanos — probablemente ya lo resolvimos antes.</p>
+    </div>
+  </div>
+
+  <!-- Tabs bar -->
+  <div class="svc-tabs-bar">
+    <div class="wrap">
+      <div class="svc-tabs-inner">
+        <button class="tab-btn active" onclick="showTab('tab-sistemas', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Sistemas de Gestión
+          <span class="tab-count">6</span>
+        </button>
+        <button class="tab-btn" onclick="showTab('tab-automatizaciones', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Automatizaciones
+          <span class="tab-count">5</span>
+        </button>
+        <button class="tab-btn" onclick="showTab('tab-ia', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          Inteligencia Artificial
+          <span class="tab-count">4</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab content -->
+  <div class="wrap">
+
+    <!-- TAB: Sistemas -->
+    <div id="tab-sistemas" class="tab-panel active">
+      <div class="svc-cards-grid">
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Control de Stock</div>
+          <div class="card-desc">Stock en tiempo real de insumos, agroquímicos, semillas o mercadería. El encargado registra entradas y salidas desde cualquier dispositivo.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Alerta automática cuando el stock baja del mínimo</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>El dueño ve el stock desde su celular, en cualquier momento</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Historial de movimientos con fecha y responsable</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Pedidos en Campo</div>
+          <div class="card-desc">El vendedor carga el pedido desde su celular mientras está en campo. El depósito lo ve al instante. Sin papel, sin llamados, sin errores.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Catálogo actualizado con precios y stock real</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Pedido confirmado por el cliente en el mismo momento</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Funciona sin señal — sincroniza cuando vuelve la red</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><path d="M12 12h.01"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Maquinaria y Flota</div>
+          <div class="card-desc">Control completo de equipos agrícolas y camiones. Horas de uso, historial de mantenimiento, costos por unidad y alertas de service.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Alerta automática antes del próximo service</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Costo real por equipo al cierre de campaña</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Alertas de vencimiento de VTV, seguro y licencias</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Turnos Online</div>
+          <div class="card-desc">El paciente reserva su turno desde el celular a cualquier hora. La secretaria no pierde tiempo al teléfono. Recordatorio automático 24 hs antes.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>La secretaria recupera 2-3 horas diarias de llamados</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>El paciente cancela solo — el turno vuelve a estar libre</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Agenda compartida para múltiples profesionales</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">CRM de Clientes</div>
+          <div class="card-desc">Historial completo de cada cliente: qué compró, cuándo, qué dijo en la última visita y cuándo hay que volver a contactarlo. Todo queda en la empresa, no en el celular del vendedor.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Si el vendedor se va, el cliente sigue siendo tuyo</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Recordatorios de seguimiento automáticos</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>El dueño ve el pipeline de ventas en tiempo real</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Órdenes de Trabajo</div>
+          <div class="card-desc">Para talleres y service. El técnico carga la orden desde el celular, el cliente recibe el presupuesto, y la factura sale con todo el detalle sin que nadie transcribía nada.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Sin papeles extraviados ni trabajos sin facturar</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>El cliente recibe aviso cuando su equipo está listo</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Historial completo de cada equipo que pasó por el taller</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="svc-bottom-cta">
+        <p>¿Necesitás algo más específico? <span>Hablanos.</span><br>Si ya lo resolvimos, te lo mostramos andando.</p>
+        <a href="https://wa.me/5493624361231" target="_blank" class="btn-a">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- TAB: Automatizaciones -->
+    <div id="tab-automatizaciones" class="tab-panel">
+      <div class="svc-cards-grid">
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Cobranzas por WhatsApp</div>
+          <div class="card-desc">El sistema envía automáticamente recordatorios de cobro escalonados. Primer mensaje amable, segundo más directo, tercero urgente — y recién ahí te avisa a vos para que intervengas.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>3 recordatorios automáticos sin que hagas nada</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Solo te avisa cuando el cliente no respondió en 10 días</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Historial de todos los mensajes enviados por cliente</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Alertas de Stock</div>
+          <div class="card-desc">Cuando un producto baja del mínimo, el sistema calcula cuántos días quedan según el ritmo de ventas actual y manda un WhatsApp al responsable de compras con la alerta justa.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Alerta anticipada según días de stock restantes</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Diferencia entre mínimo de campaña y mínimo tranquilo</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Sin alertas falsas — aprende el ritmo de tu negocio</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Reportes Automáticos</div>
+          <div class="card-desc">Cada mañana a las 8:00 el dueño recibe en su WhatsApp un resumen del día anterior: ventas, stock crítico y cobranzas pendientes. En palabras, no en una tabla.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Reporte diario, semanal y mensual automático</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Redactado en lenguaje natural, no en números crudos</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Llega al WhatsApp — no hay que abrir ninguna app</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Recordatorios de Mantenimiento</div>
+          <div class="card-desc">El sistema controla las fechas de service, vencimiento de VTV, seguro y licencias de todos tus equipos y vehículos. Avisa con anticipación, no cuando ya es tarde.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Avisa 30 días antes del vencimiento, no el día</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Para vehículos, maquinaria y equipos por igual</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Cero multas ni paradas por documentación vencida</div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Trazabilidad SENASA</div>
+          <div class="card-desc">El aplicador registra cada aplicación de fitosanitarios desde el celular en campo. El sistema valida que el producto, la dosis y la carencia cumplan con SENASA antes de confirmar.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Validación automática contra normas SENASA vigentes</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Registro geolocalizado con foto de comprobante</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Documentación lista para auditorías y exportación</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="svc-bottom-cta">
+        <p>¿Tenés un proceso repetitivo que <span>consume tiempo</span>? Probablemente se puede automatizar.</p>
+        <a href="https://wa.me/5493624361231" target="_blank" class="btn-a">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Consultá por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- TAB: Inteligencia Artificial -->
+    <div id="tab-ia" class="tab-panel">
+      <div class="svc-cards-grid">
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Detección de Anomalías</div>
+          <div class="card-desc">La IA aprende el comportamiento normal de tu operación y detecta automáticamente cuando algo se desvía: un camión que consume más combustible, un producto que dejó de rotar, un cliente que dejó de comprar.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Detecta problemas mecánicos antes de la rotura</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Identifica clientes en riesgo de irse antes que se vayan</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Aprende tu estacionalidad — no da falsas alarmas</div>
+          </div>
+          <div class="ai-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Impulsado por IA</div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Reportes en Lenguaje Natural</div>
+          <div class="card-desc">En lugar de una tabla con números, el dueño recibe un mensaje que dice en palabras qué pasó, qué es importante y qué necesita atención. La IA redacta, vos decidís.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>"Esta semana vendiste 12% más. Glifosato fue el top."</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Resume lo relevante — no te ahoga en datos</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Llega por WhatsApp a la hora que vos elegís</div>
+          </div>
+          <div class="ai-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Impulsado por IA</div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Asistente de Pedidos por WhatsApp</div>
+          <div class="card-desc">El cliente escribe por WhatsApp lo que necesita en lenguaje normal. La IA identifica los productos del catálogo, confirma precios y genera el pedido. Sin app, sin formulario.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>El cliente pide como habla — la IA entiende</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Solo usa datos reales del catálogo, nunca inventa precios</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Escala: atiende 100 clientes a la vez sin demoras</div>
+          </div>
+          <div class="ai-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Impulsado por IA</div>
+        </div>
+
+        <div class="svc-card">
+          <div class="card-header">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6"/><path d="M9 12h4"/><path d="M9 15h2"/></svg>
+            </div>
+            <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="card-title">Sugerencias de Venta</div>
+          <div class="card-desc">Cuando el vendedor está tomando un pedido, la IA analiza el historial del cliente y sugiere qué más podría necesitar, basándose en lo que suele comprar en esta época del año.</div>
+          <div class="card-benefits">
+            <div class="benefit-item"><span class="benefit-dot"></span>Basado en el historial real, no en suposiciones genéricas</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>Considera la estacionalidad de cada producto</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>El vendedor decide — la IA solo sugiere</div>
+          </div>
+          <div class="ai-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Impulsado por IA</div>
+        </div>
+
+      </div>
+
+      <div class="svc-bottom-cta">
+        <p>¿Querés ver cómo funciona la IA<br><span>en tu tipo de negocio específico?</span></p>
+        <a href="https://wa.me/5493624361231" target="_blank" class="btn-a">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Pedí una demo
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /wrap -->
+</div><!-- /svc-page -->
+</div><!-- /view-services -->
+
+<footer>
+  <div class="wrap ftr">
+    <div class="ftr-brand">RaízTech NEA</div>
+    <div class="ftr-text">No vendemos software. Vendemos tranquilidad.</div>
+    <div class="ftr-text">Chaco - Argentina © 2026</div>
+  </div>
+</footer>
+
+<script>
+
+function goToTab(tabId) {
+  showView('view-services');
+  // Small delay so the view is visible before animating tabs
+  requestAnimationFrame(() => {
+    const btn = document.querySelector(`button[onclick*="${tabId}"]`);
+    showTab(tabId, btn);
+  });
+}
+
+function showView(viewId) {
+  document.querySelectorAll('.view').forEach(v => {
+    v.classList.remove('active','entering');
+  });
+  const target = document.getElementById(viewId);
+  target.classList.add('active');
+  requestAnimationFrame(() => target.classList.add('entering'));
+  window.scrollTo({top:0, behavior:'instant'});
+  // Update nav active state
+  document.querySelectorAll('.hdr-link').forEach(l => l.classList.remove('nav-active'));
+  if(viewId === 'view-services') {
+    document.getElementById('nav-servicios').classList.add('nav-active');
+  }
+}
+
+function showTab(tabId, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById(tabId);
+  panel.classList.add('active');
+  if(btn) btn.classList.add('active');
+  // Re-trigger card animations
+  panel.querySelectorAll('.svc-card').forEach((card, i) => {
+    card.style.animation = 'none';
+    card.offsetHeight; // reflow
+    card.style.animation = '';
+  });
+}
+
+new QRCode(document.getElementById("qrcode"),{
+  text:"https://wa.me/5493624361231?text="+encodeURIComponent("Hola! Vi su landing y quiero saber más sobre los servicios de RaízTech NEA."),
+  width:168, height:168, colorDark:"#181B2A", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.H
+});
+
+function handleSubmit(){
+  setTimeout(function(){
+    document.getElementById('leadFormBox').classList.add('done');
+    document.getElementById('leadSuccess').classList.add('show');
+  },400);
+}
+
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
