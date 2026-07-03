@@ -11,14 +11,13 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RaízTech NEA — Software y automatización (Timeline)</title>
-<meta name="description" content="RaízTech NEA — Software, automatización e inteligencia artificial para empresas del NEA. Diagnóstico inicial sin costo. Atención directa, sin intermediarios.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231C2540'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='58' font-weight='800' fill='%23F7E848' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
-<meta property="og:title" content="RaízTech NEA — Software y automatización para empresas del NEA">
+<title>Software y automatización para empresas del NEA</title>
+<meta name="description" content="Software, automatización e inteligencia artificial para empresas del NEA. Diagnóstico inicial sin costo. Atención directa, sin intermediarios.">
+<meta property="og:title" content="Software y automatización para empresas del NEA">
 <meta property="og:description" content="Soluciones de software, automatización e inteligencia artificial para optimizar operaciones y reducir errores. Diagnóstico inicial sin costo.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RaízTech NEA — Software y automatización para empresas del NEA">
+<meta name="twitter:title" content="Software y automatización para empresas del NEA">
 <meta name="twitter:description" content="Soluciones de software, automatización e IA para empresas del NEA. Diagnóstico inicial sin costo.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
@@ -100,7 +99,7 @@ header {
   background:rgba(247,247,244,0.93); backdrop-filter:blur(12px);
   border-bottom:1px solid var(--b);
 }
-.hdr { display:flex; align-items:center; justify-content:space-between; padding:var(--sp10) 0; }
+.hdr { display:flex; align-items:center; justify-content:center; padding:var(--sp10) 0; }
 
 .logo {
   font-family:'Outfit',sans-serif; font-weight:700; font-size:17px;
@@ -115,7 +114,7 @@ header {
 }
 .logo-em { color:var(--a); }
 
-.hdr-nav { display:flex; align-items:center; gap:var(--sp8); }
+.hdr-nav { display:flex; align-items:center; gap:var(--sp16); }
 .hdr-link {
   font-size:var(--tsm); font-weight:600; color:var(--t);
   padding:8px var(--sp12); border-radius:var(--r-sm);
@@ -912,7 +911,6 @@ header {
 <!-- HEADER -->
 <header>
   <div class="wrap hdr">
-    <div class="logo"><div class="logo-box">R</div>RaízTech <span class="logo-em">NEA</span></div>
     <nav class="hdr-nav">
       <button onclick="showView('view-services')" class="hdr-link" id="nav-servicios">Servicios</button>
       <a href="#contacto" class="hdr-link" onclick="goToContact(event)" id="nav-contacto">Contacto</a>
@@ -1547,7 +1545,6 @@ header {
 
 <footer>
   <div class="wrap ftr">
-    <div class="ftr-brand">RaízTech NEA</div>
     <div class="ftr-text">No vendemos software. Vendemos tranquilidad.</div>
     <div class="ftr-text">Chaco - Argentina © 2026</div>
   </div>
@@ -1626,12 +1623,12 @@ function showTab(tabId, btn) {
 }
 
 new QRCode(document.getElementById("qrcode-hero"),{
-  text:"https://wa.me/5493624361231?text="+encodeURIComponent("Hola! Vi su landing y quiero saber más sobre los servicios de RaízTech NEA."),
+  text:"https://wa.me/5493624361231?text="+encodeURIComponent("Hola! Vi su landing y quiero saber más sobre sus servicios."),
   width:110, height:110, colorDark:"#1C2540", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.M
 });
 
 new QRCode(document.getElementById("qrcode"),{
-  text:"https://wa.me/5493624361231?text="+encodeURIComponent("Hola! Vi su landing y quiero saber más sobre los servicios de RaízTech NEA."),
+  text:"https://wa.me/5493624361231?text="+encodeURIComponent("Hola! Vi su landing y quiero saber más sobre sus servicios."),
   width:168, height:168, colorDark:"#181B2A", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.H
 });
 
@@ -1763,7 +1760,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 document.querySelectorAll('.svc-card').forEach(card => {
   card.addEventListener('click', () => {
     const titulo = card.querySelector('.card-title')?.textContent?.trim() || 'sus servicios';
-    const msg = "Hola! Vi la página de RaízTech NEA y me interesa el servicio de " + titulo + ". ¿Me pueden contar más?";
+    const msg = "Hola! Vi su página y me interesa el servicio de " + titulo + ". ¿Me pueden contar más?";
     window.open("https://wa.me/5493624361231?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
   });
   card.setAttribute('title', 'Consultar este servicio por WhatsApp');
@@ -1784,7 +1781,7 @@ function toggleDetail(id, btn) {
 document.querySelectorAll('.tl-card').forEach(card => {
   card.addEventListener('click', () => {
     const titulo = card.querySelector('h5')?.textContent?.trim() || 'sus servicios';
-    const msg = "Hola! Vi la página de RaízTech NEA y me interesa el servicio de " + titulo + ". ¿Me pueden contar más?";
+    const msg = "Hola! Vi su página y me interesa el servicio de " + titulo + ". ¿Me pueden contar más?";
     window.open("https://wa.me/5493624361231?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
   });
   card.setAttribute('title', 'Consultar este servicio por WhatsApp');
