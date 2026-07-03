@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RaízTech NEA — Tecnología que crece desde el norte</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --ink:#1B2A22;
+    --forest:#15351F;
+    --forest-deep:#0E2417;
+    --ochre:#C98A3B;
+    --ochre-light:#E3A85C;
+    --clay:#B5582E;
+    --ivory:#F3EEE3;
+    --ivory-dim:#D9D2C2;
+    --line: rgba(243,238,227,0.14);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--forest-deep);
+    color:var(--ivory);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 1.5rem;}
+
+  /* ---------- ROOT MOTIF (signature element) ---------- */
+  .root-motif{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:0.55;
+  }
+  .root-motif svg{width:100%; height:100%;}
+  .root-line{
+    fill:none;
+    stroke:var(--ochre);
+    stroke-width:1;
+    stroke-opacity:0.35;
+  }
+  .root-node{
+    fill:var(--ochre);
+    opacity:0.55;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(14,36,23,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.1rem 0;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:0.01em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo-mark{
+    width:26px; height:26px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--ochre-light), var(--clay));
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; color:var(--forest-deep); font-weight:800;
+  }
+  .header-cta{
+    background:var(--ochre);
+    color:var(--forest-deep);
+    font-weight:700;
+    font-size:13px;
+    padding:9px 16px;
+    border-radius:100px;
+    display:flex; align-items:center; gap:6px;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .header-cta:hover{ background:var(--ochre-light); transform:translateY(-1px); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:6.5rem 0 5rem;
+    overflow:hidden;
+  }
+  .eyebrow{
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    color:var(--ochre-light);
+    font-weight:700;
+    margin-bottom:1.4rem;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:28px; height:1px;
+    background:var(--ochre-light);
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.1rem);
+    line-height:1.04;
+    max-width:780px;
+    color:var(--ivory);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--ochre-light);
+  }
+  .hero-sub{
+    margin-top:1.6rem;
+    font-size:17px;
+    line-height:1.65;
+    color:var(--ivory-dim);
+    max-width:540px;
+  }
+  .hero-actions{
+    margin-top:2.4rem;
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--ochre);
+    color:var(--forest-deep);
+    font-weight:700;
+    font-size:14px;
+    padding:14px 26px;
+    border-radius:100px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--ochre-light); }
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--ivory);
+    font-weight:600;
+    font-size:14px;
+    padding:14px 26px;
+    border-radius:100px;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn-ghost:hover{ border-color:var(--ochre-light); background:rgba(243,238,227,0.04); }
+
+  .hero-stats{
+    margin-top:4rem;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
+    max-width:560px;
+    border-top:1px solid var(--line);
+    padding-top:1.8rem;
+  }
+  .stat-num{
+    font-family:'Fraunces', serif;
+    font-size:1.6rem;
+    color:var(--ochre-light);
+  }
+  .stat-label{
+    font-size:11.5px;
+    color:var(--ivory-dim);
+    margin-top:4px;
+    line-height:1.4;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{ padding:5rem 0; position:relative; }
+  .section-tag{
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    color:var(--ochre-light);
+    font-weight:700;
+    margin-bottom:0.9rem;
+  }
+  .section-title{
+    font-size:clamp(1.7rem, 3.5vw, 2.4rem);
+    max-width:640px;
+    line-height:1.15;
+  }
+  .section-desc{
+    margin-top:1rem;
+    color:var(--ivory-dim);
+    font-size:15px;
+    max-width:560px;
+    line-height:1.65;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services{ background:var(--forest); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .service-grid{
+    margin-top:2.8rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .service-card{
+    background:var(--forest);
+    padding:2rem 1.8rem;
+    transition:background .25s ease;
+  }
+  .service-card:hover{ background:var(--forest-deep); }
+  .service-icon{
+    width:38px; height:38px;
+    border-radius:9px;
+    background:rgba(227,168,92,0.12);
+    color:var(--ochre-light);
+    display:flex; align-items:center; justify-content:center;
+    font-size:17px;
+    margin-bottom:1.2rem;
+  }
+  .service-card h3{
+    font-size:17px;
+    margin-bottom:0.6rem;
+    color:var(--ivory);
+  }
+  .service-card p{
+    font-size:13.5px;
+    color:var(--ivory-dim);
+    line-height:1.6;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process-list{
+    margin-top:2.8rem;
+    display:flex;
+    flex-direction:column;
+  }
+  .process-item{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:1.4rem;
+    padding:1.6rem 0;
+    border-top:1px solid var(--line);
+  }
+  .process-item:last-child{ border-bottom:1px solid var(--line); }
+  .process-num{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    color:var(--ochre);
+    opacity:0.7;
+  }
+  .process-item h4{
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:15.5px;
+    color:var(--ivory);
+    margin-bottom:0.4rem;
+  }
+  .process-item p{
+    font-size:13.5px;
+    color:var(--ivory-dim);
+    line-height:1.6;
+    max-width:460px;
+  }
+
+  /* ---------- CONTACT / QR ---------- */
+  .contact{
+    background:var(--forest);
+    border-top:1px solid var(--line);
+  }
+  .contact-grid{
+    margin-top:2.8rem;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:2.5rem;
+    align-items:stretch;
+  }
+  @media (max-width:760px){ .contact-grid{ grid-template-columns:1fr; } }
+
+  .contact-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:1.4rem;
+  }
+  .contact-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:1rem 1.2rem;
+    border:1px solid var(--line);
+    border-radius:14px;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .contact-row:hover{ border-color:var(--ochre-light); background:rgba(243,238,227,0.03); }
+  .contact-icon{
+    width:38px; height:38px;
+    border-radius:50%;
+    background:rgba(227,168,92,0.12);
+    color:var(--ochre-light);
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px;
+    flex-shrink:0;
+  }
+  .contact-row .label{ font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ivory-dim); }
+  .contact-row .value{ font-size:14.5px; font-weight:600; color:var(--ivory); margin-top:2px; }
+
+  .qr-card{
+    background:var(--ivory);
+    color:var(--forest-deep);
+    border-radius:20px;
+    padding:2.2rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    justify-content:center;
+  }
+  .qr-card h3{
+    font-size:17px;
+    color:var(--forest-deep);
+    margin-bottom:0.4rem;
+  }
+  .qr-card p{
+    font-size:12.5px;
+    color:#5C5444;
+    margin-bottom:1.4rem;
+    line-height:1.5;
+  }
+  #qrcode{
+    background:white;
+    padding:12px;
+    border-radius:12px;
+    display:inline-block;
+  }
+  .qr-sub{
+    margin-top:1.2rem;
+    font-size:11.5px;
+    color:#5C5444;
+    display:flex; align-items:center; gap:6px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:2.4rem 0;
+    border-top:1px solid var(--line);
+  }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+  }
+  .footer-text{ font-size:12px; color:var(--ivory-dim); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+
+  @media (max-width:600px){
+    .hero{ padding:4.5rem 0 3rem; }
+    .hero-stats{ grid-template-columns:1fr 1fr; }
+    .section{ padding:3.5rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <div class="logo">
+      <div class="logo-mark">R</div>
+      RaízTech <span style="color:var(--ochre-light); font-weight:500;">NEA</span>
+    </div>
+    <a href="https://wa.me/5493624361231" target="_blank" class="header-cta">
+      💬 Escribinos
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="root-motif">
+    <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+      <path class="root-line" d="M 950 -20 C 900 80, 880 140, 800 180 C 750 205, 700 190, 650 230"/>
+      <path class="root-line" d="M 800 180 C 820 230, 870 260, 850 320"/>
+      <path class="root-line" d="M 650 230 C 600 260, 580 300, 520 320 C 480 335, 440 320, 400 350"/>
+      <path class="root-line" d="M 520 320 C 540 360, 530 400, 480 430"/>
+      <path class="root-line" d="M 400 350 C 360 365, 340 390, 290 400"/>
+      <path class="root-line" d="M 950 -20 C 980 40, 990 90, 960 140"/>
+      <circle class="root-node" cx="800" cy="180" r="3"/>
+      <circle class="root-node" cx="650" cy="230" r="3"/>
+      <circle class="root-node" cx="520" cy="320" r="3"/>
+      <circle class="root-node" cx="400" cy="350" r="3"/>
+      <circle class="root-node" cx="290" cy="400" r="2.5"/>
+      <circle class="root-node" cx="850" cy="320" r="2.5"/>
+      <circle class="root-node" cx="480" cy="430" r="2.5"/>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="eyebrow">Tecnología con raíces en el NEA</div>
+    <h1>Digitalizamos el negocio<br>de las empresas que <em>mueven</em><br>el norte argentino.</h1>
+    <p class="hero-sub">
+      Sistemas, automatizaciones e inteligencia artificial para distribuidoras, productores y empresas de Chaco y Corrientes. Sin vueltas técnicas — resolvemos el problema que hoy te hace perder tiempo o plata.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5493624361231" target="_blank" class="btn-primary">💬 Hablemos por WhatsApp</a>
+      <a href="#servicios" class="btn-ghost">Ver qué hacemos</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Diagnóstico inicial sin costo</div>
+      </div>
+      <div>
+        <div class="stat-num">NEA</div>
+        <div class="stat-label">Presencia local, no remota desde Buenos Aires</div>
+      </div>
+      <div>
+        <div class="stat-num">3-8</div>
+        <div class="stat-label">Semanas para tu primer sistema andando</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-tag">Qué ofrecemos</div>
+    <h2 class="section-title">Tres formas de sacarte trabajo manual de encima.</h2>
+    <p class="section-desc">No vendemos software genérico. Construimos lo que tu operación necesita, empezando por el problema que más te duele hoy.</p>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <h3>Sistemas de gestión</h3>
+        <p>Stock en tiempo real, pedidos desde el celular, turnos online, control de maquinaria y flota. Todo lo que hoy vive en un cuaderno o un Excel, digitalizado.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Automatizaciones</h3>
+        <p>Cobranzas por WhatsApp, alertas de stock, reportes diarios redactados solos, recordatorios de mantenimiento. Procesos que corren sin que nadie los empuje.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧠</div>
+        <h3>Inteligencia artificial aplicada</h3>
+        <p>Detección de anomalías de consumo, sugerencias de venta en tiempo real, resúmenes en lenguaje simple de lo que pasó en tu negocio cada día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">Cómo trabajamos</div>
+    <h2 class="section-title">Un proceso simple, pensado para que no pierdas tiempo.</h2>
+
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">01</div>
+        <div>
+          <h4>Diagnóstico gratuito</h4>
+          <p>Conversamos sobre tu operación, identificamos qué proceso te genera más pérdida de tiempo o dinero, y te decimos honestamente si podemos ayudar.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">02</div>
+        <div>
+          <h4>Propuesta concreta</h4>
+          <p>Te mostramos una demo funcional de lo que construiríamos, con plazo y precio claro antes de que pagues nada.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">03</div>
+        <div>
+          <h4>Implementación</h4>
+          <p>Construimos por etapas, con entregas parciales. Vos ves avances reales cada semana, no promesas a futuro.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">04</div>
+        <div>
+          <h4>Acompañamiento</h4>
+          <p>Una vez funcionando, seguimos cerca: soporte, ajustes y mejoras según lo que tu negocio vaya necesitando.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="section-tag">Hablemos</div>
+    <h2 class="section-title">Contanos qué proceso te está haciendo perder tiempo hoy.</h2>
+    <p class="section-desc">Escaneá el código o escribinos directo. El primer diagnóstico no tiene costo.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <a href="https://wa.me/5493624361231" target="_blank" class="contact-row">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div class="label">WhatsApp</div>
+            <div class="value">+54 9 362 436-1231</div>
+          </div>
+        </a>
+        <a href="mailto:mherbutp@gmail.com" class="contact-row">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="label">Email</div>
+            <div class="value">mherbutp@gmail.com</div>
+          </div>
+        </a>
+        <div class="contact-row" style="cursor:default;">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="label">Zona de trabajo</div>
+            <div class="value">Chaco y Corrientes, Argentina</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-card">
+        <h3>Escaneá para escribirnos</h3>
+        <p>Te abre WhatsApp directo, listo para mandar el mensaje.</p>
+        <div id="qrcode"></div>
+        <div class="qr-sub">📱 Apuntá la cámara de tu celular acá</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-text">© 2026 RaízTech NEA — Tecnología para el norte argentino</div>
+    <div class="footer-text">Chaco · Corrientes · Argentina</div>
+  </div>
+</footer>
+
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://wa.me/5493624361231?text=" + encodeURIComponent("Hola! Vi su landing y quiero saber más sobre los servicios de RaízTech NEA."),
+    width: 168,
+    height: 168,
+    colorDark: "#15351F",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+
+</body>
+</html>
