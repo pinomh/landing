@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad — NEA Commerce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6PLG4M3QMV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6PLG4M3QMV');
+  </script>
+
+  <style>
+    :root {
+      --navy: #33456B;
+      --navy-dark: #1e2a42;
+      --navy-light: #4a5f8a;
+      --yellow: #F5C842;
+      --yellow-dim: #c9a22e;
+      --white: #ffffff;
+      --gray-100: #f7f8fa;
+      --gray-200: #eaecf0;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --text: #1a2035;
+      --radius: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      background: var(--gray-100);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--navy-dark);
+      padding: 20px 0;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--yellow);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--navy-dark);
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+
+    .logo-text span {
+      color: var(--yellow);
+    }
+
+    header nav {
+      margin-left: auto;
+    }
+
+    header nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    header nav a:hover {
+      color: var(--yellow);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--navy);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(245, 200, 66, 0.15);
+      border: 1px solid rgba(245, 200, 66, 0.4);
+      color: var(--yellow);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(28px, 5vw, 42px);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .hero-meta {
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .toc {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-left: 4px solid var(--yellow);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+
+    .toc h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .toc ol {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .toc li a {
+      color: var(--navy-light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .toc li a:hover {
+      color: var(--yellow-dim);
+    }
+
+    section {
+      margin-bottom: 48px;
+      scroll-margin-top: 24px;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    section h2 .section-num {
+      background: var(--navy);
+      color: var(--yellow);
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    section p {
+      color: var(--gray-700);
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    section p:last-child {
+      margin-bottom: 0;
+    }
+
+    section ul, section ol {
+      padding-left: 22px;
+      color: var(--gray-700);
+      font-size: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    section li strong {
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    .info-box {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+
+    .info-box p {
+      margin: 0;
+    }
+
+    .highlight-box {
+      background: rgba(51, 69, 107, 0.06);
+      border-left: 3px solid var(--navy);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--navy-dark);
+    }
+
+    .contact-card {
+      background: var(--navy-dark);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-top: 16px;
+    }
+
+    .contact-card p {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-card a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy-dark);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: var(--yellow);
+    }
+
+    @media (max-width: 600px) {
+      .content { padding: 32px 16px 60px; }
+      .hero { padding: 40px 16px 36px; }
+      section h2 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo-mark">N</div>
+      <span class="logo-text">NEA <span>Commerce</span></span>
+      <nav>
+        <a href="index.html">← Volver al inicio</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-tag">Legal</div>
+    <h1>Política de Privacidad</h1>
+    <p class="hero-meta">Última actualización: julio de 2026</p>
+  </div>
+
+  <div class="content">
+
+    <div class="toc">
+      <h2>Índice</h2>
+      <ol>
+        <li><a href="#s1">¿Quiénes somos?</a></li>
+        <li><a href="#s2">¿Qué datos recopilamos?</a></li>
+        <li><a href="#s3">¿Cómo usamos tus datos?</a></li>
+        <li><a href="#s4">Terceros con acceso a tus datos</a></li>
+        <li><a href="#s5">Almacenamiento y seguridad</a></li>
+        <li><a href="#s6">Retención de datos</a></li>
+        <li><a href="#s7">Tus derechos</a></li>
+        <li><a href="#s8">Cambios a esta política</a></li>
+        <li><a href="#s9">Contacto</a></li>
+      </ol>
+    </div>
+
+    <section id="s1">
+      <h2><span class="section-num">1</span> ¿Quiénes somos?</h2>
+      <p>NEA Commerce es una plataforma de asistencia de pedidos vía WhatsApp para comercios en el nordeste argentino (NEA). Operamos como intermediario tecnológico entre los comercios y sus clientes, facilitando la toma de pedidos a través de mensajes de WhatsApp.</p>
+      <p>Esta política aplica a los datos de los clientes que interactúan con cualquier comercio que utilice nuestra plataforma a través de WhatsApp.</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="section-num">2</span> ¿Qué datos recopilamos?</h2>
+      <p>Al interactuar con un comercio que usa NEA Commerce vía WhatsApp, recopilamos:</p>
+      <ul>
+        <li><strong>Número de teléfono:</strong> tu número de WhatsApp en formato internacional (E.164).</li>
+        <li><strong>Nombre de perfil:</strong> el nombre visible en tu cuenta de WhatsApp, tal como lo comparte la API de Meta.</li>
+        <li><strong>Contenido de mensajes:</strong> el texto de los mensajes que enviás al número del comercio.</li>
+        <li><strong>Datos del pedido:</strong> productos seleccionados, cantidades, notas de personalización, dirección de entrega (si elegís envío a domicilio) y total del pedido.</li>
+        <li><strong>Historial de conversación:</strong> los últimos intercambios de la conversación activa, para mantener contexto durante el pedido.</li>
+      </ul>
+      <div class="highlight-box">
+        <p>No recopilamos datos de pago, documentos de identidad, ni ningún dato sensible. Solo los datos mínimos necesarios para procesar tu pedido.</p>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="section-num">3</span> ¿Cómo usamos tus datos?</h2>
+      <p>Usamos tus datos exclusivamente para:</p>
+      <ul>
+        <li><strong>Procesar tu pedido:</strong> registrar los productos, calcular el total y coordinar la entrega o retiro.</li>
+        <li><strong>Responder tus consultas:</strong> el asistente virtual usa el historial de la conversación activa para darte respuestas coherentes.</li>
+        <li><strong>Notificarte el estado del pedido:</strong> enviarte mensajes de WhatsApp sobre la confirmación, preparación y entrega de tu pedido.</li>
+        <li><strong>Auditoría interna:</strong> registrar eventos del sistema para detectar errores y mejorar el servicio.</li>
+      </ul>
+      <p>No usamos tus datos para publicidad, perfilado comercial ni ningún fin distinto al procesamiento de tu pedido.</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="section-num">4</span> Terceros con acceso a tus datos</h2>
+      <p>Para operar el servicio, compartimos datos con los siguientes proveedores:</p>
+      <ul>
+        <li><strong>Meta Platforms (WhatsApp Business API):</strong> el canal de comunicación. Los mensajes transitan por la infraestructura de Meta según sus propios <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener" style="color: var(--navy-light);">términos de privacidad</a>.</li>
+        <li><strong>Anthropic (Claude AI):</strong> el texto de tus mensajes se envía a la API de Anthropic para generar respuestas del asistente virtual. Anthropic no almacena conversaciones para entrenamiento según su política de uso de API.</li>
+        <li><strong>Supabase:</strong> base de datos donde se almacenan tus datos de pedido y conversación, alojada en servidores en Brasil (São Paulo).</li>
+      </ul>
+      <div class="highlight-box">
+        <p>No vendemos ni cedemos tus datos a terceros con fines comerciales. Los proveedores listados actúan únicamente como procesadores de datos bajo nuestras instrucciones.</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="section-num">5</span> Almacenamiento y seguridad</h2>
+      <p>Tus datos se almacenan en bases de datos protegidas con:</p>
+      <ul>
+        <li>Cifrado en tránsito (HTTPS / TLS) en todas las comunicaciones.</li>
+        <li>Control de acceso por rol: cada comercio solo puede ver los datos de sus propios clientes.</li>
+        <li>Políticas de seguridad a nivel de fila (Row Level Security) en la base de datos.</li>
+      </ul>
+      <p>Los servidores están ubicados en Brasil (región de São Paulo) dentro de la infraestructura de Supabase / AWS.</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="section-num">6</span> Retención de datos</h2>
+      <p>Conservamos tus datos mientras sean necesarios para el funcionamiento del servicio:</p>
+      <ul>
+        <li><strong>Conversaciones activas:</strong> se mantienen hasta que el pedido es completado o cancelado.</li>
+        <li><strong>Historial de pedidos:</strong> se conserva por razones operativas y de auditoría del comercio.</li>
+        <li><strong>Datos de contacto (número de teléfono):</strong> se conservan mientras el comercio utilice la plataforma.</li>
+      </ul>
+      <p>Podés solicitar la eliminación de tus datos en cualquier momento contactándonos (ver sección 9).</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="section-num">7</span> Tus derechos</h2>
+      <p>Tenés derecho a:</p>
+      <ul>
+        <li><strong>Acceso:</strong> solicitar una copia de los datos que tenemos sobre vos.</li>
+        <li><strong>Rectificación:</strong> corregir datos incorrectos.</li>
+        <li><strong>Eliminación:</strong> solicitar que eliminemos tus datos personales.</li>
+        <li><strong>Oposición:</strong> oponerte al procesamiento de tus datos en determinadas circunstancias.</li>
+      </ul>
+      <p>Para ejercer cualquiera de estos derechos, contactanos por los medios indicados en la sección 9.</p>
+    </section>
+
+    <section id="s8">
+      <h2><span class="section-num">8</span> Cambios a esta política</h2>
+      <p>Podemos actualizar esta política periódicamente. Cuando lo hagamos, actualizaremos la fecha de "última actualización" al inicio de esta página. Te recomendamos revisarla ocasionalmente.</p>
+      <p>Los cambios significativos serán notificados a los comercios que usan la plataforma, quienes podrán informar a sus clientes si corresponde.</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="section-num">9</span> Contacto</h2>
+      <p>Si tenés preguntas sobre esta política o querés ejercer tus derechos, podés contactarnos:</p>
+      <div class="contact-card">
+        <p><strong style="color: var(--yellow); font-weight: 500;">NEA Commerce</strong></p>
+        <p>Resistencia, Chaco, Argentina</p>
+        <p>Sitio web: <a href="https://pinomh.github.io/landing/">pinomh.github.io/landing</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>© 2026 NEA Commerce · <a href="index.html">Inicio</a> · Política de Privacidad</p>
+  </footer>
+
+</body>
+</html>
