@@ -132,13 +132,14 @@ header {
   padding:var(--sp40) 0 var(--sp32);
   background:#22293E;
 }
-.privacy-hero::before {
-  content:''; position:absolute; inset:0; pointer-events:none;
-  background-image:radial-gradient(circle, rgba(255,255,255,0.085) 1.2px, transparent 1.2px);
-  background-size:26px 26px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
+.privacy-hero::before { display:none !important; }
+#hero-topo {
+  position:absolute; inset:0;
+  width:100%; height:100%; z-index:0;
+  pointer-events:none;
 }
+.privacy-hero > .wrap { position:relative; z-index:1; }
+
 .privacy-hero-inner { position:relative; z-index:1; max-width:680px; }
 
 .eyebrow {
@@ -303,7 +304,8 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
   </div>
 </header>
 
-<section class="privacy-hero">
+<section class="privacy-hero" id="hero-section">
+  <canvas id="hero-topo"></canvas>
   <div class="wrap">
     <div class="privacy-hero-inner">
       <div class="eyebrow"><span class="eyebrow-rule"></span>Legal</div>
@@ -451,6 +453,88 @@ function goToContact(event) {
   event.preventDefault();
   window.location.href = 'index.html#contacto';
 }
+</script>
+
+<script>
+(function(){
+  const cv = document.getElementById('hero-topo');
+  const ctx = cv.getContext('2d');
+  const section = document.getElementById('hero-section');
+  const RC = '247,232,72';
+  let W, H, t = 0, rafId = null, isVisible = true;
+
+  function rz() {
+    W = cv.width  = section.offsetWidth;
+    H = cv.height = section.offsetHeight;
+  }
+
+  function terrain(x, y, t) {
+    return (
+      Math.sin(x * .007 + y * .003 + t * .38) * 1.1 +
+      Math.sin(x * .014 - y * .005 - t * .28) * .6 +
+      Math.sin(x * .004 + y * .009 + t * .18) * .9 +
+      Math.cos(x * .011 + y * .007 - t * .32) * .5
+    );
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const levels = 22;
+
+    // All contour lines
+    for (let l = 0; l < levels; l++) {
+      const baseY = (l / levels) * H;
+      ctx.beginPath();
+      for (let x = 0; x <= W; x += 3) {
+        const h = terrain(x, baseY, t);
+        const y = baseY + h * 38;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      const a = 0.04 + Math.sin(l / levels * Math.PI) * 0.13;
+      ctx.strokeStyle = `rgba(${RC},${a})`;
+      ctx.lineWidth = 0.85;
+      ctx.stroke();
+    }
+
+    // 3 highlighted contour lines
+    [0.28, 0.52, 0.74].forEach(frac => {
+      const baseY = frac * H;
+      ctx.beginPath();
+      for (let x = 0; x <= W; x += 3) {
+        const h = terrain(x, baseY, t);
+        const y = baseY + h * 38;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = `rgba(${RC},0.30)`;
+      ctx.lineWidth = 1.3;
+      ctx.stroke();
+    });
+
+    t += 0.012;
+    if (isVisible) rafId = requestAnimationFrame(draw);
+  }
+
+  rz();
+  window.addEventListener('resize', rz);
+
+  // Pausar cuando la sección sale del viewport (ahorro de batería/CPU)
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && rafId === null && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        draw();
+      } else if (!isVisible && rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    });
+  }, { threshold: 0.01 });
+  heroObserver.observe(section);
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    draw();
+  }
+})();
 </script>
 
 </body>
