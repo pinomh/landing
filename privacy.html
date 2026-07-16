@@ -13,10 +13,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Política de Privacidad — NEA Commerce</title>
 <meta name="description" content="Política de privacidad de NEA Commerce. Cómo tratamos los datos de clientes que interactúan con comercios vía WhatsApp.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231C2540'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='58' font-weight='800' fill='%23F7E848' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* SKILL: Semantic design tokens — not raw hex in components */
 :root {
   --s-base:     #F7F7F4;
   --s-alt:      #EEEEE8;
@@ -28,7 +28,7 @@
   --a-hover:    #E6D630;
   --a-soft:     #FEFBD8;
   --a-on-dark:  #F7E848;
-  --a-ink:      #6E6200;
+  --a-ink:      #6E6200;   /* dorado oscuro para texto sobre fondos claros */
 
   --t:          #1C2540;
   --t-sec:      #33406A;
@@ -39,10 +39,12 @@
   --b:          rgba(28,37,64,0.10);
   --b-dark:     rgba(232,235,245,0.10);
 
+  /* SKILL: 8pt spacing system */
   --sp2:4px; --sp4:8px; --sp6:12px; --sp8:16px; --sp10:20px;
   --sp12:24px; --sp16:32px; --sp20:40px; --sp24:48px;
   --sp32:64px; --sp40:80px; --sp48:96px;
 
+  /* SKILL: consistent type scale */
   --txs:11px; --tsm:13px; --tbase:15px; --tmd:18px;
   --tlg:22px; --txl:28px; --t2xl:38px; --t3xl:56px;
 
@@ -64,17 +66,35 @@ body {
 }
 svg { display:block; }
 a { color:inherit; text-decoration:none; }
+
+/* SKILL: visible focus rings on all interactive elements */
 :focus-visible { outline:2px solid var(--a-ink); outline-offset:3px; border-radius:var(--r-sm); }
+
 .wrap { max-width:1100px; margin:0 auto; padding:0 var(--sp12); }
+
+/* SKILL: prefers-reduced-motion */
 @media(prefers-reduced-motion:reduce){ *,*::before,*::after { transition-duration:0.01ms !important; } }
 
-/* ─── HEADER (igual a landing) ──────────────────────────────── */
+/* ─── HEADER ──────────────────────────────────────────────── */
 header {
   position:sticky; top:0; z-index:var(--z-sticky);
   background:rgba(247,247,244,0.93); backdrop-filter:blur(12px);
   border-bottom:1px solid var(--b);
 }
 .hdr { display:flex; align-items:center; justify-content:center; padding:var(--sp10) 0; }
+
+.logo {
+  font-family:'Outfit',sans-serif; font-weight:700; font-size:17px;
+  color:var(--t); letter-spacing:-0.02em;
+  display:flex; align-items:center; gap:var(--sp4);
+}
+.logo-box {
+  width:30px; height:30px; border-radius:var(--r-sm);
+  background:var(--t); color:var(--s-base);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700;
+}
+.logo-em { color:var(--a); }
 
 .hdr-nav { display:flex; align-items:center; gap:var(--sp16); }
 .hdr-link {
@@ -87,9 +107,10 @@ header {
 }
 .hdr-link:hover { border-color:var(--t); background:rgba(24,27,42,0.05); }
 @media(max-width:540px){
-  #nav-contacto { display:none; }
-  #nav-servicios { display:inline-flex; }
-  .hdr .btn-a { padding:8px 14px; font-size:12px; }
+  #nav-contacto { display:none; }              /* solo se oculta Contacto */
+  #nav-servicios { display:inline-flex; }      /* Servicios siempre visible */
+  .hdr .btn-a { padding:8px 14px; font-size:12px; }  /* compactar Hablemos */
+  .logo span { display:none; }                 /* logo solo con la R en pantallas chicas */
 }
 
 .btn-a {
@@ -101,57 +122,64 @@ header {
 }
 .btn-a:hover { background:var(--a-hover); transform:translateY(-1px); box-shadow:0 4px 14px rgba(247,232,72,0.35); }
 
-/* ─── PAGE HERO ─────────────────────────────────────────────── */
-.page-hero {
+/* ─── PRIVACY PAGE ─────────────────────────────────────────── */
+.privacy-hero {
   position:relative; overflow:hidden;
   padding:var(--sp40) 0 var(--sp32);
   background:var(--s-base);
 }
-.page-hero::before {
+.privacy-hero::before {
   content:''; position:absolute; inset:0; pointer-events:none;
   background-image:radial-gradient(circle, rgba(24,27,42,0.11) 1.2px, transparent 1.2px);
   background-size:26px 26px;
   mask-image:radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
   -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
 }
-.page-hero-inner { position:relative; z-index:1; max-width:720px; }
+.privacy-hero-inner { position:relative; z-index:1; max-width:680px; }
 
 .eyebrow {
   display:inline-flex; align-items:center; gap:var(--sp6);
   font-size:var(--txs); font-weight:600;
   text-transform:uppercase; letter-spacing:0.16em;
-  color:var(--a-ink); margin-bottom:var(--sp10);
+  color:var(--a); margin-bottom:var(--sp10);
 }
 .eyebrow-rule { width:28px; height:1.5px; background:var(--a); }
 
-.page-hero h1 {
+.privacy-hero h1 {
   font-family:'Playfair Display',serif; font-weight:700;
-  font-size:clamp(2rem,4.5vw,3rem);
-  line-height:1.12; letter-spacing:-0.02em; color:var(--t);
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  line-height:1.1; letter-spacing:-0.02em; color:var(--t);
 }
-.page-hero-meta {
+.privacy-meta {
   margin-top:var(--sp8); font-size:var(--tsm);
   color:var(--t-muted); font-weight:500;
 }
 
-/* ─── CONTENT ───────────────────────────────────────────────── */
-.content-wrap { max-width:720px; margin:0 auto; padding:0 var(--sp12) var(--sp48); }
+.privacy-body {
+  background:var(--s-base);
+  padding:0 0 var(--sp48);
+}
+.privacy-inner { max-width:720px; margin:0 auto; }
+
+.section-tag {
+  font-size:var(--txs); font-weight:600; text-transform:uppercase;
+  letter-spacing:0.16em; margin-bottom:var(--sp8);
+  color:var(--a-ink);
+}
+.section-h2 {
+  font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:-0.02em;
+  font-size:clamp(1.35rem,2.5vw,1.7rem); line-height:1.2; color:var(--t);
+}
 
 .toc {
   background:var(--s-card);
   border:1px solid var(--b);
-  border-left:3px solid var(--a);
-  border-radius:var(--r-md);
-  padding:var(--sp12) var(--sp16);
+  border-radius:var(--r-lg);
+  padding:var(--sp16);
   margin-bottom:var(--sp32);
   box-shadow:var(--sh-sm);
 }
-.toc h2 {
-  font-family:'Outfit',sans-serif;
-  font-size:var(--tmd); font-weight:700;
-  color:var(--t); letter-spacing:-0.01em;
-  margin-bottom:var(--sp8);
-}
+.toc .section-h2 { margin-bottom:var(--sp10); font-size:var(--tmd); }
 .toc ol {
   padding-left:20px;
   display:flex; flex-direction:column; gap:var(--sp4);
@@ -166,39 +194,35 @@ header {
 .privacy-section {
   margin-bottom:var(--sp32);
   scroll-margin-top:80px;
+  padding-top:var(--sp8);
+  border-top:1px solid var(--b);
 }
-.privacy-section h2 {
-  font-family:'Outfit',sans-serif;
-  font-weight:700;
-  font-size:var(--tlg);
-  letter-spacing:-0.015em;
-  color:var(--t);
-  margin-bottom:var(--sp8);
-  padding-bottom:var(--sp6);
-  border-bottom:1px solid var(--b);
+.privacy-section .section-h2 {
   display:flex; align-items:center; gap:var(--sp6);
+  margin-bottom:var(--sp10);
 }
 .section-num {
-  background:var(--s-dark);
-  color:var(--a);
-  font-family:'Outfit',sans-serif;
+  width:28px; height:28px; border-radius:var(--r-sm);
+  background:var(--s-dark); color:var(--a);
   font-size:var(--txs); font-weight:700;
-  width:26px; height:26px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
+  display:inline-flex; align-items:center; justify-content:center;
   flex-shrink:0;
 }
 .privacy-section p {
   color:var(--t-sec);
   font-size:var(--tbase);
+  line-height:1.7;
   margin-bottom:var(--sp6);
+  max-width:640px;
 }
 .privacy-section p:last-child { margin-bottom:0; }
-.privacy-section ul, .privacy-section ol {
+.privacy-section ul {
   padding-left:22px;
   color:var(--t-sec);
   font-size:var(--tbase);
   display:flex; flex-direction:column; gap:var(--sp4);
   margin-bottom:var(--sp6);
+  max-width:640px;
 }
 .privacy-section li strong {
   color:var(--t);
@@ -213,49 +237,51 @@ header {
 
 .highlight-box {
   background:var(--a-soft);
-  border-left:3px solid var(--a);
-  border-radius:0 var(--r-sm) var(--r-sm) 0;
-  padding:var(--sp8) var(--sp10);
+  border:1px solid rgba(247,232,72,0.45);
+  border-radius:var(--r-md);
+  padding:var(--sp10) var(--sp12);
   margin:var(--sp8) 0;
+  box-shadow:var(--sh-sm);
 }
 .highlight-box p {
   margin:0;
   font-size:var(--tsm);
   color:var(--t);
   font-weight:500;
+  max-width:none;
 }
 
 .contact-card {
   background:var(--s-dark);
-  border-radius:var(--r-md);
+  border-radius:var(--r-lg);
   padding:var(--sp16);
-  margin-top:var(--sp8);
+  margin-top:var(--sp10);
+  box-shadow:var(--sh-sm);
 }
 .contact-card p {
   color:var(--t-light-dim);
   font-size:var(--tsm);
   margin-bottom:var(--sp4);
+  max-width:none;
 }
 .contact-card p:last-child { margin-bottom:0; }
 .contact-card .contact-brand {
-  color:var(--a);
-  font-weight:600;
-  font-size:var(--tbase);
+  color:var(--a-on-dark);
+  font-weight:700;
+  font-size:var(--tmd);
 }
-.contact-card a {
-  color:var(--a);
-}
+.contact-card a { color:var(--a-on-dark); }
 .contact-card a:hover { text-decoration:underline; }
 
-/* ─── FOOTER (igual a landing) ──────────────────────────────── */
+/* ─── FOOTER ──────────────────────────────────────────────────── */
 footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid var(--b-dark); }
 .ftr { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--sp8); }
+.ftr-brand { font-size:var(--tsm); font-weight:700; color:var(--t-light); letter-spacing:-0.01em; }
 .ftr-text { font-size:var(--txs); color:var(--t-light-dim); }
 
-@media(max-width:600px){
-  .page-hero { padding:var(--sp32) 0 var(--sp24); }
-  .content-wrap { padding-bottom:var(--sp32); }
-  .privacy-section h2 { font-size:var(--tmd); }
+@media(max-width:540px){
+  .privacy-hero { padding:var(--sp32) 0 var(--sp24); }
+  .privacy-body { padding-bottom:var(--sp32); }
 }
 </style>
 </head>
@@ -265,8 +291,8 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
 <header>
   <div class="wrap hdr">
     <nav class="hdr-nav">
-      <a href="index.html#servicios" class="hdr-link" id="nav-servicios">Servicios</a>
-      <a href="index.html#contacto" class="hdr-link" id="nav-contacto">Contacto</a>
+      <button onclick="showView('view-services')" class="hdr-link" id="nav-servicios">Servicios</button>
+      <a href="#contacto" class="hdr-link" onclick="goToContact(event)" id="nav-contacto">Contacto</a>
       <a href="https://wa.me/5493624361231" target="_blank" rel="noopener noreferrer" class="btn-a">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         Hablemos
@@ -275,130 +301,135 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
   </div>
 </header>
 
-<section class="page-hero">
+<section class="privacy-hero">
   <div class="wrap">
-    <div class="page-hero-inner">
+    <div class="privacy-hero-inner">
       <div class="eyebrow"><span class="eyebrow-rule"></span>Legal</div>
       <h1>Política de Privacidad</h1>
-      <p class="page-hero-meta">Última actualización: julio de 2026</p>
+      <p class="privacy-meta">Última actualización: julio de 2026</p>
     </div>
   </div>
 </section>
 
-<div class="content-wrap">
+<main class="privacy-body">
+  <div class="wrap">
+    <div class="privacy-inner">
 
-  <div class="toc">
-    <h2>Índice</h2>
-    <ol>
-      <li><a href="#s1">¿Quiénes somos?</a></li>
-      <li><a href="#s2">¿Qué datos recopilamos?</a></li>
-      <li><a href="#s3">¿Cómo usamos tus datos?</a></li>
-      <li><a href="#s4">Terceros con acceso a tus datos</a></li>
-      <li><a href="#s5">Almacenamiento y seguridad</a></li>
-      <li><a href="#s6">Retención de datos</a></li>
-      <li><a href="#s7">Tus derechos</a></li>
-      <li><a href="#s8">Cambios a esta política</a></li>
-      <li><a href="#s9">Contacto</a></li>
-    </ol>
+      <div class="toc">
+        <div class="section-tag">Contenido</div>
+        <h2 class="section-h2">Índice</h2>
+        <ol>
+          <li><a href="#s1">¿Quiénes somos?</a></li>
+          <li><a href="#s2">¿Qué datos recopilamos?</a></li>
+          <li><a href="#s3">¿Cómo usamos tus datos?</a></li>
+          <li><a href="#s4">Terceros con acceso a tus datos</a></li>
+          <li><a href="#s5">Almacenamiento y seguridad</a></li>
+          <li><a href="#s6">Retención de datos</a></li>
+          <li><a href="#s7">Tus derechos</a></li>
+          <li><a href="#s8">Cambios a esta política</a></li>
+          <li><a href="#s9">Contacto</a></li>
+        </ol>
+      </div>
+
+      <section class="privacy-section" id="s1">
+        <h2 class="section-h2"><span class="section-num">1</span> ¿Quiénes somos?</h2>
+        <p>NEA Commerce es una plataforma de asistencia de pedidos vía WhatsApp para comercios en el nordeste argentino (NEA). Operamos como intermediario tecnológico entre los comercios y sus clientes, facilitando la toma de pedidos a través de mensajes de WhatsApp.</p>
+        <p>Esta política aplica a los datos de los clientes que interactúan con cualquier comercio que utilice nuestra plataforma a través de WhatsApp.</p>
+      </section>
+
+      <section class="privacy-section" id="s2">
+        <h2 class="section-h2"><span class="section-num">2</span> ¿Qué datos recopilamos?</h2>
+        <p>Al interactuar con un comercio que usa NEA Commerce vía WhatsApp, recopilamos:</p>
+        <ul>
+          <li><strong>Número de teléfono:</strong> tu número de WhatsApp en formato internacional (E.164).</li>
+          <li><strong>Nombre de perfil:</strong> el nombre visible en tu cuenta de WhatsApp, tal como lo comparte la API de Meta.</li>
+          <li><strong>Contenido de mensajes:</strong> el texto de los mensajes que enviás al número del comercio.</li>
+          <li><strong>Datos del pedido:</strong> productos seleccionados, cantidades, notas de personalización, dirección de entrega (si elegís envío a domicilio) y total del pedido.</li>
+          <li><strong>Historial de conversación:</strong> los últimos intercambios de la conversación activa, para mantener contexto durante el pedido.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>No recopilamos datos de pago, documentos de identidad, ni ningún dato sensible. Solo los datos mínimos necesarios para procesar tu pedido.</p>
+        </div>
+      </section>
+
+      <section class="privacy-section" id="s3">
+        <h2 class="section-h2"><span class="section-num">3</span> ¿Cómo usamos tus datos?</h2>
+        <p>Usamos tus datos exclusivamente para:</p>
+        <ul>
+          <li><strong>Procesar tu pedido:</strong> registrar los productos, calcular el total y coordinar la entrega o retiro.</li>
+          <li><strong>Responder tus consultas:</strong> el asistente virtual usa el historial de la conversación activa para darte respuestas coherentes.</li>
+          <li><strong>Notificarte el estado del pedido:</strong> enviarte mensajes de WhatsApp sobre la confirmación, preparación y entrega de tu pedido.</li>
+          <li><strong>Auditoría interna:</strong> registrar eventos del sistema para detectar errores y mejorar el servicio.</li>
+        </ul>
+        <p>No usamos tus datos para publicidad, perfilado comercial ni ningún fin distinto al procesamiento de tu pedido.</p>
+      </section>
+
+      <section class="privacy-section" id="s4">
+        <h2 class="section-h2"><span class="section-num">4</span> Terceros con acceso a tus datos</h2>
+        <p>Para operar el servicio, compartimos datos con los siguientes proveedores:</p>
+        <ul>
+          <li><strong>Meta Platforms (WhatsApp Business API):</strong> el canal de comunicación. Los mensajes transitan por la infraestructura de Meta según sus propios <a class="ext-link" href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener">términos de privacidad</a>.</li>
+          <li><strong>Anthropic (Claude AI):</strong> el texto de tus mensajes se envía a la API de Anthropic para generar respuestas del asistente virtual. Anthropic no almacena conversaciones para entrenamiento según su política de uso de API.</li>
+          <li><strong>Supabase:</strong> base de datos donde se almacenan tus datos de pedido y conversación, alojada en servidores en Brasil (São Paulo).</li>
+        </ul>
+        <div class="highlight-box">
+          <p>No vendemos ni cedemos tus datos a terceros con fines comerciales. Los proveedores listados actúan únicamente como procesadores de datos bajo nuestras instrucciones.</p>
+        </div>
+      </section>
+
+      <section class="privacy-section" id="s5">
+        <h2 class="section-h2"><span class="section-num">5</span> Almacenamiento y seguridad</h2>
+        <p>Tus datos se almacenan en bases de datos protegidas con:</p>
+        <ul>
+          <li>Cifrado en tránsito (HTTPS / TLS) en todas las comunicaciones.</li>
+          <li>Control de acceso por rol: cada comercio solo puede ver los datos de sus propios clientes.</li>
+          <li>Políticas de seguridad a nivel de fila (Row Level Security) en la base de datos.</li>
+        </ul>
+        <p>Los servidores están ubicados en Brasil (región de São Paulo) dentro de la infraestructura de Supabase / AWS.</p>
+      </section>
+
+      <section class="privacy-section" id="s6">
+        <h2 class="section-h2"><span class="section-num">6</span> Retención de datos</h2>
+        <p>Conservamos tus datos mientras sean necesarios para el funcionamiento del servicio:</p>
+        <ul>
+          <li><strong>Conversaciones activas:</strong> se mantienen hasta que el pedido es completado o cancelado.</li>
+          <li><strong>Historial de pedidos:</strong> se conserva por razones operativas y de auditoría del comercio.</li>
+          <li><strong>Datos de contacto (número de teléfono):</strong> se conservan mientras el comercio utilice la plataforma.</li>
+        </ul>
+        <p>Podés solicitar la eliminación de tus datos en cualquier momento contactándonos (ver sección 9).</p>
+      </section>
+
+      <section class="privacy-section" id="s7">
+        <h2 class="section-h2"><span class="section-num">7</span> Tus derechos</h2>
+        <p>Tenés derecho a:</p>
+        <ul>
+          <li><strong>Acceso:</strong> solicitar una copia de los datos que tenemos sobre vos.</li>
+          <li><strong>Rectificación:</strong> corregir datos incorrectos.</li>
+          <li><strong>Eliminación:</strong> solicitar que eliminemos tus datos personales.</li>
+          <li><strong>Oposición:</strong> oponerte al procesamiento de tus datos en determinadas circunstancias.</li>
+        </ul>
+        <p>Para ejercer cualquiera de estos derechos, contactanos por los medios indicados en la sección 9.</p>
+      </section>
+
+      <section class="privacy-section" id="s8">
+        <h2 class="section-h2"><span class="section-num">8</span> Cambios a esta política</h2>
+        <p>Podemos actualizar esta política periódicamente. Cuando lo hagamos, actualizaremos la fecha de "última actualización" al inicio de esta página. Te recomendamos revisarla ocasionalmente.</p>
+        <p>Los cambios significativos serán notificados a los comercios que usan la plataforma, quienes podrán informar a sus clientes si corresponde.</p>
+      </section>
+
+      <section class="privacy-section" id="s9">
+        <h2 class="section-h2"><span class="section-num">9</span> Contacto</h2>
+        <p>Si tenés preguntas sobre esta política o querés ejercer tus derechos, podés contactarnos:</p>
+        <div class="contact-card">
+          <p class="contact-brand">NEA Commerce</p>
+          <p>Resistencia, Chaco, Argentina</p>
+          <p>Sitio web: <a href="https://pinomh.github.io/landing/">pinomh.github.io/landing</a></p>
+        </div>
+      </section>
+
+    </div>
   </div>
-
-  <section class="privacy-section" id="s1">
-    <h2><span class="section-num">1</span> ¿Quiénes somos?</h2>
-    <p>NEA Commerce es una plataforma de asistencia de pedidos vía WhatsApp para comercios en el nordeste argentino (NEA). Operamos como intermediario tecnológico entre los comercios y sus clientes, facilitando la toma de pedidos a través de mensajes de WhatsApp.</p>
-    <p>Esta política aplica a los datos de los clientes que interactúan con cualquier comercio que utilice nuestra plataforma a través de WhatsApp.</p>
-  </section>
-
-  <section class="privacy-section" id="s2">
-    <h2><span class="section-num">2</span> ¿Qué datos recopilamos?</h2>
-    <p>Al interactuar con un comercio que usa NEA Commerce vía WhatsApp, recopilamos:</p>
-    <ul>
-      <li><strong>Número de teléfono:</strong> tu número de WhatsApp en formato internacional (E.164).</li>
-      <li><strong>Nombre de perfil:</strong> el nombre visible en tu cuenta de WhatsApp, tal como lo comparte la API de Meta.</li>
-      <li><strong>Contenido de mensajes:</strong> el texto de los mensajes que enviás al número del comercio.</li>
-      <li><strong>Datos del pedido:</strong> productos seleccionados, cantidades, notas de personalización, dirección de entrega (si elegís envío a domicilio) y total del pedido.</li>
-      <li><strong>Historial de conversación:</strong> los últimos intercambios de la conversación activa, para mantener contexto durante el pedido.</li>
-    </ul>
-    <div class="highlight-box">
-      <p>No recopilamos datos de pago, documentos de identidad, ni ningún dato sensible. Solo los datos mínimos necesarios para procesar tu pedido.</p>
-    </div>
-  </section>
-
-  <section class="privacy-section" id="s3">
-    <h2><span class="section-num">3</span> ¿Cómo usamos tus datos?</h2>
-    <p>Usamos tus datos exclusivamente para:</p>
-    <ul>
-      <li><strong>Procesar tu pedido:</strong> registrar los productos, calcular el total y coordinar la entrega o retiro.</li>
-      <li><strong>Responder tus consultas:</strong> el asistente virtual usa el historial de la conversación activa para darte respuestas coherentes.</li>
-      <li><strong>Notificarte el estado del pedido:</strong> enviarte mensajes de WhatsApp sobre la confirmación, preparación y entrega de tu pedido.</li>
-      <li><strong>Auditoría interna:</strong> registrar eventos del sistema para detectar errores y mejorar el servicio.</li>
-    </ul>
-    <p>No usamos tus datos para publicidad, perfilado comercial ni ningún fin distinto al procesamiento de tu pedido.</p>
-  </section>
-
-  <section class="privacy-section" id="s4">
-    <h2><span class="section-num">4</span> Terceros con acceso a tus datos</h2>
-    <p>Para operar el servicio, compartimos datos con los siguientes proveedores:</p>
-    <ul>
-      <li><strong>Meta Platforms (WhatsApp Business API):</strong> el canal de comunicación. Los mensajes transitan por la infraestructura de Meta según sus propios <a class="ext-link" href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener">términos de privacidad</a>.</li>
-      <li><strong>Anthropic (Claude AI):</strong> el texto de tus mensajes se envía a la API de Anthropic para generar respuestas del asistente virtual. Anthropic no almacena conversaciones para entrenamiento según su política de uso de API.</li>
-      <li><strong>Supabase:</strong> base de datos donde se almacenan tus datos de pedido y conversación, alojada en servidores en Brasil (São Paulo).</li>
-    </ul>
-    <div class="highlight-box">
-      <p>No vendemos ni cedemos tus datos a terceros con fines comerciales. Los proveedores listados actúan únicamente como procesadores de datos bajo nuestras instrucciones.</p>
-    </div>
-  </section>
-
-  <section class="privacy-section" id="s5">
-    <h2><span class="section-num">5</span> Almacenamiento y seguridad</h2>
-    <p>Tus datos se almacenan en bases de datos protegidas con:</p>
-    <ul>
-      <li>Cifrado en tránsito (HTTPS / TLS) en todas las comunicaciones.</li>
-      <li>Control de acceso por rol: cada comercio solo puede ver los datos de sus propios clientes.</li>
-      <li>Políticas de seguridad a nivel de fila (Row Level Security) en la base de datos.</li>
-    </ul>
-    <p>Los servidores están ubicados en Brasil (región de São Paulo) dentro de la infraestructura de Supabase / AWS.</p>
-  </section>
-
-  <section class="privacy-section" id="s6">
-    <h2><span class="section-num">6</span> Retención de datos</h2>
-    <p>Conservamos tus datos mientras sean necesarios para el funcionamiento del servicio:</p>
-    <ul>
-      <li><strong>Conversaciones activas:</strong> se mantienen hasta que el pedido es completado o cancelado.</li>
-      <li><strong>Historial de pedidos:</strong> se conserva por razones operativas y de auditoría del comercio.</li>
-      <li><strong>Datos de contacto (número de teléfono):</strong> se conservan mientras el comercio utilice la plataforma.</li>
-    </ul>
-    <p>Podés solicitar la eliminación de tus datos en cualquier momento contactándonos (ver sección 9).</p>
-  </section>
-
-  <section class="privacy-section" id="s7">
-    <h2><span class="section-num">7</span> Tus derechos</h2>
-    <p>Tenés derecho a:</p>
-    <ul>
-      <li><strong>Acceso:</strong> solicitar una copia de los datos que tenemos sobre vos.</li>
-      <li><strong>Rectificación:</strong> corregir datos incorrectos.</li>
-      <li><strong>Eliminación:</strong> solicitar que eliminemos tus datos personales.</li>
-      <li><strong>Oposición:</strong> oponerte al procesamiento de tus datos en determinadas circunstancias.</li>
-    </ul>
-    <p>Para ejercer cualquiera de estos derechos, contactanos por los medios indicados en la sección 9.</p>
-  </section>
-
-  <section class="privacy-section" id="s8">
-    <h2><span class="section-num">8</span> Cambios a esta política</h2>
-    <p>Podemos actualizar esta política periódicamente. Cuando lo hagamos, actualizaremos la fecha de "última actualización" al inicio de esta página. Te recomendamos revisarla ocasionalmente.</p>
-    <p>Los cambios significativos serán notificados a los comercios que usan la plataforma, quienes podrán informar a sus clientes si corresponde.</p>
-  </section>
-
-  <section class="privacy-section" id="s9">
-    <h2><span class="section-num">9</span> Contacto</h2>
-    <p>Si tenés preguntas sobre esta política o querés ejercer tus derechos, podés contactarnos:</p>
-    <div class="contact-card">
-      <p class="contact-brand">NEA Commerce</p>
-      <p>Resistencia, Chaco, Argentina</p>
-      <p>Sitio web: <a href="https://pinomh.github.io/landing/">pinomh.github.io/landing</a></p>
-    </div>
-  </section>
-
-</div>
+</main>
 
 <footer>
   <div class="wrap ftr">
@@ -406,6 +437,19 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
     <div class="ftr-text">Chaco - Argentina © 2026</div>
   </div>
 </footer>
+
+<script>
+/* Redirects to index.html — same header markup as landing, adapted for this page */
+function showView(viewId) {
+  if (viewId === 'view-services') {
+    window.location.href = 'index.html';
+  }
+}
+function goToContact(event) {
+  event.preventDefault();
+  window.location.href = 'index.html#contacto';
+}
+</script>
 
 </body>
 </html>
