@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<!--
+  NOTA PARA DESARROLLO (no visible en la página pública):
+  El contenido legal de esta página es un borrador razonable redactado para
+  cumplir el requisito de Meta (publicación de la app de WhatsApp Business).
+  DEBE ser revisado y validado por un profesional legal antes de considerarse
+  definitivo en producción.
+  La sección 8 (Menores de edad) está pensada para editarse o quitarse según
+  el rubro del comercio — está delimitada con comentarios START/END.
+-->
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6PLG4M3QMV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6PLG4M3QMV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Términos y Condiciones — Asistente de pedidos por WhatsApp</title>
+<meta name="description" content="Términos y condiciones de uso del servicio de atención y toma de pedidos por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* SKILL: Semantic design tokens — not raw hex in components */
+:root {
+  --s-base:     #F7F7F4;
+  --s-alt:      #EEEEE8;
+  --s-card:     #FFFFFF;
+  --s-dark:     #1C2540;
+  --s-dark-card:#242E50;
+
+  --a:          #F7E848;
+  --a-hover:    #E6D630;
+  --a-soft:     #FEFBD8;
+  --a-on-dark:  #F7E848;
+  --a-ink:      #6E6200;   /* dorado oscuro para texto sobre fondos claros */
+
+  --t:          #1C2540;
+  --t-sec:      #33406A;
+  --t-muted:    #5E6889;
+  --t-light:    #E8EBF5;
+  --t-light-dim:rgba(232,235,245,0.55);
+
+  --b:          rgba(28,37,64,0.10);
+  --b-dark:     rgba(232,235,245,0.10);
+
+  /* SKILL: 8pt spacing system */
+  --sp2:4px; --sp4:8px; --sp6:12px; --sp8:16px; --sp10:20px;
+  --sp12:24px; --sp16:32px; --sp20:40px; --sp24:48px;
+  --sp32:64px; --sp40:80px; --sp48:96px;
+
+  /* SKILL: consistent type scale */
+  --txs:11px; --tsm:13px; --tbase:15px; --tmd:18px;
+  --tlg:22px; --txl:28px; --t2xl:38px; --t3xl:56px;
+
+  --r-sm:8px; --r-md:14px; --r-lg:22px; --r-full:9999px;
+  --sh-sm:0 1px 3px rgba(24,27,42,0.08);
+  --sh-md:0 4px 16px rgba(24,27,42,0.10);
+  --sh-lg:0 10px 40px rgba(24,27,42,0.12);
+
+  --z-sticky:40; --z-card:10;
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Outfit',sans-serif;
+  font-size:var(--tbase); line-height:1.65;
+  color:var(--t-light); background:#22293E;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+svg { display:block; }
+a { color:inherit; text-decoration:none; }
+
+/* SKILL: visible focus rings on all interactive elements */
+:focus-visible { outline:2px solid var(--a-ink); outline-offset:3px; border-radius:var(--r-sm); }
+
+.wrap { max-width:1100px; margin:0 auto; padding:0 var(--sp12); }
+
+/* SKILL: prefers-reduced-motion */
+@media(prefers-reduced-motion:reduce){ *,*::before,*::after { transition-duration:0.01ms !important; } }
+
+/* ─── HEADER (V6 oscuro — igual a landing) ──────────────── */
+header {
+  position:sticky; top:0; z-index:var(--z-sticky);
+  background:rgba(28,37,64,0.96); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.hdr { display:flex; align-items:center; justify-content:center; padding:var(--sp10) 0; }
+
+.logo {
+  font-family:'Outfit',sans-serif; font-weight:700; font-size:17px;
+  color:#E4E8F5; letter-spacing:-0.02em;
+  display:flex; align-items:center; gap:var(--sp4);
+}
+.logo-box {
+  width:30px; height:30px; border-radius:var(--r-sm);
+  background:#E4E8F5; color:#1C2540;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700;
+}
+.logo-em { color:#F7E848; }
+
+.hdr-nav { display:flex; align-items:center; gap:var(--sp16); }
+.hdr-link {
+  font-size:var(--tsm); font-weight:600; color:#FFFFFF;
+  padding:8px var(--sp12); border-radius:var(--r-sm);
+  border:1px solid rgba(255,255,255,0.45);
+  min-height:38px; display:inline-flex; align-items:center; gap:var(--sp4);
+  transition:border-color 0.2s, background 0.2s, color 0.2s;
+  background:transparent; cursor:pointer; font-family:'Outfit',sans-serif;
+}
+.hdr-link:hover {
+  color:#E4E8F5;
+  border-color:rgba(255,255,255,0.38);
+  background:rgba(255,255,255,0.05);
+}
+@media(max-width:540px){
+  #nav-contacto { display:none; }
+  #nav-servicios { display:inline-flex; }
+  .hdr .btn-a { padding:8px 14px; font-size:12px; }
+  .logo span { display:none; }
+}
+
+.btn-a {
+  display:inline-flex; align-items:center; gap:var(--sp4);
+  background:var(--a); color:var(--s-dark);
+  font-family:'Outfit',sans-serif; font-size:var(--tsm); font-weight:600;
+  padding:10px var(--sp12); border-radius:var(--r-sm); border:none; cursor:pointer;
+  min-height:44px; transition:background 0.2s,transform 0.2s,box-shadow 0.2s;
+}
+.btn-a:hover { background:var(--a-hover); transform:translateY(-1px); box-shadow:0 4px 14px rgba(247,232,72,0.35); }
+
+/* ─── LEGAL PAGE (fondo navy V6 — mismo patrón que privacy.html) ── */
+.privacy-hero {
+  position:relative; overflow:hidden;
+  padding:var(--sp40) 0 var(--sp32);
+  background:#22293E;
+}
+.privacy-hero::before { display:none !important; }
+#hero-topo {
+  position:absolute; inset:0;
+  width:100%; height:100%; z-index:0;
+  pointer-events:none;
+}
+.privacy-hero > .wrap { position:relative; z-index:1; }
+
+.privacy-hero-inner { position:relative; z-index:1; max-width:680px; }
+
+.eyebrow {
+  display:inline-flex; align-items:center; gap:var(--sp6);
+  font-size:var(--txs); font-weight:600;
+  text-transform:uppercase; letter-spacing:0.16em;
+  color:#F7E848; margin-bottom:var(--sp10);
+}
+.eyebrow-rule { width:28px; height:1.5px; background:#F7E848; }
+
+.privacy-hero h1 {
+  font-family:'Playfair Display',serif; font-weight:700;
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  line-height:1.1; letter-spacing:-0.02em; color:#E4E8F5;
+}
+.privacy-meta {
+  margin-top:var(--sp8); font-size:var(--tsm);
+  color:rgba(228,232,245,0.55); font-weight:500;
+}
+.privacy-meta a {
+  color:var(--a-on-dark); text-decoration:underline; text-underline-offset:3px;
+}
+
+.privacy-body {
+  background:var(--s-dark);
+  padding:var(--sp24) 0 var(--sp48);
+}
+.privacy-inner { max-width:720px; margin:0 auto; }
+
+.section-tag {
+  font-size:var(--txs); font-weight:600; text-transform:uppercase;
+  letter-spacing:0.16em; margin-bottom:var(--sp8);
+  color:rgba(247,232,72,0.85);
+}
+.section-h2 {
+  font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:-0.02em;
+  font-size:clamp(1.35rem,2.5vw,1.7rem); line-height:1.2; color:var(--t-light);
+}
+
+.toc {
+  background:var(--s-dark-card);
+  border:1px solid var(--b-dark);
+  border-radius:var(--r-lg);
+  padding:var(--sp16);
+  margin-bottom:var(--sp32);
+}
+.toc .section-h2 { margin-bottom:var(--sp10); font-size:var(--tmd); }
+.toc ol {
+  padding-left:20px;
+  display:flex; flex-direction:column; gap:var(--sp4);
+}
+.toc li a {
+  color:var(--t-light-dim);
+  font-size:var(--tsm); font-weight:500;
+  transition:color 0.2s;
+}
+.toc li a:hover { color:var(--a-on-dark); }
+
+.privacy-section {
+  margin-bottom:var(--sp32);
+  scroll-margin-top:80px;
+  padding-top:var(--sp8);
+  border-top:1px solid var(--b-dark);
+}
+.privacy-section .section-h2 {
+  display:flex; align-items:center; gap:var(--sp6);
+  margin-bottom:var(--sp10);
+}
+.section-num {
+  width:28px; height:28px; border-radius:var(--r-sm);
+  background:rgba(247,232,72,0.12); color:var(--a-on-dark);
+  font-size:var(--txs); font-weight:700;
+  display:inline-flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.privacy-section p {
+  color:var(--t-light-dim);
+  font-size:var(--tbase);
+  line-height:1.7;
+  margin-bottom:var(--sp6);
+  max-width:640px;
+}
+.privacy-section p:last-child { margin-bottom:0; }
+.privacy-section ul {
+  padding-left:22px;
+  color:var(--t-light-dim);
+  font-size:var(--tbase);
+  display:flex; flex-direction:column; gap:var(--sp4);
+  margin-bottom:var(--sp6);
+  max-width:640px;
+}
+.privacy-section li strong {
+  color:var(--t-light);
+  font-weight:600;
+}
+.privacy-section a.ext-link {
+  color:var(--t-light-dim);
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.privacy-section a.ext-link:hover { color:var(--a-on-dark); }
+
+.highlight-box {
+  background:rgba(247,232,72,0.08);
+  border:1px solid rgba(247,232,72,0.22);
+  border-radius:var(--r-md);
+  padding:var(--sp10) var(--sp12);
+  margin:var(--sp8) 0;
+}
+.highlight-box p {
+  margin:0;
+  font-size:var(--tsm);
+  color:rgba(228,232,245,0.88);
+  font-weight:500;
+  max-width:none;
+}
+
+.contact-card {
+  background:var(--s-dark-card);
+  border:1px solid var(--b-dark);
+  border-radius:var(--r-lg);
+  padding:var(--sp16);
+  margin-top:var(--sp10);
+}
+.contact-card p {
+  color:var(--t-light-dim);
+  font-size:var(--tsm);
+  margin-bottom:var(--sp4);
+  max-width:none;
+}
+.contact-card p:last-child { margin-bottom:0; }
+.contact-card .contact-brand {
+  color:var(--a-on-dark);
+  font-weight:700;
+  font-size:var(--tmd);
+}
+.contact-card a { color:var(--a-on-dark); }
+.contact-card a:hover { text-decoration:underline; }
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid var(--b-dark); }
+.ftr { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--sp8); }
+.ftr-brand { font-size:var(--tsm); font-weight:700; color:var(--t-light); letter-spacing:-0.01em; }
+.ftr-text { font-size:var(--txs); color:var(--t-light-dim); }
+.ftr-text a { text-decoration:underline; text-underline-offset:3px; }
+.ftr-text a:hover { color:var(--a-on-dark); }
+
+@media(max-width:540px){
+  .privacy-hero { padding:var(--sp32) 0 var(--sp24); }
+  .privacy-body { padding-bottom:var(--sp32); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap hdr">
+    <nav class="hdr-nav">
+      <button onclick="showView('view-services')" class="hdr-link" id="nav-servicios">Servicios</button>
+      <a href="#contacto" class="hdr-link" onclick="goToContact(event)" id="nav-contacto">Contacto</a>
+      <a href="https://wa.me/5493624361231" target="_blank" rel="noopener noreferrer" class="btn-a">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Hablemos
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="privacy-hero" id="hero-section">
+  <canvas id="hero-topo"></canvas>
+  <div class="wrap">
+    <div class="privacy-hero-inner">
+      <div class="eyebrow"><span class="eyebrow-rule"></span>Legal</div>
+      <h1>Términos y Condiciones</h1>
+      <p class="privacy-meta">Última actualización: julio de 2026 · Ver también la <a href="privacy.html">Política de Privacidad</a></p>
+    </div>
+  </div>
+</section>
+
+<main class="privacy-body">
+  <div class="wrap">
+    <div class="privacy-inner">
+
+      <div class="toc">
+        <div class="section-tag">Contenido</div>
+        <h2 class="section-h2">Índice</h2>
+        <ol>
+          <li><a href="#s1">Objeto del servicio</a></li>
+          <li><a href="#s2">Naturaleza automatizada del servicio</a></li>
+          <li><a href="#s3">Exactitud de la información</a></li>
+          <li><a href="#s4">Uso aceptable del canal</a></li>
+          <li><a href="#s5">Datos personales</a></li>
+          <li><a href="#s6">Propiedad intelectual</a></li>
+          <li><a href="#s7">Limitación de responsabilidad</a></li>
+          <li><a href="#s8">Uso por menores de edad</a></li>
+          <li><a href="#s9">Modificaciones a estos términos</a></li>
+          <li><a href="#s10">Legislación aplicable y jurisdicción</a></li>
+          <li><a href="#s11">Contacto</a></li>
+        </ol>
+      </div>
+
+      <section class="privacy-section" id="s1">
+        <h2 class="section-h2"><span class="section-num">1</span> Objeto del servicio</h2>
+        <p>Estos términos y condiciones regulan el uso del servicio de atención y toma de pedidos por WhatsApp (en adelante, "el servicio") que el comercio con el que estás conversando pone a tu disposición a través de esta plataforma.</p>
+        <p>El servicio te permite consultar el catálogo de productos del comercio, conocer precios y disponibilidad, armar un pedido, elegir la modalidad de entrega (envío a domicilio o retiro en el local, según lo que ofrezca el comercio) y confirmar la operación, todo dentro de una conversación de WhatsApp.</p>
+        <p>Al escribir al número de WhatsApp del comercio y utilizar el servicio, aceptás estos términos. Si no estás de acuerdo con ellos, te pedimos que no utilices el canal.</p>
+      </section>
+
+      <section class="privacy-section" id="s2">
+        <h2 class="section-h2"><span class="section-num">2</span> Naturaleza automatizada del servicio</h2>
+        <p>Las respuestas que recibís en este canal son generadas, en primera instancia, por un asistente automático (un sistema de inteligencia artificial) configurado por quien opera esta plataforma en nombre del comercio. No estás conversando con una persona, salvo que se indique lo contrario.</p>
+        <p>En cualquier momento podés pedir hablar con una persona. Cuando lo hagas, o cuando el asistente detecte que tu consulta excede lo que puede resolver, la conversación puede ser derivada a un operador humano del comercio, que la continuará desde el mismo chat.</p>
+        <div class="highlight-box">
+          <p>El asistente automático solo informa datos del catálogo del comercio obtenidos de su sistema. No inventa precios, productos ni disponibilidad; cuando no dispone de una información, te lo dice y ofrece derivarte a un humano.</p>
+        </div>
+      </section>
+
+      <section class="privacy-section" id="s3">
+        <h2 class="section-h2"><span class="section-num">3</span> Exactitud de la información</h2>
+        <p>Los precios, la disponibilidad de productos y demás datos del catálogo que informa el asistente provienen del sistema interno del comercio y se sincronizan periódicamente. Esa sincronización puede tener un desfasaje de hasta 15 a 30 minutos respecto de la información más reciente del comercio.</p>
+        <p>Por ese motivo, toda la información brindada por el asistente tiene carácter informativo y está sujeta a confirmación final por parte del comercio. En particular:</p>
+        <ul>
+          <li><strong>Precios:</strong> el precio definitivo de tu pedido es el que el comercio confirme al momento de cerrar la operación.</li>
+          <li><strong>Disponibilidad:</strong> un producto informado como disponible puede haberse agotado en el intervalo de sincronización; en ese caso el comercio te lo comunicará antes de preparar el pedido.</li>
+          <li><strong>Costo de envío:</strong> cuando elijas envío a domicilio, el costo se cotiza en función de tu dirección y se te informa antes de que confirmes el pedido.</li>
+        </ul>
+        <p>Si detectás una diferencia entre lo informado por el asistente y lo que el comercio te confirma, prevalece la confirmación del comercio.</p>
+      </section>
+
+      <section class="privacy-section" id="s4">
+        <h2 class="section-h2"><span class="section-num">4</span> Uso aceptable del canal</h2>
+        <p>El canal de WhatsApp está destinado exclusivamente a consultar el catálogo y realizar pedidos al comercio. Al usarlo te comprometés a no:</p>
+        <ul>
+          <li><strong>Enviar spam:</strong> mensajes masivos, repetitivos o sin relación con el servicio.</li>
+          <li><strong>Cometer fraude:</strong> realizar pedidos falsos, suplantar la identidad de otra persona o brindar datos de contacto o entrega deliberadamente incorrectos.</li>
+          <li><strong>Vulnerar el sistema:</strong> intentar manipular el asistente automático para que actúe fuera de su función, extraer sus instrucciones internas, explotar fallas, o realizar cualquier acción tendiente a comprometer la seguridad o el funcionamiento de la plataforma.</li>
+          <li><strong>Usar el canal con fines ilícitos:</strong> cualquier uso contrario a la ley argentina o a los términos de servicio de WhatsApp.</li>
+        </ul>
+        <p>El incumplimiento de estas condiciones puede derivar en el bloqueo del número infractor en la plataforma y, cuando corresponda, en la denuncia ante las autoridades competentes.</p>
+      </section>
+
+      <section class="privacy-section" id="s5">
+        <h2 class="section-h2"><span class="section-num">5</span> Datos personales</h2>
+        <p>Para operar el servicio se tratan datos personales mínimos: tu número de WhatsApp, tu nombre de perfil, el contenido de los mensajes que enviás y los datos de tu pedido (incluida la dirección de entrega, si elegís envío a domicilio).</p>
+        <p>El tratamiento de esos datos se realiza conforme a la Ley 25.326 de Protección de los Datos Personales de la República Argentina y se describe en detalle en nuestra <a class="ext-link" href="privacy.html">Política de Privacidad</a>, que forma parte integrante de estos términos.</p>
+        <p>Allí encontrarás qué datos se recopilan, con qué proveedores se comparten, cuánto tiempo se conservan y cómo ejercer tus derechos de acceso, rectificación y supresión.</p>
+      </section>
+
+      <section class="privacy-section" id="s6">
+        <h2 class="section-h2"><span class="section-num">6</span> Propiedad intelectual</h2>
+        <p>La marca, el nombre comercial, el logotipo, el catálogo de productos, las fotografías, los precios, las descripciones y todo otro contenido que el comercio publica o informa a través de este canal pertenecen al comercio o son utilizados por él con autorización de sus titulares.</p>
+        <p>El software, la tecnología y los componentes que hacen funcionar el asistente automático pertenecen a quien opera esta plataforma.</p>
+        <p>El uso del servicio no te otorga ninguna licencia ni derecho sobre esos contenidos o tecnologías. No está permitido reproducirlos, distribuirlos ni utilizarlos con fines comerciales sin autorización previa y por escrito de su titular.</p>
+      </section>
+
+      <section class="privacy-section" id="s7">
+        <h2 class="section-h2"><span class="section-num">7</span> Limitación de responsabilidad</h2>
+        <p>El comercio y quien opera esta plataforma ponen su mejor esfuerzo en que la información brindada por el asistente sea correcta y esté actualizada. Sin embargo, dado el desfasaje de sincronización descripto en la sección 3, la información puede no reflejar en tiempo real el estado del sistema interno del comercio.</p>
+        <p>En consecuencia, ni el comercio ni quien opera la plataforma serán responsables por decisiones que tomes basándote exclusivamente en información del asistente que aún no reflejaba cambios recientes del comercio (por ejemplo, un cambio de precio o el agotamiento de un producto), siempre que el comercio te comunique la situación real antes de concretar la operación.</p>
+        <p>Nada de lo dispuesto en esta sección limita los derechos que te correspondan como consumidor conforme a la Ley 24.240 de Defensa del Consumidor y normas complementarias, que prevalecen sobre estos términos en todo lo que te resulte más favorable.</p>
+      </section>
+
+      <!-- START: sección Menores de edad — editar o quitar según el rubro del comercio -->
+      <section class="privacy-section" id="s8">
+        <h2 class="section-h2"><span class="section-num">8</span> Uso por menores de edad</h2>
+        <p>El servicio está destinado a personas mayores de 18 años, o a menores que actúen con el conocimiento y la supervisión de sus padres o tutores.</p>
+        <p>Si el comercio ofrece productos cuya venta a menores está restringida por ley (por ejemplo, bebidas alcohólicas o tabaco), la operación queda sujeta a la verificación de edad que el comercio realice al momento de la entrega, y podrá ser cancelada si esa verificación no es satisfactoria.</p>
+      </section>
+      <!-- END: sección Menores de edad -->
+
+      <section class="privacy-section" id="s9">
+        <h2 class="section-h2"><span class="section-num">9</span> Modificaciones a estos términos</h2>
+        <p>Estos términos pueden actualizarse periódicamente para reflejar cambios en el servicio o en la normativa aplicable. Cada versión indica su fecha de vigencia en la leyenda "Última actualización" visible al inicio de esta página.</p>
+        <p>Las modificaciones rigen desde su publicación en esta misma dirección. El uso del servicio con posterioridad a una actualización implica la aceptación de los términos vigentes. Te recomendamos revisarlos ocasionalmente.</p>
+      </section>
+
+      <section class="privacy-section" id="s10">
+        <h2 class="section-h2"><span class="section-num">10</span> Legislación aplicable y jurisdicción</h2>
+        <p>Estos términos se rigen por las leyes de la República Argentina.</p>
+        <p>Ante cualquier controversia derivada del uso del servicio, serán competentes los tribunales ordinarios correspondientes al domicilio del comercio, sin perjuicio de la posibilidad de acudir previamente a las instancias de resolución de conflictos de consumo (como la Dirección de Defensa del Consumidor de tu jurisdicción o el sistema de Ventanilla Única Federal de Defensa del Consumidor).</p>
+        <p>Si sos consumidor, conservás además el derecho de reclamar ante los tribunales de tu propio domicilio en los casos previstos por la normativa de defensa del consumidor.</p>
+      </section>
+
+      <section class="privacy-section" id="s11">
+        <h2 class="section-h2"><span class="section-num">11</span> Contacto</h2>
+        <p>Para consultas o reclamos sobre estos términos o sobre el servicio, podés comunicarte por cualquiera de estos medios:</p>
+        <ul>
+          <li><strong>Por WhatsApp:</strong> en el mismo chat del comercio, pidiendo hablar con una persona.</li>
+          <li><strong>Con el comercio:</strong> a través de los datos de contacto que el comercio publica en sus canales habituales (local, redes sociales o sitio web).</li>
+          <li><strong>Con quien opera la plataforma:</strong> a través del sitio indicado a continuación.</li>
+        </ul>
+        <div class="contact-card">
+          <p class="contact-brand">Operador de la plataforma</p>
+          <p>Argentina</p>
+          <p>Sitio web: <a href="https://pinomh.github.io/landing/">pinomh.github.io/landing</a></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap ftr">
+    <div class="ftr-text">No vendemos software. Vendemos tranquilidad.</div>
+    <div class="ftr-text"><a href="privacy.html">Política de Privacidad</a> · <a href="terms.html">Términos y Condiciones</a></div>
+    <div class="ftr-text">Chaco - Argentina © 2026</div>
+  </div>
+</footer>
+
+<script>
+/* Redirects to index.html — same header markup as landing, adapted for this page */
+function showView(viewId) {
+  if (viewId === 'view-services') {
+    window.location.href = 'index.html';
+  }
+}
+function goToContact(event) {
+  event.preventDefault();
+  window.location.href = 'index.html#contacto';
+}
+</script>
+
+<script>
+(function(){
+  const cv = document.getElementById('hero-topo');
+  const ctx = cv.getContext('2d');
+  const section = document.getElementById('hero-section');
+  const RC = '247,232,72';
+  let W, H, t = 0, rafId = null, isVisible = true;
+
+  function rz() {
+    W = cv.width  = section.offsetWidth;
+    H = cv.height = section.offsetHeight;
+  }
+
+  function terrain(x, y, t) {
+    return (
+      Math.sin(x * .007 + y * .003 + t * .38) * 1.1 +
+      Math.sin(x * .014 - y * .005 - t * .28) * .6 +
+      Math.sin(x * .004 + y * .009 + t * .18) * .9 +
+      Math.cos(x * .011 + y * .007 - t * .32) * .5
+    );
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const levels = 22;
+
+    // All contour lines
+    for (let l = 0; l < levels; l++) {
+      const baseY = (l / levels) * H;
+      ctx.beginPath();
+      for (let x = 0; x <= W; x += 3) {
+        const h = terrain(x, baseY, t);
+        const y = baseY + h * 38;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      const a = 0.04 + Math.sin(l / levels * Math.PI) * 0.13;
+      ctx.strokeStyle = `rgba(${RC},${a})`;
+      ctx.lineWidth = 0.85;
+      ctx.stroke();
+    }
+
+    // 3 highlighted contour lines
+    [0.28, 0.52, 0.74].forEach(frac => {
+      const baseY = frac * H;
+      ctx.beginPath();
+      for (let x = 0; x <= W; x += 3) {
+        const h = terrain(x, baseY, t);
+        const y = baseY + h * 38;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = `rgba(${RC},0.30)`;
+      ctx.lineWidth = 1.3;
+      ctx.stroke();
+    });
+
+    t += 0.012;
+    if (isVisible) rafId = requestAnimationFrame(draw);
+  }
+
+  rz();
+  window.addEventListener('resize', rz);
+
+  // Pausar cuando la sección sale del viewport (ahorro de batería/CPU)
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && rafId === null && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        draw();
+      } else if (!isVisible && rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    });
+  }, { threshold: 0.01 });
+  heroObserver.observe(section);
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    draw();
+  }
+})();
+</script>
+
+</body>
+</html>
