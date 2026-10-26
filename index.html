@@ -32,30 +32,37 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* SKILL: Semantic design tokens — not raw hex in components */
 :root {
-  --s-base:     #F7F7F4;
-  --s-alt:      #EEEEE8;
+  --s-base:     #E6F5FA;
+  --s-alt:      #F0F9FD;
   --s-card:     #FFFFFF;
-  --s-dark:     #1C2540;
-  --s-dark-card:#242E50;
+  --s-dark:     #0B1C2A;
+  --s-dark-card:#162636;
 
-  --a:          #F7E848;
-  --a-hover:    #E6D630;
-  --a-soft:     #FEFBD8;
-  --a-on-dark:  #F7E848;
-  --a-ink:      #6E6200;   /* dorado oscuro para texto sobre fondos claros */
+  --a:          #FF6A1A;
+  --a-hover:    #E4580C;
+  --a-soft:     #FFF9F5;
+  --a-on-dark:  #FF6A1A;
+  --a-ink:      #0369A1;
 
-  --t:          #1C2540;
-  --t-sec:      #33406A;
-  --t-muted:    #5E6889;
-  --t-light:    #E8EBF5;
-  --t-light-dim:rgba(232,235,245,0.55);
+  --t:          #0A1926;
+  --t-sec:      #2C3E50;
+  --t-muted:    #5D7285;
+  --t-light:    #F0F9FD;
+  --t-light-dim:rgba(207,235,244,0.80);
 
-  --b:          rgba(28,37,64,0.10);
-  --b-dark:     rgba(232,235,245,0.10);
+  --b:          #CFEBF4;
+  --b-dark:     rgba(207,235,244,0.16);
+
+  --btn-label:  #FFFFFF;
+  --celeste:    #0284C7;
+  --celeste-2:  #2BA0C7;
 
   /* SKILL: 8pt spacing system */
   --sp2:4px; --sp4:8px; --sp6:12px; --sp8:16px; --sp10:20px;
@@ -77,7 +84,7 @@ document.addEventListener('keydown', function(e) {
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; }
 body {
-  font-family:'Outfit',sans-serif;
+  font-family:'Satoshi',sans-serif;
   font-size:var(--tbase); line-height:1.65;
   color:var(--t); background:var(--s-base);
   overflow-x:hidden; -webkit-font-smoothing:antialiased;
@@ -132,12 +139,12 @@ header {
 
 .btn-a {
   display:inline-flex; align-items:center; gap:var(--sp4);
-  background:var(--a); color:var(--s-dark);
+  background:var(--a); color:var(--btn-label);
   font-family:'Outfit',sans-serif; font-size:var(--tsm); font-weight:600;
   padding:10px var(--sp12); border-radius:var(--r-sm); border:none; cursor:pointer;
   min-height:44px; transition:background 0.2s,transform 0.2s,box-shadow 0.2s;
 }
-.btn-a:hover { background:var(--a-hover); transform:translateY(-1px); box-shadow:0 4px 14px rgba(247,232,72,0.35); }
+.btn-a:hover { background:var(--a-hover); transform:translateY(-1px); box-shadow:0 4px 14px rgba(255,106,26,0.35); }
 
 /* ─── HERO — light bg, first time across v1/v2/v3 ────────────────── */
 .hero {
@@ -166,9 +173,9 @@ header {
   display:inline-flex; align-items:center; gap:var(--sp6);
   font-size:var(--txs); font-weight:600;
   text-transform:uppercase; letter-spacing:0.16em;
-  color:var(--a); margin-bottom:var(--sp10);
+  color:#0369A1; margin-bottom:var(--sp10);
 }
-.eyebrow-rule { width:28px; height:1.5px; background:var(--a); }
+.eyebrow-rule { width:28px; height:1.5px; background:#0284C7; }
 
 /* SKILL: Playfair Display only for h1 — editorial serif, not in v1-v3 */
 .hero h1 {
@@ -176,7 +183,7 @@ header {
   font-size:clamp(2.4rem,5.5vw,3.8rem);
   line-height:1.07; letter-spacing:-0.02em; color:var(--t); max-width:680px;
 }
-.hero h1 em { font-style:italic; color:var(--a); font-weight:700; }
+.hero h1 em { font-style:italic; color:#E4580C; font-weight:700; }
 
 .hero-tagline {
   margin-top:var(--sp10); font-size:var(--tmd); font-weight:600;
@@ -225,7 +232,7 @@ header {
 /* ─── SERVICES — dark bg, inverted from hero ─────────────────────── */
 .services { background:var(--s-dark); padding:var(--sp48) 0; }
 .section-tag { font-size:var(--txs); font-weight:600; text-transform:uppercase; letter-spacing:0.16em; margin-bottom:var(--sp8); }
-.services .section-tag { color:rgba(247,232,72,0.85); }
+.services .section-tag { color:#0369A1; }
 .section-h2 { font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.7rem,3vw,2.3rem); line-height:1.14; max-width:640px; }
 .services .section-h2 { color:var(--t-light); }
 .services .sdesc { margin-top:var(--sp8); font-size:var(--tbase); color:var(--t-light-dim); max-width:540px; line-height:1.7; }
@@ -247,7 +254,7 @@ header {
 .svc-row:hover::before { transform:scaleY(1); }
 .svc-row:hover .svc-idx { color:var(--a-on-dark); }
 .svc-row:hover .svc-arrow { transform:translateX(4px) translateY(-4px); opacity:1; }
-.svc-row:hover .svc-icon { background:rgba(247,232,72,0.15); color:var(--a-on-dark); }
+.svc-row:hover .svc-icon { background:rgba(2,132,199,0.12); color:#0369A1; }
 @media(max-width:600px){ .svc-row { grid-template-columns:1fr; gap:var(--sp8); } .svc-idx,.svc-arrow { display:none; } }
 
 .svc-idx { font-size:var(--txs); font-weight:700; color:rgba(237,240,248,0.22); letter-spacing:0.08em; transition:color 0.2s; align-self:flex-start; padding-top:4px; }
@@ -343,7 +350,7 @@ header {
 .field input:hover,.field textarea:hover { border-color:rgba(24,27,42,0.22); }
 .field input:focus,.field textarea:focus {
   outline:none; border-color:var(--a-ink);
-  box-shadow:0 0 0 4px rgba(247,232,72,0.25);
+  box-shadow:0 0 0 4px rgba(2,132,199,0.12);
 }
 .form-submit-row { grid-column:1/-1; display:flex; justify-content:flex-end; margin-top:var(--sp4); }
 .btn-submit {
@@ -410,10 +417,10 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
 .svc-page-hero-inner { position:relative; z-index:1; }
 .svc-page-label {
   font-size:var(--txs); font-weight:600; text-transform:uppercase;
-  letter-spacing:0.16em; color:rgba(247,232,72,0.85); margin-bottom:var(--sp8);
+  letter-spacing:0.16em; color:#0369A1; margin-bottom:var(--sp8);
   display:flex; align-items:center; gap:var(--sp6);
 }
-.svc-page-label-rule { width:24px; height:1.5px; background:rgba(247,232,72,0.85); }
+.svc-page-label-rule { width:24px; height:1.5px; background:#0284C7; }
 .svc-page-hero h2 {
   font-family:'Playfair Display',serif; font-weight:700;
   font-size:clamp(2rem,4.5vw,3.2rem); line-height:1.1;
@@ -600,12 +607,12 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
   border:none; cursor:pointer;
   font-family:'Outfit',sans-serif; font-size:14px; font-weight:700;
   padding:15px 30px; border-radius:100px;
-  box-shadow:0 6px 20px rgba(28,37,64,0.18);
+  box-shadow:0 6px 20px rgba(11,28,42,0.18);
   transition:transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease, background 0.25s ease;
 }
 .tab-detail-toggle:hover {
   transform:translateY(-3px);
-  box-shadow:0 12px 32px rgba(28,37,64,0.28);
+  box-shadow:0 12px 32px rgba(11,28,42,0.28);
   background:var(--s-dark-card);
 }
 .tab-detail-toggle .toggle-icon-badge {
@@ -693,63 +700,62 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
 }
 .svc-row[onclick]:hover::after { opacity:1; }
 
-/* ─── V6: HERO OSCURO ──────────────────────────────────── */
-.hero { background:#22293E; }
-.hero::before {
-  background-image:radial-gradient(circle, rgba(255,255,255,0.085) 1.2px, transparent 1.2px);
-}
-.hero .eyebrow { color:#F7E848; }
-.hero h1 { color:#E4E8F5; }
-.hero h1 em { color:#F7E848; }
-.hero .hero-tagline { color:rgba(228,232,245,0.88); }
-.hero .hero-desc { color:rgba(228,232,245,0.55); }
-.hero .micro-copy { color:rgba(228,232,245,0.42); }
-.hero .micro-dot { background:#F7E848; }
+/* ─── HERO CLARO ──────────────────────────────────── */
+.hero { background:linear-gradient(180deg,#EFF8FB 0%,#E6F5FA 52%,#DCF0F7 100%); }
+.hero::before { display:none; }
+.hero .eyebrow { color:#0369A1; }
+.hero h1 { color:#0A1926; font-family:'Clash Display',sans-serif; letter-spacing:-0.025em; word-spacing:.06em; }
+.hero h1 em { color:#E4580C; font-family:'Playfair Display',serif; }
+.hero .hero-tagline { color:#0A1926; }
+.hero .hero-desc { color:#2C3E50; }
+.hero .micro-copy { color:#2C3E50; }
+.hero .micro-dot { background:#FF6A1A; }
 .hero .stat-box {
-  background:rgba(255,255,255,0.07);
-  border-color:rgba(255,255,255,0.11);
-  box-shadow:none;
+  background:#FFFFFF;
+  border-color:#CFEBF4;
+  box-shadow:0 8px 24px rgba(10,25,38,0.06);
 }
-.hero .stat-num { color:#E4E8F5; }
-.hero .stat-label { color:rgba(228,232,245,0.52); }
+.hero .stat-num { color:#0A1926; }
+.hero .stat-label { color:#2C3E50; }
 .hero .btn-ghost {
-  border-color:rgba(228,232,245,0.22);
-  color:rgba(228,232,245,0.82);
+  border-color:#CFEBF4;
+  color:#2C3E50;
+  background:#FFFFFF;
 }
 .hero .btn-ghost:hover {
-  border-color:rgba(228,232,245,0.44);
-  background:rgba(255,255,255,0.05);
+  border-color:#0284C7;
+  background:#F6FBFE;
 }
 
 /* ─── HEADER OSCURO (consistente con hero) ──────────────── */
 header {
-  background:rgba(28,37,64,0.96) !important;
-  border-bottom-color:rgba(255,255,255,0.08) !important;
+  background:rgba(255,255,255,0.92) !important;
+  border-bottom:2px solid #FF6A1A !important;
 }
-.logo { color:#E4E8F5; }
-.logo-box { background:#E4E8F5; color:#1C2540; }
-.logo-em { color:#F7E848; }
+.logo { color:#0A1926; }
+.logo-box { background:#0B1C2A; color:#F0F9FD; }
+.logo-em { color:#0284C7; }
 .hdr-link {
-  color:#FFFFFF;
-  border-color:rgba(255,255,255,0.45);
-  background:transparent;
-  font-family:inherit;
+  color:#2C3E50;
+  border-color:#CFEBF4;
+  background:#FFFFFF;
+  font-family:'Satoshi',sans-serif;
 }
 .hdr-link:hover {
-  color:#E4E8F5;
-  border-color:rgba(255,255,255,0.38);
-  background:rgba(255,255,255,0.05);
+  color:#0A1926;
+  border-color:#0284C7;
+  background:#F6FBFE;
 }
 .hdr-link.nav-active {
-  background:#E4E8F5;
-  color:#1C2540;
-  border-color:#E4E8F5;
+  background:#0B1C2A;
+  color:#FFFFFF;
+  border-color:#0B1C2A;
 }
 
 
 /* ─── TOPOGRAPHY CANVAS ───────────────────────── */
 .hero::before { display:none !important; }
-#hero-topo {
+.hero-anim {
   position:absolute; inset:0;
   width:100%; height:100%; z-index:0;
   pointer-events:none;
@@ -782,8 +788,8 @@ header {
   border-bottom-color: var(--b-dark) !important;
 }
 .proc-bg-num {
-  -webkit-text-stroke: 1px rgba(247,232,72,0.10) !important;
-  text-stroke: 1px rgba(247,232,72,0.10) !important;
+  -webkit-text-stroke: 1px rgba(2,132,199,0.14) !important;
+  text-stroke: 1px rgba(2,132,199,0.14) !important;
 }
 
 
@@ -899,12 +905,132 @@ header {
 
 
 /* ─── TOPOGRAFÍA EN HERO DE SERVICIOS ─── */
-#services-topo {
-  position:absolute; inset:0; width:100%; height:100%;
+.svc-anim {
+  position:absolute; top:0; right:0; bottom:0; left:auto;
+  width:42%; height:100%;
   pointer-events:none; z-index:0;
 }
 .svc-page-hero { position:relative; overflow:hidden; }
 .svc-page-hero-inner { position:relative; z-index:1; }
+
+
+/* Zonas protegidas: valores originales congelados, independientes del rediseño */
+.mockup-item .phone,
+.mockup-item .browser,
+#qrcode-hero,
+#qrcode {
+  --a:#F7E848; --s-dark:#1C2540;
+  --t:#1C2540; --t-sec:#33406A; --t-muted:#5E6889;
+  --b:rgba(28,37,64,0.10);
+  color:#1C2540;
+  font-family:'Outfit',sans-serif;
+}
+
+h1,h2,h3,h4,.section-h2,.stat-num,.svc-text h3,.proc-body h4,.value-pillar h4,.tl-card h5,.lead-box h3,.qr-card h3,.card-title {
+  font-family:'Clash Display',sans-serif;
+  letter-spacing:-0.025em;
+  word-spacing:.06em;
+}
+.hero h1 em,.svc-page-hero h2 em,.tab-value-lead em,.svc-bottom-cta p span {
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-weight:700;
+}
+.section-tag,.eyebrow,.svc-idx,.proc-step,.svc-page-label,.wa-label,.hero-qr-label,.tab-count {
+  font-family:'Space Mono',monospace;
+}
+.btn-a,.btn-ghost,.btn-submit,.field input,.field textarea,.back-btn {
+  font-family:'Satoshi',sans-serif;
+}
+.btn-a,.btn-ghost,.btn-submit,.hdr-link,.tab-detail-toggle,.tab-btn {
+  transition:transform .35s cubic-bezier(0.16,1,0.3,1), background .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s cubic-bezier(0.16,1,0.3,1), border-color .35s cubic-bezier(0.16,1,0.3,1), color .35s cubic-bezier(0.16,1,0.3,1);
+}
+
+.services { background:#FFFFFF; }
+.services .section-h2,.svc-text h3 { color:#0A1926; }
+.services .sdesc,.svc-text p { color:#2C3E50; }
+.svc-list { display:flex; flex-direction:column; gap:12px; }
+.svc-row {
+  background:#FFFFFF;
+  border:1px solid #CFEBF4;
+  border-radius:14px;
+  padding:20px 18px;
+  box-shadow:0 8px 24px rgba(10,25,38,0.04);
+}
+.svc-row:last-child { border-bottom:1px solid #CFEBF4; }
+.svc-row:nth-child(odd) { border-top:3px solid #0284C7; }
+.svc-row:nth-child(even) { border-top:3px solid #FF6A1A; }
+.svc-idx { color:#0369A1; }
+.svc-icon { background:#F0F9FD; color:#0284C7; }
+.svc-arrow { color:#0284C7; }
+.svc-row:hover { transform:translateY(-4px); box-shadow:0 14px 32px rgba(10,25,38,0.08); }
+.svc-row:hover .svc-arrow { color:#FF6A1A; }
+.svc-row:nth-child(even):hover { border-color:#FF6A1A; }
+.svc-row:nth-child(odd):hover { border-color:#0284C7; }
+
+.process { background:#FFFFFF !important; }
+.process .section-tag { color:#0369A1 !important; }
+.process .section-h2,.proc-body h4 { color:#0A1926 !important; }
+.proc-body p { color:#2C3E50 !important; }
+.proc-step { color:#0369A1 !important; }
+.proc-item { border-top-color:#CFEBF4 !important; }
+.proc-item:last-child { border-bottom-color:#CFEBF4 !important; }
+
+.mockups { background:linear-gradient(180deg,#EFF8FB,#E6F5FA 55%,#DCF0F7); }
+.mockups .section-tag { color:#0369A1; }
+.contact { background:#E6F5FA; }
+.lead-box { border-color:#CFEBF4; background:#FFFFFF; }
+.field input:focus,.field textarea:focus { border-color:#0284C7; box-shadow:0 0 0 4px rgba(2,132,199,0.12); }
+.lead-note,.field .opt { color:#2C3E50; }
+.hero-qr { background:#0B1C2A; border-color:rgba(207,235,244,0.16); }
+.hero-qr-label,.hero-qr-sub { color:#CFEBF4; }
+.wa-btn,.qr-card { background:#0B1C2A; }
+footer { background:#0B1C2A; border-top:3px solid #0284C7; }
+.ftr-text { color:#CFEBF4; }
+.ftr-text a:hover { color:#FF6A1A; }
+
+.svc-page { background:#E6F5FA; }
+.svc-page-hero { background:linear-gradient(180deg,#EFF8FB,#E6F5FA 60%,#DCF0F7); }
+.svc-page-hero h2 { color:#0A1926; font-family:'Clash Display',sans-serif; letter-spacing:-0.025em; word-spacing:.06em; }
+.svc-page-hero h2 em { color:#E4580C; }
+.svc-page-desc,.back-btn { color:#2C3E50; }
+.back-btn:hover { color:#0A1926; }
+.svc-tabs-bar { background:#FFFFFF; }
+.tab-btn.active { color:#0369A1; border-bottom:3px solid #FF6A1A; }
+.value-pillar { border-color:#CFEBF4; }
+.value-pillar:nth-child(even) { border-top:3px solid #FF6A1A; }
+.value-pillar:nth-child(odd) { border-top:3px solid #0284C7; }
+.value-pillar:hover { transform:translateY(-4px); }
+.tl-line { background:#CFEBF4; }
+.tl-line-fill { background:#FF6A1A; }
+.tab-detail-panel.open .tl-item .tl-dot { border-color:#0284C7; background:#FFFFFF; }
+.tab-detail-panel.open .tl-item .tl-dot svg { color:#FF6A1A; }
+.tl-card { border-color:#CFEBF4; }
+.tl-card:hover { border-color:#0284C7; transform:translateX(4px); }
+.svc-bottom-cta { background:#0B1C2A; }
+.tab-value-lead { color:#0A1926; }
+
+.stat-box,.value-pillar,.lead-box { position:relative; overflow:hidden; }
+.stat-box::after,.value-pillar::after {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(110deg, transparent 32%, rgba(255,255,255,.7) 50%, transparent 68%);
+  transform:translateX(-130%);
+}
+.stat-box:hover::after,.value-pillar:hover::after { animation:shimmerSweep .9s cubic-bezier(0.16,1,0.3,1); }
+@keyframes shimmerSweep { to { transform:translateX(130%); } }
+.micro-dot { position:relative; }
+.micro-dot::after {
+  content:''; position:absolute; inset:-5px; border-radius:50%;
+  border:1px solid #FF6A1A; animation:radarPing 1.8s ease-out infinite;
+}
+@keyframes radarPing {
+  0% { transform:scale(.55); opacity:.75; }
+  100% { transform:scale(2.1); opacity:0; }
+}
+.hero-anim.is-paused *, .svc-anim.is-paused * { animation-play-state:paused; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim,.hero-anim *,.svc-anim,.svc-anim * { animation:none !important; }
+}
 
 </style>
 </head>
@@ -927,7 +1053,241 @@ header {
 <div id="view-landing" class="view active">
 <!-- HERO — light bg (differentiator #1 vs v1/v2/v3) -->
 <section class="hero" id="hero-section">
-  <canvas id="hero-topo"></canvas>
+  <svg class="hero-anim" aria-hidden="true" focusable="false" height="100%" preserveAspectRatio="xMidYMid slice" style="display:block; width:100%; height:100%; overflow:hidden;" viewBox="0 0 1200 650" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Soft Glacial Horology Glow -->
+<radialgradient cx="50%" cy="50%" id="chronoGlowGearMicro" r="55%">
+<stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18"></stop>
+<stop offset="50%" stop-color="#0284c7" stop-opacity="0.04"></stop>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+</radialgradient>
+<!-- Linear Gradient for Gear Core -->
+<lineargradient id="gearGradMicro" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#ea580c"></stop>
+<stop offset="70%" stop-color="#f97316"></stop>
+<stop offset="100%" stop-color="#0284c7"></stop>
+</lineargradient>
+<!-- Radar Sweep Beam Gradient -->
+<lineargradient id="radarSweepGradGearMicro" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#0284c7" stop-opacity="0.28"></stop>
+<stop offset="55%" stop-color="#38bdf8" stop-opacity="0.07"></stop>
+<stop offset="100%" stop-color="#38bdf8" stop-opacity="0"></stop>
+</lineargradient>
+<!-- Blueprint Drafting Grid -->
+<pattern height="48" id="fineGridGearMicro" patternunits="userSpaceOnUse" width="48">
+<path d="M 48 0 L 0 0 0 48" fill="none" stroke="#0284c7" stroke-opacity="0.07" stroke-width="0.75"></path>
+<circle cx="0" cy="0" fill="#0284c7" fill-opacity="0.22" r="1.2"></circle>
+</pattern>
+<filter height="160%" id="glowFiltGearMicro" width="160%" x="-30%" y="-30%">
+<fegaussianblur result="blur" stddeviation="2.0"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+</defs>
+<style>
+    @keyframes sweepRotateCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes sweepRotateCCW {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes gearSpinCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes pulseAuraGear {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.04); }
+    }
+    @keyframes packetFlowTrace {
+      0% { stroke-dashoffset: 260; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes satOrbitA {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes satOrbitB {
+      from { transform: rotate(120deg); }
+      to { transform: rotate(480deg); }
+    }
+    @keyframes satOrbitC {
+      from { transform: rotate(240deg); }
+      to { transform: rotate(600deg); }
+    }
+    @keyframes beaconRipple {
+      0% { r: 12px; opacity: 0.9; }
+      100% { r: 28px; opacity: 0; }
+    }
+
+    .pulse-bg-gear {
+      transform-origin: 510px 325px;
+      animation: pulseAuraGear 7s ease-in-out infinite;
+    }
+    .sweep-fast-arm {
+      transform-origin: 510px 325px;
+      animation: sweepRotateCW 14s linear infinite;
+    }
+    .dial-slow-rev {
+      transform-origin: 510px 325px;
+      animation: sweepRotateCCW 54s linear infinite;
+    }
+    .orbit-node-1 {
+      transform-origin: 510px 325px;
+      animation: satOrbitA 20s linear infinite;
+    }
+    .orbit-node-2 {
+      transform-origin: 510px 325px;
+      animation: satOrbitB 30s linear infinite;
+    }
+    .orbit-node-3 {
+      transform-origin: 510px 325px;
+      animation: satOrbitC 40s linear infinite;
+    }
+    /* ENGRANAJE EN ROTACIÓN CONTINUA - MICRO ESCALA DE PRECISIÓN */
+    .gear-main-spin {
+      transform-origin: 510px 325px;
+      animation: gearSpinCW 9s linear infinite;
+    }
+    .flow-stream {
+      stroke-dasharray: 10 16;
+      animation: packetFlowTrace 4s linear infinite;
+    }
+    .flow-stream-fast {
+      stroke-dasharray: 8 14;
+      animation: packetFlowTrace 2.5s linear infinite;
+    }
+    .ripple-circle {
+      animation: beaconRipple 3.0s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    .ripple-circle-del {
+      animation: beaconRipple 3.0s cubic-bezier(0, 0.2, 0.8, 1) infinite 1.5s;
+    }
+  </style>
+<!-- Technical Background Grid -->
+<rect fill="url(#fineGridGearMicro)" height="100%" width="100%"></rect>
+<circle class="pulse-bg-gear" cx="510" cy="325" fill="url(#chronoGlowGearMicro)" r="330"></circle>
+<!-- Technical Blueprint Caliper Rings -->
+<g opacity="0.45">
+<circle cx="510" cy="325" fill="none" r="280" stroke="#0284c7" stroke-opacity="0.3" stroke-width="1.2"></circle>
+<circle cx="510" cy="325" fill="none" r="272" stroke="#0284c7" stroke-dasharray="3 5" stroke-opacity="0.45" stroke-width="0.8"></circle>
+<circle cx="510" cy="325" fill="none" r="215" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.1"></circle>
+<circle cx="510" cy="325" fill="none" r="150" stroke="#0284c7" stroke-dasharray="2 6" stroke-opacity="0.5" stroke-width="1.2"></circle>
+<circle cx="510" cy="325" fill="none" r="76" stroke="#0284c7" stroke-opacity="0.4" stroke-width="1.4"></circle>
+<!-- Crosshairs & Blueprint Alignment Lines -->
+<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="170" x2="850" y1="325" y2="325"></line>
+<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="510" x2="510" y1="45" y2="605"></line>
+</g>
+<!-- 60-Second Swiss Horology Precision Dial (Reverse Slow Rotation) -->
+<g class="dial-slow-rev" opacity="0.65">
+<g opacity="0.5" stroke="#0f172a" stroke-linecap="round" stroke-width="2.5">
+<line x1="510" x2="510" y1="53" y2="72"></line>
+<line x1="510" x2="510" y1="578" y2="597"></line>
+<line x1="238" x2="257" y1="325" y2="325"></line>
+<line x1="763" x2="782" y1="325" y2="325"></line>
+<line x1="318" x2="331" y1="133" y2="146"></line>
+<line x1="702" x2="689" y1="517" y2="504"></line>
+<line x1="318" x2="331" y1="517" y2="504"></line>
+<line x1="702" x2="689" y1="133" y2="146"></line>
+</g>
+<!-- Calibration Ticks -->
+<circle cx="510" cy="325" fill="none" r="268" stroke="#0284c7" stroke-dasharray="1.2 11.5" stroke-opacity="0.45" stroke-width="3.5"></circle>
+</g>
+<!-- Telemetry Sweep Sector Beam -->
+<g class="sweep-fast-arm">
+<path d="M 510 325 L 790 325 A 280 280 0 0 0 708 127 Z" fill="url(#radarSweepGradGearMicro)"></path>
+</g>
+<!-- Circuit Bus Lines with Active Packets -->
+<g opacity="0.75">
+<path d="M 160 380 L 320 380 L 375 325 L 510 325" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
+<path class="flow-stream" d="M 160 380 L 320 380 L 375 325 L 510 325" fill="none" opacity="0.85" stroke="#ea580c" stroke-width="2.2"></path>
+<path d="M 510 325 L 650 325 L 710 270 L 910 270" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
+<path class="flow-stream-fast" d="M 510 325 L 650 325 L 710 270 L 910 270" fill="none" opacity="0.85" stroke="#38bdf8" stroke-width="2"></path>
+</g>
+<!-- Active Orbital Nodes (Applications & Services) -->
+<g class="orbit-node-1">
+<g transform="translate(660, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(2,132,199,0.25))" r="16"></circle>
+<circle cx="0" cy="0" fill="#0284c7" filter="url(#glowFiltGearMicro)" r="6"></circle>
+<text fill="#0284c7" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" x="14" y="4">IA CORE</text>
+</g>
+</g>
+<g class="orbit-node-2">
+<g transform="translate(725, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(234,88,12,0.25))" r="17"></circle>
+<circle cx="0" cy="0" fill="#ea580c" filter="url(#glowFiltGearMicro)" r="7"></circle>
+<text fill="#ea580c" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" x="14" y="4">WHATSAPP BOT</text>
+</g>
+</g>
+<g class="orbit-node-3">
+<g transform="translate(790, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(15,23,42,0.25))" r="15"></circle>
+<circle cx="0" cy="0" fill="#0f172a" r="5"></circle>
+<text fill="#0f172a" font-family="system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="0.05em" x="13" y="4">ERP &amp; STOCK</text>
+</g>
+</g>
+<!-- Sweeping Precision Needle in Mido/Pino Orange -->
+<g class="sweep-fast-arm">
+<line stroke="#0f172a" stroke-linecap="round" stroke-width="4" x1="510" x2="445" y1="325" y2="325"></line>
+<circle cx="445" cy="325" fill="#0f172a" r="5.5"></circle>
+<line filter="url(#glowFiltGearMicro)" stroke="#ea580c" stroke-linecap="round" stroke-width="2.5" x1="510" x2="785" y1="325" y2="325"></line>
+<polygon fill="#ea580c" points="785,325 770,320 773,325 770,330"></polygon>
+<circle cx="700" cy="325" fill="#ffffff" r="4.5" stroke="#ea580c" stroke-width="2"></circle>
+</g>
+<!-- ================= CENTRO: ENGRANAJE MICRO-CALIBRADO (TAMAÑO SUTIL Y DELICADO) ================= -->
+<g id="centro-icono-engranaje-micro">
+<!-- Ondas de emisión de telemetría compactas -->
+<circle class="ripple-circle" cx="510" cy="325" fill="none" r="14" stroke="#ea580c" stroke-width="1.2"></circle>
+<circle class="ripple-circle-del" cx="510" cy="325" fill="none" r="14" stroke="#0284c7" stroke-width="1.0"></circle>
+<!-- Bisel exterior miniatura (radio reducido de 27px a 17px) -->
+<circle cx="510" cy="325" fill="#ffffff" filter="drop-shadow(0 3px 8px rgba(2,132,199,0.18))" r="17" stroke="#0284c7" stroke-width="1.4"></circle>
+<circle cx="510" cy="325" fill="#f0f9ff" r="14" stroke="#38bdf8" stroke-dasharray="1.5 1.5" stroke-width="0.75"></circle>
+<!-- Micro-notches en el bisel -->
+<g opacity="0.5" stroke="#0284c7" stroke-width="0.8">
+<line x1="510" x2="510" y1="309" y2="311.5"></line>
+<line x1="510" x2="510" y1="338.5" y2="341"></line>
+<line x1="494" x2="496.5" y1="325" y2="325"></line>
+<line x1="523.5" x2="526" y1="325" y2="325"></line>
+</g>
+<!-- ENGRANAJE GIRATORIO MICRO (ESCALA PROPORCIONAL Y MINIMALISTA) -->
+<g class="gear-main-spin">
+<!-- 8 Dientes del engranaje sutiles y proporcionados -->
+<g fill="#ea580c">
+<!-- Diente 0° / 180° -->
+<rect height="18" rx="1.0" width="3.4" x="508.3" y="316"></rect>
+<!-- Diente 90° / 270° -->
+<rect height="3.4" rx="1.0" width="18" x="501" y="323.3"></rect>
+<!-- Dientes a 45° -->
+<rect height="18" rx="1.0" transform="rotate(45, 510, 325)" width="3.4" x="508.3" y="316"></rect>
+<!-- Dientes a 135° -->
+<rect height="18" rx="1.0" transform="rotate(135, 510, 325)" width="3.4" x="508.3" y="316"></rect>
+</g>
+<!-- Aro central del engranaje -->
+<circle cx="510" cy="325" fill="url(#gearGradMicro)" filter="url(#glowFiltGearMicro)" r="7.5"></circle>
+<circle cx="510" cy="325" fill="#ea580c" r="7.0"></circle>
+<!-- Micro-orificios horológicos de aligeramiento -->
+<g fill="#ffffff" opacity="0.9">
+<circle cx="510" cy="320.5" r="0.8"></circle>
+<circle cx="510" cy="329.5" r="0.8"></circle>
+<circle cx="505.5" cy="325" r="0.8"></circle>
+<circle cx="514.5" cy="325" r="0.8"></circle>
+</g>
+<!-- Eje y buje interior -->
+<circle cx="510" cy="325" fill="#ffffff" r="3.4" stroke="#0f172a" stroke-width="1.0"></circle>
+<circle cx="510" cy="325" fill="#ea580c" r="1.8"></circle>
+<circle cx="510" cy="325" fill="#ffffff" r="0.7"></circle>
+</g>
+<!-- Destello sutil de precisión -->
+<circle cx="507.5" cy="322.5" fill="#ffffff" opacity="0.9" r="0.6"></circle>
+</g>
+<!-- HUD Telemetry Indicator Labels -->
+<g class="hud-labels" fill="#0284c7" font-family="monospace" font-size="10" opacity="0.65">
+<text x="22" y="296">CALIBRE 01</text><text x="22" y="310">MICROMECÁNICA</text><text x="22" y="324">DE PRECISIÓN</text>
+<text x="22" y="344">LAT 27°27'S</text><text x="22" y="358">LON 58°59'W</text><text x="22" y="372">[NEA]</text>
+<text fill="#ea580c" font-weight="bold" x="640" y="580">SINCRONIZACIÓN MECÁNICA: 100% ACTIVA</text>
+</g>
+</svg>
   <div class="wrap">
     <div class="hero-inner">
       <div>
@@ -1195,7 +1555,241 @@ header {
 
   <!-- Hero -->
   <div class="svc-page-hero" id="services-hero-section">
-    <canvas id="services-topo"></canvas>
+    <svg class="svc-anim" aria-hidden="true" focusable="false" height="100%" preserveAspectRatio="xMaxYMid slice" style="display:block; height:100%; overflow:hidden;" viewBox="360 150 840 380" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Soft Glacial Horology Glow -->
+<radialgradient cx="50%" cy="50%" id="chronoGlowGearMicro-svc" r="55%">
+<stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18"></stop>
+<stop offset="50%" stop-color="#0284c7" stop-opacity="0.04"></stop>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+</radialgradient>
+<!-- Linear Gradient for Gear Core -->
+<lineargradient id="gearGradMicro-svc" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#ea580c"></stop>
+<stop offset="70%" stop-color="#f97316"></stop>
+<stop offset="100%" stop-color="#0284c7"></stop>
+</lineargradient>
+<!-- Radar Sweep Beam Gradient -->
+<lineargradient id="radarSweepGradGearMicro-svc" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#0284c7" stop-opacity="0.28"></stop>
+<stop offset="55%" stop-color="#38bdf8" stop-opacity="0.07"></stop>
+<stop offset="100%" stop-color="#38bdf8" stop-opacity="0"></stop>
+</lineargradient>
+<!-- Blueprint Drafting Grid -->
+<pattern height="48" id="fineGridGearMicro-svc" patternunits="userSpaceOnUse" width="48">
+<path d="M 48 0 L 0 0 0 48" fill="none" stroke="#0284c7" stroke-opacity="0.07" stroke-width="0.75"></path>
+<circle cx="0" cy="0" fill="#0284c7" fill-opacity="0.22" r="1.2"></circle>
+</pattern>
+<filter height="160%" id="glowFiltGearMicro-svc" width="160%" x="-30%" y="-30%">
+<fegaussianblur result="blur" stddeviation="2.0"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+</defs>
+<style>
+    @keyframes sweepRotateCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes sweepRotateCCW {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes gearSpinCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes pulseAuraGear {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.04); }
+    }
+    @keyframes packetFlowTrace {
+      0% { stroke-dashoffset: 260; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes satOrbitA {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes satOrbitB {
+      from { transform: rotate(120deg); }
+      to { transform: rotate(480deg); }
+    }
+    @keyframes satOrbitC {
+      from { transform: rotate(240deg); }
+      to { transform: rotate(600deg); }
+    }
+    @keyframes beaconRipple {
+      0% { r: 12px; opacity: 0.9; }
+      100% { r: 28px; opacity: 0; }
+    }
+
+    .pulse-bg-gear {
+      transform-origin: 510px 325px;
+      animation: pulseAuraGear 7s ease-in-out infinite;
+    }
+    .sweep-fast-arm {
+      transform-origin: 510px 325px;
+      animation: sweepRotateCW 14s linear infinite;
+    }
+    .dial-slow-rev {
+      transform-origin: 510px 325px;
+      animation: sweepRotateCCW 54s linear infinite;
+    }
+    .orbit-node-1 {
+      transform-origin: 510px 325px;
+      animation: satOrbitA 20s linear infinite;
+    }
+    .orbit-node-2 {
+      transform-origin: 510px 325px;
+      animation: satOrbitB 30s linear infinite;
+    }
+    .orbit-node-3 {
+      transform-origin: 510px 325px;
+      animation: satOrbitC 40s linear infinite;
+    }
+    /* ENGRANAJE EN ROTACIÓN CONTINUA - MICRO ESCALA DE PRECISIÓN */
+    .gear-main-spin {
+      transform-origin: 510px 325px;
+      animation: gearSpinCW 9s linear infinite;
+    }
+    .flow-stream {
+      stroke-dasharray: 10 16;
+      animation: packetFlowTrace 4s linear infinite;
+    }
+    .flow-stream-fast {
+      stroke-dasharray: 8 14;
+      animation: packetFlowTrace 2.5s linear infinite;
+    }
+    .ripple-circle {
+      animation: beaconRipple 3.0s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    .ripple-circle-del {
+      animation: beaconRipple 3.0s cubic-bezier(0, 0.2, 0.8, 1) infinite 1.5s;
+    }
+  </style>
+<!-- Technical Background Grid -->
+<rect fill="url(#fineGridGearMicro-svc)" height="100%" width="100%"></rect>
+<circle class="pulse-bg-gear" cx="510" cy="325" fill="url(#chronoGlowGearMicro-svc)" r="330"></circle>
+<!-- Technical Blueprint Caliper Rings -->
+<g opacity="0.45">
+<circle cx="510" cy="325" fill="none" r="280" stroke="#0284c7" stroke-opacity="0.3" stroke-width="1.2"></circle>
+<circle cx="510" cy="325" fill="none" r="272" stroke="#0284c7" stroke-dasharray="3 5" stroke-opacity="0.45" stroke-width="0.8"></circle>
+<circle cx="510" cy="325" fill="none" r="215" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.1"></circle>
+<circle cx="510" cy="325" fill="none" r="150" stroke="#0284c7" stroke-dasharray="2 6" stroke-opacity="0.5" stroke-width="1.2"></circle>
+<circle cx="510" cy="325" fill="none" r="76" stroke="#0284c7" stroke-opacity="0.4" stroke-width="1.4"></circle>
+<!-- Crosshairs & Blueprint Alignment Lines -->
+<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="170" x2="850" y1="325" y2="325"></line>
+<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="510" x2="510" y1="45" y2="605"></line>
+</g>
+<!-- 60-Second Swiss Horology Precision Dial (Reverse Slow Rotation) -->
+<g class="dial-slow-rev" opacity="0.65">
+<g opacity="0.5" stroke="#0f172a" stroke-linecap="round" stroke-width="2.5">
+<line x1="510" x2="510" y1="53" y2="72"></line>
+<line x1="510" x2="510" y1="578" y2="597"></line>
+<line x1="238" x2="257" y1="325" y2="325"></line>
+<line x1="763" x2="782" y1="325" y2="325"></line>
+<line x1="318" x2="331" y1="133" y2="146"></line>
+<line x1="702" x2="689" y1="517" y2="504"></line>
+<line x1="318" x2="331" y1="517" y2="504"></line>
+<line x1="702" x2="689" y1="133" y2="146"></line>
+</g>
+<!-- Calibration Ticks -->
+<circle cx="510" cy="325" fill="none" r="268" stroke="#0284c7" stroke-dasharray="1.2 11.5" stroke-opacity="0.45" stroke-width="3.5"></circle>
+</g>
+<!-- Telemetry Sweep Sector Beam -->
+<g class="sweep-fast-arm">
+<path d="M 510 325 L 790 325 A 280 280 0 0 0 708 127 Z" fill="url(#radarSweepGradGearMicro-svc)"></path>
+</g>
+<!-- Circuit Bus Lines with Active Packets -->
+<g opacity="0.75">
+<path d="M 160 380 L 320 380 L 375 325 L 510 325" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
+<path class="flow-stream" d="M 160 380 L 320 380 L 375 325 L 510 325" fill="none" opacity="0.85" stroke="#ea580c" stroke-width="2.2"></path>
+<path d="M 510 325 L 650 325 L 710 270 L 910 270" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
+<path class="flow-stream-fast" d="M 510 325 L 650 325 L 710 270 L 910 270" fill="none" opacity="0.85" stroke="#38bdf8" stroke-width="2"></path>
+</g>
+<!-- Active Orbital Nodes (Applications & Services) -->
+<g class="orbit-node-1">
+<g transform="translate(660, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(2,132,199,0.25))" r="16"></circle>
+<circle cx="0" cy="0" fill="#0284c7" filter="url(#glowFiltGearMicro-svc)" r="6"></circle>
+<text fill="#0284c7" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" x="14" y="4">IA CORE</text>
+</g>
+</g>
+<g class="orbit-node-2">
+<g transform="translate(725, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(234,88,12,0.25))" r="17"></circle>
+<circle cx="0" cy="0" fill="#ea580c" filter="url(#glowFiltGearMicro-svc)" r="7"></circle>
+<text fill="#ea580c" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" x="14" y="4">WHATSAPP BOT</text>
+</g>
+</g>
+<g class="orbit-node-3">
+<g transform="translate(790, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(15,23,42,0.25))" r="15"></circle>
+<circle cx="0" cy="0" fill="#0f172a" r="5"></circle>
+<text fill="#0f172a" font-family="system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="0.05em" x="13" y="4">ERP &amp; STOCK</text>
+</g>
+</g>
+<!-- Sweeping Precision Needle in Mido/Pino Orange -->
+<g class="sweep-fast-arm">
+<line stroke="#0f172a" stroke-linecap="round" stroke-width="4" x1="510" x2="445" y1="325" y2="325"></line>
+<circle cx="445" cy="325" fill="#0f172a" r="5.5"></circle>
+<line filter="url(#glowFiltGearMicro-svc)" stroke="#ea580c" stroke-linecap="round" stroke-width="2.5" x1="510" x2="785" y1="325" y2="325"></line>
+<polygon fill="#ea580c" points="785,325 770,320 773,325 770,330"></polygon>
+<circle cx="700" cy="325" fill="#ffffff" r="4.5" stroke="#ea580c" stroke-width="2"></circle>
+</g>
+<!-- ================= CENTRO: ENGRANAJE MICRO-CALIBRADO (TAMAÑO SUTIL Y DELICADO) ================= -->
+<g id="centro-icono-engranaje-micro-svc">
+<!-- Ondas de emisión de telemetría compactas -->
+<circle class="ripple-circle" cx="510" cy="325" fill="none" r="14" stroke="#ea580c" stroke-width="1.2"></circle>
+<circle class="ripple-circle-del" cx="510" cy="325" fill="none" r="14" stroke="#0284c7" stroke-width="1.0"></circle>
+<!-- Bisel exterior miniatura (radio reducido de 27px a 17px) -->
+<circle cx="510" cy="325" fill="#ffffff" filter="drop-shadow(0 3px 8px rgba(2,132,199,0.18))" r="17" stroke="#0284c7" stroke-width="1.4"></circle>
+<circle cx="510" cy="325" fill="#f0f9ff" r="14" stroke="#38bdf8" stroke-dasharray="1.5 1.5" stroke-width="0.75"></circle>
+<!-- Micro-notches en el bisel -->
+<g opacity="0.5" stroke="#0284c7" stroke-width="0.8">
+<line x1="510" x2="510" y1="309" y2="311.5"></line>
+<line x1="510" x2="510" y1="338.5" y2="341"></line>
+<line x1="494" x2="496.5" y1="325" y2="325"></line>
+<line x1="523.5" x2="526" y1="325" y2="325"></line>
+</g>
+<!-- ENGRANAJE GIRATORIO MICRO (ESCALA PROPORCIONAL Y MINIMALISTA) -->
+<g class="gear-main-spin">
+<!-- 8 Dientes del engranaje sutiles y proporcionados -->
+<g fill="#ea580c">
+<!-- Diente 0° / 180° -->
+<rect height="18" rx="1.0" width="3.4" x="508.3" y="316"></rect>
+<!-- Diente 90° / 270° -->
+<rect height="3.4" rx="1.0" width="18" x="501" y="323.3"></rect>
+<!-- Dientes a 45° -->
+<rect height="18" rx="1.0" transform="rotate(45, 510, 325)" width="3.4" x="508.3" y="316"></rect>
+<!-- Dientes a 135° -->
+<rect height="18" rx="1.0" transform="rotate(135, 510, 325)" width="3.4" x="508.3" y="316"></rect>
+</g>
+<!-- Aro central del engranaje -->
+<circle cx="510" cy="325" fill="url(#gearGradMicro-svc)" filter="url(#glowFiltGearMicro-svc)" r="7.5"></circle>
+<circle cx="510" cy="325" fill="#ea580c" r="7.0"></circle>
+<!-- Micro-orificios horológicos de aligeramiento -->
+<g fill="#ffffff" opacity="0.9">
+<circle cx="510" cy="320.5" r="0.8"></circle>
+<circle cx="510" cy="329.5" r="0.8"></circle>
+<circle cx="505.5" cy="325" r="0.8"></circle>
+<circle cx="514.5" cy="325" r="0.8"></circle>
+</g>
+<!-- Eje y buje interior -->
+<circle cx="510" cy="325" fill="#ffffff" r="3.4" stroke="#0f172a" stroke-width="1.0"></circle>
+<circle cx="510" cy="325" fill="#ea580c" r="1.8"></circle>
+<circle cx="510" cy="325" fill="#ffffff" r="0.7"></circle>
+</g>
+<!-- Destello sutil de precisión -->
+<circle cx="507.5" cy="322.5" fill="#ffffff" opacity="0.9" r="0.6"></circle>
+</g>
+<!-- HUD Telemetry Indicator Labels -->
+<g class="hud-labels" fill="#0284c7" font-family="monospace" font-size="10" opacity="0.65">
+<text x="22" y="296">CALIBRE 01</text><text x="22" y="310">MICROMECÁNICA</text><text x="22" y="324">DE PRECISIÓN</text>
+<text x="22" y="344">LAT 27°27'S</text><text x="22" y="358">LON 58°59'W</text><text x="22" y="372">[NEA]</text>
+<text fill="#ea580c" font-weight="bold" x="640" y="580">SINCRONIZACIÓN MECÁNICA: 100% ACTIVA</text>
+</g>
+</svg>
     <div class="wrap svc-page-hero-inner">
       <button class="back-btn" onclick="showView('view-landing')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -1677,83 +2271,15 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 <script>
 (function(){
-  const cv = document.getElementById('hero-topo');
-  const ctx = cv.getContext('2d');
   const section = document.getElementById('hero-section');
-  const RC = '247,232,72';
-  let W, H, t = 0, rafId = null, isVisible = true;
-
-  function rz() {
-    W = cv.width  = section.offsetWidth;
-    H = cv.height = section.offsetHeight;
-  }
-
-  function terrain(x, y, t) {
-    return (
-      Math.sin(x * .007 + y * .003 + t * .38) * 1.1 +
-      Math.sin(x * .014 - y * .005 - t * .28) * .6 +
-      Math.sin(x * .004 + y * .009 + t * .18) * .9 +
-      Math.cos(x * .011 + y * .007 - t * .32) * .5
-    );
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const levels = 22;
-
-    // All contour lines
-    for (let l = 0; l < levels; l++) {
-      const baseY = (l / levels) * H;
-      ctx.beginPath();
-      for (let x = 0; x <= W; x += 3) {
-        const h = terrain(x, baseY, t);
-        const y = baseY + h * 38;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      const a = 0.04 + Math.sin(l / levels * Math.PI) * 0.13;
-      ctx.strokeStyle = `rgba(${RC},${a})`;
-      ctx.lineWidth = 0.85;
-      ctx.stroke();
-    }
-
-    // 3 highlighted contour lines
-    [0.28, 0.52, 0.74].forEach(frac => {
-      const baseY = frac * H;
-      ctx.beginPath();
-      for (let x = 0; x <= W; x += 3) {
-        const h = terrain(x, baseY, t);
-        const y = baseY + h * 38;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = `rgba(${RC},0.30)`;
-      ctx.lineWidth = 1.3;
-      ctx.stroke();
-    });
-
-    t += 0.012;
-    if (isVisible) rafId = requestAnimationFrame(draw);
-  }
-
-  rz();
-  window.addEventListener('resize', rz);
-
-  // Pausar cuando la sección sale del viewport (ahorro de batería/CPU)
+  const anim = document.querySelector('.hero-anim');
+  if (!section || !anim) return;
   const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      isVisible = entry.isIntersecting;
-      if (isVisible && rafId === null && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        draw();
-      } else if (!isVisible && rafId !== null) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
+      anim.classList.toggle('is-paused', !entry.isIntersecting);
     });
   }, { threshold: 0.01 });
   heroObserver.observe(section);
-
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    draw();
-  }
 })();
 </script>
 
@@ -1796,91 +2322,21 @@ document.querySelectorAll('.tl-card').forEach(card => {
 
 <script>
 (function(){
-  const cv = document.getElementById('services-topo');
-  if (!cv) return;
-  const ctx = cv.getContext('2d');
   const section = document.getElementById('services-hero-section');
-  const RC = '247,232,72';
-  let W, H, t = 0, rafId = null, isVisible = false;
-
-  function rz() {
-    W = cv.width  = section.offsetWidth;
-    H = cv.height = section.offsetHeight;
-  }
-
-  function terrain(x, y, t) {
-    return (
-      Math.sin(x * .007 + y * .003 + t * .38) * 1.1 +
-      Math.sin(x * .014 - y * .005 - t * .28) * .6 +
-      Math.sin(x * .004 + y * .009 + t * .18) * .9 +
-      Math.cos(x * .011 + y * .007 - t * .32) * .5
-    );
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const levels = 22;
-
-    for (let l = 0; l < levels; l++) {
-      const baseY = (l / levels) * H;
-      ctx.beginPath();
-      for (let x = 0; x <= W; x += 3) {
-        const h = terrain(x, baseY, t);
-        const y = baseY + h * 38;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      const a = 0.04 + Math.sin(l / levels * Math.PI) * 0.13;
-      ctx.strokeStyle = `rgba(${RC},${a})`;
-      ctx.lineWidth = 0.85;
-      ctx.stroke();
-    }
-
-    [0.28, 0.52, 0.74].forEach(frac => {
-      const baseY = frac * H;
-      ctx.beginPath();
-      for (let x = 0; x <= W; x += 3) {
-        const h = terrain(x, baseY, t);
-        const y = baseY + h * 38;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = `rgba(${RC},0.30)`;
-      ctx.lineWidth = 1.3;
-      ctx.stroke();
-    });
-
-    t += 0.012;
-    if (isVisible) rafId = requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', () => { if (isVisible) rz(); });
-
+  const anim = document.querySelector('.svc-anim');
+  if (!anim) return;
+  function setPaused(paused){ anim.classList.toggle('is-paused', paused); }
+  setPaused(true);
   // Esta vista se muestra/oculta vía showView(), no vía scroll —
-  // enganchamos ahí para arrancar/pausar la animación (ahorro de batería/CPU)
+  // enganchamos ahí para pausar la animación (ahorro de batería/CPU)
   const origShowView = window.showView;
   if (typeof origShowView === 'function') {
     window.showView = function(viewId) {
       origShowView(viewId);
-      if (viewId === 'view-services') {
-        isVisible = true;
-        requestAnimationFrame(() => {
-          rz();
-          if (rafId === null && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            draw();
-          }
-        });
-      } else {
-        isVisible = false;
-        if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
-      }
+      setPaused(viewId !== 'view-services');
     };
   }
-
-  // Si la página carga directamente en la vista de servicios (poco común, pero por las dudas)
-  if (section && section.offsetWidth > 0) {
-    isVisible = true;
-    rz();
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) draw();
-  }
+  if (section && section.offsetWidth > 0) setPaused(false);
 })();
 </script>
 
