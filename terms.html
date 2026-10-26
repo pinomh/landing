@@ -24,29 +24,37 @@
 <meta name="description" content="Términos y condiciones de uso del servicio de atención y toma de pedidos por WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 /* SKILL: Semantic design tokens — not raw hex in components */
 :root {
-  --s-base:     #F7F7F4;
-  --s-alt:      #EEEEE8;
+  --s-base:     #E6F5FA;
+  --s-alt:      #F0F9FD;
   --s-card:     #FFFFFF;
-  --s-dark:     #1C2540;
-  --s-dark-card:#242E50;
+  --s-dark:     #0B1C2A;
+  --s-dark-card:#162636;
 
-  --a:          #F7E848;
-  --a-hover:    #E6D630;
-  --a-soft:     #FEFBD8;
-  --a-on-dark:  #F7E848;
-  --a-ink:      #6E6200;   /* dorado oscuro para texto sobre fondos claros */
+  --a:          #FF6A1A;
+  --a-hover:    #E4580C;
+  --a-soft:     #FFF9F5;
+  --a-on-dark:  #FF6A1A;
+  --a-ink:      #0369A1;
 
-  --t:          #1C2540;
-  --t-sec:      #33406A;
-  --t-muted:    #5E6889;
-  --t-light:    #E8EBF5;
-  --t-light-dim:rgba(232,235,245,0.55);
+  --t:          #0A1926;
+  --t-sec:      #2C3E50;
+  --t-muted:    #5D7285;
+  --t-light:    #F0F9FD;
+  --t-light-dim:rgba(207,235,244,0.80);
 
-  --b:          rgba(28,37,64,0.10);
-  --b-dark:     rgba(232,235,245,0.10);
+  --b:          #CFEBF4;
+  --b-dark:     rgba(207,235,244,0.16);
+
+  --btn-label:  #FFFFFF;
+  --celeste:    #0284C7;
+  --celeste-2:  #2BA0C7;
 
   /* SKILL: 8pt spacing system */
   --sp2:4px; --sp4:8px; --sp6:12px; --sp8:16px; --sp10:20px;
@@ -70,7 +78,7 @@ html { scroll-behavior:smooth; }
 body {
   font-family:'Outfit',sans-serif;
   font-size:var(--tbase); line-height:1.65;
-  color:var(--t-light); background:#22293E;
+  color:var(--t-light); background:#F6FBFE;
   overflow-x:hidden; -webkit-font-smoothing:antialiased;
 }
 svg { display:block; }
@@ -87,7 +95,7 @@ a { color:inherit; text-decoration:none; }
 /* ─── HEADER (V6 oscuro — igual a landing) ──────────────── */
 header {
   position:sticky; top:0; z-index:var(--z-sticky);
-  background:rgba(28,37,64,0.96); backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.92); backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
 .hdr { display:flex; align-items:center; justify-content:center; padding:var(--sp10) 0; }
@@ -99,11 +107,11 @@ header {
 }
 .logo-box {
   width:30px; height:30px; border-radius:var(--r-sm);
-  background:#E4E8F5; color:#1C2540;
+  background:#E4E8F5; color:#0B1C2A;
   display:flex; align-items:center; justify-content:center;
   font-size:13px; font-weight:700;
 }
-.logo-em { color:#F7E848; }
+.logo-em { color:#0369A1; }
 
 .hdr-nav { display:flex; align-items:center; gap:var(--sp16); }
 .hdr-link {
@@ -133,13 +141,13 @@ header {
   padding:10px var(--sp12); border-radius:var(--r-sm); border:none; cursor:pointer;
   min-height:44px; transition:background 0.2s,transform 0.2s,box-shadow 0.2s;
 }
-.btn-a:hover { background:var(--a-hover); transform:translateY(-1px); box-shadow:0 4px 14px rgba(247,232,72,0.35); }
+.btn-a:hover { background:var(--a-hover); transform:translateY(-1px); box-shadow:0 4px 14px rgba(255,106,26,0.35); }
 
 /* ─── LEGAL PAGE (fondo navy V6 — mismo patrón que privacy.html) ── */
 .privacy-hero {
   position:relative; overflow:hidden;
   padding:var(--sp40) 0 var(--sp32);
-  background:#22293E;
+  background:#F6FBFE;
 }
 .privacy-hero::before { display:none !important; }
 #hero-topo {
@@ -155,9 +163,9 @@ header {
   display:inline-flex; align-items:center; gap:var(--sp6);
   font-size:var(--txs); font-weight:600;
   text-transform:uppercase; letter-spacing:0.16em;
-  color:#F7E848; margin-bottom:var(--sp10);
+  color:#0369A1; margin-bottom:var(--sp10);
 }
-.eyebrow-rule { width:28px; height:1.5px; background:#F7E848; }
+.eyebrow-rule { width:28px; height:1.5px; background:#0369A1; }
 
 .privacy-hero h1 {
   font-family:'Playfair Display',serif; font-weight:700;
@@ -181,7 +189,7 @@ header {
 .section-tag {
   font-size:var(--txs); font-weight:600; text-transform:uppercase;
   letter-spacing:0.16em; margin-bottom:var(--sp8);
-  color:rgba(247,232,72,0.85);
+  color:#0369A1;
 }
 .section-h2 {
   font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:-0.02em;
@@ -219,7 +227,7 @@ header {
 }
 .section-num {
   width:28px; height:28px; border-radius:var(--r-sm);
-  background:rgba(247,232,72,0.12); color:var(--a-on-dark);
+  background:rgba(2,132,199,0.12); color:var(--a-on-dark);
   font-size:var(--txs); font-weight:700;
   display:inline-flex; align-items:center; justify-content:center;
   flex-shrink:0;
@@ -252,8 +260,8 @@ header {
 .privacy-section a.ext-link:hover { color:var(--a-on-dark); }
 
 .highlight-box {
-  background:rgba(247,232,72,0.08);
-  border:1px solid rgba(247,232,72,0.22);
+  background:rgba(2,132,199,0.06);
+  border:1px solid rgba(2,132,199,0.22);
   border-radius:var(--r-md);
   padding:var(--sp10) var(--sp12);
   margin:var(--sp8) 0;
@@ -300,6 +308,58 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
   .privacy-hero { padding:var(--sp32) 0 var(--sp24); }
   .privacy-body { padding-bottom:var(--sp32); }
 }
+
+/* Presentación visual. El texto legal no cambia. */
+body { font-family:'Satoshi',sans-serif; color:#0A1926; background:#F6FBFE; }
+header {
+  background:rgba(255,255,255,0.92) !important;
+  border-bottom:2px solid #FF6A1A !important;
+}
+.hdr-link {
+  color:#2C3E50; border-color:#CFEBF4; background:#FFFFFF;
+  font-family:'Satoshi',sans-serif;
+}
+.hdr-link:hover { color:#0A1926; border-color:#0284C7; background:#F6FBFE; }
+.btn-a { color:var(--btn-label); font-family:'Satoshi',sans-serif; }
+.btn-a:hover { box-shadow:0 4px 14px rgba(255,106,26,0.35); }
+.privacy-hero {
+  background:linear-gradient(180deg,#EFF8FB 0%,#E6F5FA 52%,#DCF0F7 100%);
+}
+.hero-anim {
+  position:absolute; top:0; right:0; bottom:0; left:auto;
+  width:46%; height:100%; z-index:0; pointer-events:none;
+}
+.eyebrow,.section-tag { color:#0369A1; font-family:'Space Mono',monospace; }
+.eyebrow-rule { background:#0284C7; }
+.privacy-hero h1,.section-h2 {
+  font-family:'Clash Display',sans-serif;
+  letter-spacing:-0.025em; color:#0A1926;
+}
+.privacy-meta,.privacy-meta a { color:#2C3E50; }
+.privacy-meta a { color:#0369A1; text-decoration:underline; text-underline-offset:3px; }
+.privacy-body { background:#F6FBFE; }
+.toc { background:#FFFFFF; border-color:#CFEBF4; }
+.toc li a { color:#2C3E50; }
+.toc li a:hover { color:#0369A1; }
+.privacy-section { border-top-color:#CFEBF4; }
+.privacy-section p,.privacy-section ul { color:#2C3E50; }
+.privacy-section li strong { color:#0A1926; }
+.privacy-section a.ext-link { color:#0369A1; text-decoration:underline; text-underline-offset:3px; }
+.privacy-section a.ext-link:hover { color:#0284C7; }
+.section-num { background:rgba(2,132,199,0.12); color:#0369A1; }
+.highlight-box { background:#FFFFFF; border:1px solid #CFEBF4; }
+.highlight-box p { color:#2C3E50; }
+.contact-card { background:#FFFFFF; border:1px solid #CFEBF4; }
+.contact-card p { color:#2C3E50; }
+.contact-card .contact-brand { color:#0A1926; }
+.contact-card a { color:#0369A1; }
+footer { background:#0B1C2A; border-top:3px solid #0284C7; }
+.ftr-text { color:#CFEBF4; }
+.ftr-text a:hover { color:#FFFFFF; }
+.hero-anim.is-paused * { animation-play-state:paused; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim,.hero-anim * { animation:none !important; }
+}
 </style>
 </head>
 <body>
@@ -319,7 +379,241 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
 </header>
 
 <section class="privacy-hero" id="hero-section">
-  <canvas id="hero-topo"></canvas>
+    <svg class="hero-anim" aria-hidden="true" focusable="false" height="100%" preserveAspectRatio="xMidYMid slice" style="display:block; height:100%; overflow:hidden;" viewBox="360 150 840 380" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Soft Glacial Horology Glow -->
+<radialgradient cx="50%" cy="50%" id="chronoGlowGearMicro-terms" r="55%">
+<stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18"></stop>
+<stop offset="50%" stop-color="#0284c7" stop-opacity="0.04"></stop>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+</radialgradient>
+<!-- Linear Gradient for Gear Core -->
+<lineargradient id="gearGradMicro-terms" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#ea580c"></stop>
+<stop offset="70%" stop-color="#f97316"></stop>
+<stop offset="100%" stop-color="#0284c7"></stop>
+</lineargradient>
+<!-- Radar Sweep Beam Gradient -->
+<lineargradient id="radarSweepGradGearMicro-terms" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#0284c7" stop-opacity="0.28"></stop>
+<stop offset="55%" stop-color="#38bdf8" stop-opacity="0.07"></stop>
+<stop offset="100%" stop-color="#38bdf8" stop-opacity="0"></stop>
+</lineargradient>
+<!-- Blueprint Drafting Grid -->
+<pattern height="48" id="fineGridGearMicro-terms" patternunits="userSpaceOnUse" width="48">
+<path d="M 48 0 L 0 0 0 48" fill="none" stroke="#0284c7" stroke-opacity="0.07" stroke-width="0.75"></path>
+<circle cx="0" cy="0" fill="#0284c7" fill-opacity="0.22" r="1.2"></circle>
+</pattern>
+<filter height="160%" id="glowFiltGearMicro-terms" width="160%" x="-30%" y="-30%">
+<fegaussianblur result="blur" stddeviation="2.0"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+</defs>
+<style>
+    @keyframes sweepRotateCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes sweepRotateCCW {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes gearSpinCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes pulseAuraGear {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.04); }
+    }
+    @keyframes packetFlowTrace {
+      0% { stroke-dashoffset: 260; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes satOrbitA {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes satOrbitB {
+      from { transform: rotate(120deg); }
+      to { transform: rotate(480deg); }
+    }
+    @keyframes satOrbitC {
+      from { transform: rotate(240deg); }
+      to { transform: rotate(600deg); }
+    }
+    @keyframes beaconRipple {
+      0% { r: 12px; opacity: 0.9; }
+      100% { r: 28px; opacity: 0; }
+    }
+
+    .pulse-bg-gear {
+      transform-origin: 510px 325px;
+      animation: pulseAuraGear 7s ease-in-out infinite;
+    }
+    .sweep-fast-arm {
+      transform-origin: 510px 325px;
+      animation: sweepRotateCW 14s linear infinite;
+    }
+    .dial-slow-rev {
+      transform-origin: 510px 325px;
+      animation: sweepRotateCCW 54s linear infinite;
+    }
+    .orbit-node-1 {
+      transform-origin: 510px 325px;
+      animation: satOrbitA 20s linear infinite;
+    }
+    .orbit-node-2 {
+      transform-origin: 510px 325px;
+      animation: satOrbitB 30s linear infinite;
+    }
+    .orbit-node-3 {
+      transform-origin: 510px 325px;
+      animation: satOrbitC 40s linear infinite;
+    }
+    /* ENGRANAJE EN ROTACIÓN CONTINUA - MICRO ESCALA DE PRECISIÓN */
+    .gear-main-spin {
+      transform-origin: 510px 325px;
+      animation: gearSpinCW 9s linear infinite;
+    }
+    .flow-stream {
+      stroke-dasharray: 10 16;
+      animation: packetFlowTrace 4s linear infinite;
+    }
+    .flow-stream-fast {
+      stroke-dasharray: 8 14;
+      animation: packetFlowTrace 2.5s linear infinite;
+    }
+    .ripple-circle {
+      animation: beaconRipple 3.0s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    .ripple-circle-del {
+      animation: beaconRipple 3.0s cubic-bezier(0, 0.2, 0.8, 1) infinite 1.5s;
+    }
+  </style>
+<!-- Technical Background Grid -->
+<rect fill="url(#fineGridGearMicro-terms)" height="100%" width="100%"></rect>
+<circle class="pulse-bg-gear" cx="510" cy="325" fill="url(#chronoGlowGearMicro-terms)" r="330"></circle>
+<!-- Technical Blueprint Caliper Rings -->
+<g opacity="0.45">
+<circle cx="510" cy="325" fill="none" r="280" stroke="#0284c7" stroke-opacity="0.3" stroke-width="1.2"></circle>
+<circle cx="510" cy="325" fill="none" r="272" stroke="#0284c7" stroke-dasharray="3 5" stroke-opacity="0.45" stroke-width="0.8"></circle>
+<circle cx="510" cy="325" fill="none" r="215" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.1"></circle>
+<circle cx="510" cy="325" fill="none" r="150" stroke="#0284c7" stroke-dasharray="2 6" stroke-opacity="0.5" stroke-width="1.2"></circle>
+<circle cx="510" cy="325" fill="none" r="76" stroke="#0284c7" stroke-opacity="0.4" stroke-width="1.4"></circle>
+<!-- Crosshairs & Blueprint Alignment Lines -->
+<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="170" x2="850" y1="325" y2="325"></line>
+<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="510" x2="510" y1="45" y2="605"></line>
+</g>
+<!-- 60-Second Swiss Horology Precision Dial (Reverse Slow Rotation) -->
+<g class="dial-slow-rev" opacity="0.65">
+<g opacity="0.5" stroke="#0f172a" stroke-linecap="round" stroke-width="2.5">
+<line x1="510" x2="510" y1="53" y2="72"></line>
+<line x1="510" x2="510" y1="578" y2="597"></line>
+<line x1="238" x2="257" y1="325" y2="325"></line>
+<line x1="763" x2="782" y1="325" y2="325"></line>
+<line x1="318" x2="331" y1="133" y2="146"></line>
+<line x1="702" x2="689" y1="517" y2="504"></line>
+<line x1="318" x2="331" y1="517" y2="504"></line>
+<line x1="702" x2="689" y1="133" y2="146"></line>
+</g>
+<!-- Calibration Ticks -->
+<circle cx="510" cy="325" fill="none" r="268" stroke="#0284c7" stroke-dasharray="1.2 11.5" stroke-opacity="0.45" stroke-width="3.5"></circle>
+</g>
+<!-- Telemetry Sweep Sector Beam -->
+<g class="sweep-fast-arm">
+<path d="M 510 325 L 790 325 A 280 280 0 0 0 708 127 Z" fill="url(#radarSweepGradGearMicro-terms)"></path>
+</g>
+<!-- Circuit Bus Lines with Active Packets -->
+<g opacity="0.75">
+<path d="M 160 380 L 320 380 L 375 325 L 510 325" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
+<path class="flow-stream" d="M 160 380 L 320 380 L 375 325 L 510 325" fill="none" opacity="0.85" stroke="#ea580c" stroke-width="2.2"></path>
+<path d="M 510 325 L 650 325 L 710 270 L 910 270" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
+<path class="flow-stream-fast" d="M 510 325 L 650 325 L 710 270 L 910 270" fill="none" opacity="0.85" stroke="#38bdf8" stroke-width="2"></path>
+</g>
+<!-- Active Orbital Nodes (Applications & Services) -->
+<g class="orbit-node-1">
+<g transform="translate(660, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(2,132,199,0.25))" r="16"></circle>
+<circle cx="0" cy="0" fill="#0284c7" filter="url(#glowFiltGearMicro-terms)" r="6"></circle>
+<text fill="#0284c7" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" x="14" y="4">IA CORE</text>
+</g>
+</g>
+<g class="orbit-node-2">
+<g transform="translate(725, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(234,88,12,0.25))" r="17"></circle>
+<circle cx="0" cy="0" fill="#ea580c" filter="url(#glowFiltGearMicro-terms)" r="7"></circle>
+<text fill="#ea580c" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" x="14" y="4">WHATSAPP BOT</text>
+</g>
+</g>
+<g class="orbit-node-3">
+<g transform="translate(790, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(15,23,42,0.25))" r="15"></circle>
+<circle cx="0" cy="0" fill="#0f172a" r="5"></circle>
+<text fill="#0f172a" font-family="system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="0.05em" x="13" y="4">ERP &amp; STOCK</text>
+</g>
+</g>
+<!-- Sweeping Precision Needle in Mido/Pino Orange -->
+<g class="sweep-fast-arm">
+<line stroke="#0f172a" stroke-linecap="round" stroke-width="4" x1="510" x2="445" y1="325" y2="325"></line>
+<circle cx="445" cy="325" fill="#0f172a" r="5.5"></circle>
+<line filter="url(#glowFiltGearMicro-terms)" stroke="#ea580c" stroke-linecap="round" stroke-width="2.5" x1="510" x2="785" y1="325" y2="325"></line>
+<polygon fill="#ea580c" points="785,325 770,320 773,325 770,330"></polygon>
+<circle cx="700" cy="325" fill="#ffffff" r="4.5" stroke="#ea580c" stroke-width="2"></circle>
+</g>
+<!-- ================= CENTRO: ENGRANAJE MICRO-CALIBRADO (TAMAÑO SUTIL Y DELICADO) ================= -->
+<g id="centro-icono-engranaje-micro-terms">
+<!-- Ondas de emisión de telemetría compactas -->
+<circle class="ripple-circle" cx="510" cy="325" fill="none" r="14" stroke="#ea580c" stroke-width="1.2"></circle>
+<circle class="ripple-circle-del" cx="510" cy="325" fill="none" r="14" stroke="#0284c7" stroke-width="1.0"></circle>
+<!-- Bisel exterior miniatura (radio reducido de 27px a 17px) -->
+<circle cx="510" cy="325" fill="#ffffff" filter="drop-shadow(0 3px 8px rgba(2,132,199,0.18))" r="17" stroke="#0284c7" stroke-width="1.4"></circle>
+<circle cx="510" cy="325" fill="#f0f9ff" r="14" stroke="#38bdf8" stroke-dasharray="1.5 1.5" stroke-width="0.75"></circle>
+<!-- Micro-notches en el bisel -->
+<g opacity="0.5" stroke="#0284c7" stroke-width="0.8">
+<line x1="510" x2="510" y1="309" y2="311.5"></line>
+<line x1="510" x2="510" y1="338.5" y2="341"></line>
+<line x1="494" x2="496.5" y1="325" y2="325"></line>
+<line x1="523.5" x2="526" y1="325" y2="325"></line>
+</g>
+<!-- ENGRANAJE GIRATORIO MICRO (ESCALA PROPORCIONAL Y MINIMALISTA) -->
+<g class="gear-main-spin">
+<!-- 8 Dientes del engranaje sutiles y proporcionados -->
+<g fill="#ea580c">
+<!-- Diente 0° / 180° -->
+<rect height="18" rx="1.0" width="3.4" x="508.3" y="316"></rect>
+<!-- Diente 90° / 270° -->
+<rect height="3.4" rx="1.0" width="18" x="501" y="323.3"></rect>
+<!-- Dientes a 45° -->
+<rect height="18" rx="1.0" transform="rotate(45, 510, 325)" width="3.4" x="508.3" y="316"></rect>
+<!-- Dientes a 135° -->
+<rect height="18" rx="1.0" transform="rotate(135, 510, 325)" width="3.4" x="508.3" y="316"></rect>
+</g>
+<!-- Aro central del engranaje -->
+<circle cx="510" cy="325" fill="url(#gearGradMicro-terms)" filter="url(#glowFiltGearMicro-terms)" r="7.5"></circle>
+<circle cx="510" cy="325" fill="#ea580c" r="7.0"></circle>
+<!-- Micro-orificios horológicos de aligeramiento -->
+<g fill="#ffffff" opacity="0.9">
+<circle cx="510" cy="320.5" r="0.8"></circle>
+<circle cx="510" cy="329.5" r="0.8"></circle>
+<circle cx="505.5" cy="325" r="0.8"></circle>
+<circle cx="514.5" cy="325" r="0.8"></circle>
+</g>
+<!-- Eje y buje interior -->
+<circle cx="510" cy="325" fill="#ffffff" r="3.4" stroke="#0f172a" stroke-width="1.0"></circle>
+<circle cx="510" cy="325" fill="#ea580c" r="1.8"></circle>
+<circle cx="510" cy="325" fill="#ffffff" r="0.7"></circle>
+</g>
+<!-- Destello sutil de precisión -->
+<circle cx="507.5" cy="322.5" fill="#ffffff" opacity="0.9" r="0.6"></circle>
+</g>
+<!-- HUD Telemetry Indicator Labels -->
+<g class="hud-labels" fill="#0284c7" font-family="monospace" font-size="10" opacity="0.65">
+<text x="22" y="296">CALIBRE 01</text><text x="22" y="310">MICROMECÁNICA</text><text x="22" y="324">DE PRECISIÓN</text>
+<text x="22" y="344">LAT 27°27'S</text><text x="22" y="358">LON 58°59'W</text><text x="22" y="372">[NEA]</text>
+<text fill="#ea580c" font-weight="bold" x="640" y="580">SINCRONIZACIÓN MECÁNICA: 100% ACTIVA</text>
+</g>
+</svg>
   <div class="wrap">
     <div class="privacy-hero-inner">
       <div class="eyebrow"><span class="eyebrow-rule"></span>Legal</div>
@@ -475,85 +769,18 @@ function goToContact(event) {
 
 <script>
 (function(){
-  const cv = document.getElementById('hero-topo');
-  const ctx = cv.getContext('2d');
   const section = document.getElementById('hero-section');
-  const RC = '247,232,72';
-  let W, H, t = 0, rafId = null, isVisible = true;
-
-  function rz() {
-    W = cv.width  = section.offsetWidth;
-    H = cv.height = section.offsetHeight;
-  }
-
-  function terrain(x, y, t) {
-    return (
-      Math.sin(x * .007 + y * .003 + t * .38) * 1.1 +
-      Math.sin(x * .014 - y * .005 - t * .28) * .6 +
-      Math.sin(x * .004 + y * .009 + t * .18) * .9 +
-      Math.cos(x * .011 + y * .007 - t * .32) * .5
-    );
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const levels = 22;
-
-    // All contour lines
-    for (let l = 0; l < levels; l++) {
-      const baseY = (l / levels) * H;
-      ctx.beginPath();
-      for (let x = 0; x <= W; x += 3) {
-        const h = terrain(x, baseY, t);
-        const y = baseY + h * 38;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      const a = 0.04 + Math.sin(l / levels * Math.PI) * 0.13;
-      ctx.strokeStyle = `rgba(${RC},${a})`;
-      ctx.lineWidth = 0.85;
-      ctx.stroke();
-    }
-
-    // 3 highlighted contour lines
-    [0.28, 0.52, 0.74].forEach(frac => {
-      const baseY = frac * H;
-      ctx.beginPath();
-      for (let x = 0; x <= W; x += 3) {
-        const h = terrain(x, baseY, t);
-        const y = baseY + h * 38;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = `rgba(${RC},0.30)`;
-      ctx.lineWidth = 1.3;
-      ctx.stroke();
-    });
-
-    t += 0.012;
-    if (isVisible) rafId = requestAnimationFrame(draw);
-  }
-
-  rz();
-  window.addEventListener('resize', rz);
-
-  // Pausar cuando la sección sale del viewport (ahorro de batería/CPU)
+  const anim = document.querySelector('.hero-anim');
+  if (!section || !anim) return;
   const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      isVisible = entry.isIntersecting;
-      if (isVisible && rafId === null && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        draw();
-      } else if (!isVisible && rafId !== null) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
+      anim.classList.toggle('is-paused', !entry.isIntersecting);
     });
   }, { threshold: 0.01 });
   heroObserver.observe(section);
-
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    draw();
-  }
 })();
 </script>
+
 
 </body>
 </html>
