@@ -4,7 +4,7 @@ Estos 13 HTML son borradores de la landing. El 26 de octubre de 2026 se movieron
 
 Cada ruta se agregó una sola vez, con el mensaje "Add files via upload", y ningún commit posterior la editó. El historial queda en Git porque el movimiento fue un rename, no un borrado.
 
-Los 13 títulos usan el nombre provisorio **RaízTech NEA**. El `index.html` publicado ya no lo usa.
+Los 13 `<title>` incluyen el nombre provisorio **RaízTech NEA** (13 de 13). El `index.html` publicado ya no lo usa.
 
 ## Por qué esta carpeta no sale en el sitio
 
