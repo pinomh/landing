@@ -2211,14 +2211,31 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
     const y = Math.max(rect.top, Math.min(cy, rect.bottom));
     return (cx - x) * (cx - x) + (cy - y) * (cy - y) < r * r;
   };
+  const shiftOf = (el) => {
+    let x = 0, y = 0;
+    for (let n = el; n && n !== document.documentElement; n = n.parentElement) {
+      const t = getComputedStyle(n).transform;
+      if (!t || t === 'none') continue;
+      const m = new DOMMatrix(t);
+      x += m.m41;
+      y += m.m42;
+    }
+    return [x, y];
+  };
+  const boxOf = (el) => {
+    const r = el.getBoundingClientRect();
+    const [x, y] = shiftOf(el);
+    return { left: r.left - x, top: r.top - y, right: r.right - x, bottom: r.bottom - y, width: r.width, height: r.height };
+  };
   const textRects = (root) => {
     const out = [];
     const walk = (node) => {
       if (node.nodeType === 3 && node.textContent.trim()) {
         const range = document.createRange();
         range.selectNodeContents(node);
+        const [x, y] = shiftOf(node.parentElement);
         for (const b of range.getClientRects()) {
-          if (b.width > 1 && b.height > 1) out.push(b);
+          if (b.width > 1 && b.height > 1) out.push({ left: b.left - x, top: b.top - y, right: b.right - x, bottom: b.bottom - y, width: b.width, height: b.height });
         }
       } else if (node.nodeType === 1) {
         for (const child of node.childNodes) walk(child);
@@ -2234,12 +2251,12 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
     svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
     const column = hero.querySelector('.hero-inner > div');
     const textBoxes = [...hero.querySelectorAll('h1, .hero-tagline, .hero-desc, .eyebrow, .hero-cta-wrap')]
-      .map(el => el.getBoundingClientRect()).filter(r => r.width > 1 && r.height > 1);
+      .map(boxOf).filter(r => r.width > 1 && r.height > 1);
     const cardBoxes = [...hero.querySelectorAll('.stat-box, .hero-qr')]
-      .map(el => el.getBoundingClientRect()).filter(r => r.width > 1 && r.height > 1);
+      .map(boxOf).filter(r => r.width > 1 && r.height > 1);
     const ink = textRects(column);
-    const techR = tech.getBoundingClientRect();
-    const cardsR = cards.getBoundingClientRect();
+    const techR = boxOf(tech);
+    const cardsR = boxOf(cards);
     const fits = (x, y, rad) => {
       const cx = hr.left + x, cy = hr.top + y;
       const gearR = 18 * (rad / REACH);
@@ -2268,7 +2285,7 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
     };
     let placed;
     if (w >= 920) {
-      const h1b = hero.querySelector('h1').getBoundingClientRect();
+      const h1b = boxOf(hero.querySelector('h1'));
       const slot = (h1b.right + cardsR.left) / 2 - hr.left;
       placed = widest(h / 2, 8, w - 8);
       if (placed) {
@@ -2280,8 +2297,8 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
         if (best !== null) placed.x = best;
       }
     } else {
-      const h1 = hero.querySelector('h1').getBoundingClientRect();
-      const desc = hero.querySelector('.hero-desc').getBoundingClientRect();
+      const h1 = boxOf(hero.querySelector('h1'));
+      const desc = boxOf(hero.querySelector('.hero-desc'));
       const beside = widest((h1.top + h1.bottom) / 2 - hr.top, GEAR + 8, w - GEAR - 8);
       const gapTop = desc.bottom - hr.top;
       const gapBot = cardsR.top - hr.top;
@@ -2295,6 +2312,8 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
     return placed;
   };
   const write = (p) => {
+    const hr = hero.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${hr.width} ${hr.height}`);
     mech.setAttribute('transform', `translate(${p.x.toFixed(2)} ${p.y.toFixed(2)}) scale(${p.scale.toFixed(3)}) translate(-510 -325)`);
   };
   let shown = false;
@@ -2337,18 +2356,49 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
     write(current);
     raf = requestAnimationFrame(tick);
   };
+  let loop = 0;
+  const samePlace = (a, b) => Math.hypot(a.x - b.x, a.y - b.y) < 0.5 && Math.abs(a.scale - b.scale) < 0.002;
+  const whenStable = (done) => {
+    const id = ++loop;
+    let prev = null;
+    let hits = 0;
+    let n = 0;
+    const step = () => {
+      if (id !== loop) return;
+      const p = apply();
+      n++;
+      if (prev && samePlace(p, prev)) hits++;
+      else hits = 0;
+      prev = p;
+      if (hits >= 2 || n >= 30) { done(p); return; }
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
   const reveal = () => {
-    if (shown) { commit(false); return; }
-    commit(true);
-    svg.classList.add('is-placed');
-    shown = true;
+    whenStable((p) => {
+      target = p;
+      if (!shown) {
+        shown = true;
+        current = { x: p.x, y: p.y, scale: p.scale };
+        write(current);
+        svg.classList.add('is-placed');
+        return;
+      }
+      if (current && samePlace(current, p)) { write(p); current = { x: p.x, y: p.y, scale: p.scale }; return; }
+      if (!raf) raf = requestAnimationFrame(tick);
+    });
   };
   const onLayout = () => {
     const size = [innerWidth, innerHeight];
-    const resized = size[0] !== lastSize[0] || size[1] !== lastSize[1];
+    const dw = Math.abs(size[0] - lastSize[0]);
+    const dh = Math.abs(size[1] - lastSize[1]);
     lastSize = size;
-    if (!shown) { commit(true); return; }
-    commit(resized);
+    if (!shown) return;
+    const box = hero.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+    if (reduce() || dw >= 40 || dh >= 40) commit(true);
+    else reveal();
   };
   addEventListener('resize', onLayout);
   if (window.ResizeObserver) new ResizeObserver(onLayout).observe(hero);
