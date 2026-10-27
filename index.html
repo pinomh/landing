@@ -768,7 +768,9 @@ header {
   position:absolute; inset:0;
   width:100% !important; height:100%; z-index:0;
   pointer-events:none;
+  visibility:hidden;
 }
+.hero-anim.is-placed { visibility:visible; }
 .hero-anim .hud-labels,
 .hero-anim .orbit-node-1 text,
 .hero-anim .orbit-node-2 text,
@@ -2195,6 +2197,7 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
 })();
 
 (function placeHomeGear() {
+  try {
   const hero = document.querySelector('.hero');
   const svg = hero && hero.querySelector('.hero-anim');
   const mech = document.getElementById('hero-mech');
@@ -2289,13 +2292,90 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
       else placed = between && (!beside || between.scale >= beside.scale) ? between : beside;
     }
     if (!placed) placed = { x: Math.min(w - REACH, w * 0.62), y: h / 2, scale: 0.85 };
-    const cy = placed.y;
-    mech.setAttribute('transform', `translate(${placed.x.toFixed(2)} ${cy.toFixed(2)}) scale(${placed.scale.toFixed(3)}) translate(-510 -325)`);
+    return placed;
   };
-  apply();
-  addEventListener('resize', apply);
-  if (window.ResizeObserver) new ResizeObserver(apply).observe(hero);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
+  const write = (p) => {
+    mech.setAttribute('transform', `translate(${p.x.toFixed(2)} ${p.y.toFixed(2)}) scale(${p.scale.toFixed(3)}) translate(-510 -325)`);
+  };
+  let shown = false;
+  let current = null;
+  let target = null;
+  let raf = 0;
+  let lastSize = [innerWidth, innerHeight];
+  const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const commit = (immediate) => {
+    target = apply();
+    if (!target) return;
+    if (!shown || immediate || reduce()) {
+      current = { x: target.x, y: target.y, scale: target.scale };
+      write(current);
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      return;
+    }
+    if (!raf) raf = requestAnimationFrame(tick);
+  };
+  const tick = () => {
+    const dx = target.x - current.x;
+    const dy = target.y - current.y;
+    const dist = Math.hypot(dx, dy);
+    const scalePx = Math.abs(target.scale - current.scale) * 18;
+    if (dist <= 2 && scalePx <= 2) {
+      current = { x: target.x, y: target.y, scale: target.scale };
+      write(current);
+      raf = 0;
+      return;
+    }
+    const step = 1.5;
+    const t = dist > 0 ? Math.min(1, step / dist) : 1;
+    const maxScale = step / 18;
+    let scale = current.scale + (target.scale - current.scale) * t;
+    if (Math.abs(scale - current.scale) > maxScale) {
+      scale = current.scale + Math.sign(target.scale - current.scale) * maxScale;
+    }
+    current = { x: current.x + dx * t, y: current.y + dy * t, scale };
+    write(current);
+    raf = requestAnimationFrame(tick);
+  };
+  const reveal = () => {
+    if (shown) { commit(false); return; }
+    commit(true);
+    svg.classList.add('is-placed');
+    shown = true;
+  };
+  const onLayout = () => {
+    const size = [innerWidth, innerHeight];
+    const resized = size[0] !== lastSize[0] || size[1] !== lastSize[1];
+    lastSize = size;
+    if (!shown) { commit(true); return; }
+    commit(resized);
+  };
+  addEventListener('resize', onLayout);
+  if (window.ResizeObserver) new ResizeObserver(onLayout).observe(hero);
+  const pending = new Set();
+  for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
+    if (!/fontshare|fonts\.googleapis/i.test(link.href) || link.sheet) continue;
+    pending.add(link);
+    const done = () => { pending.delete(link); settle(); };
+    link.addEventListener('load', done);
+    link.addEventListener('error', done);
+  }
+  const quiet = () => pending.size === 0 && (!document.fonts || document.fonts.status !== 'loading');
+  const settle = () => {
+    if (!quiet()) return;
+    clearTimeout(giveUp);
+    reveal();
+  };
+  // Si Fontshare no responde, se muestra con la fuente de respaldo.
+  const giveUp = setTimeout(reveal, 2000);
+  if (document.fonts) {
+    document.fonts.addEventListener('loadingdone', settle);
+    document.fonts.addEventListener('loadingerror', settle);
+    document.fonts.ready.then(settle);
+  } else {
+    reveal();
+  }
+  } catch (err) { /* sin ubicación el dibujo sigue oculto */ }
 })();
 
 function goToTab(tabId) {
