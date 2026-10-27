@@ -23,9 +23,12 @@
 <title>Términos y Condiciones — Asistente de pedidos por WhatsApp</title>
 <meta name="description" content="Términos y condiciones de uso del servicio de atención y toma de pedidos por WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -56,6 +59,11 @@
   --celeste:    #0284C7;
   --celeste-2:  #2BA0C7;
 
+  --font-display:'Clash Display','Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-body:'Satoshi',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-mono:'Space Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --font-accent:'Playfair Display',Georgia,serif;
+
   /* SKILL: 8pt spacing system */
   --sp2:4px; --sp4:8px; --sp6:12px; --sp8:16px; --sp10:20px;
   --sp12:24px; --sp16:32px; --sp20:40px; --sp24:48px;
@@ -76,7 +84,7 @@
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; }
 body {
-  font-family:'Outfit',sans-serif;
+  font-family:var(--font-body);
   font-size:var(--tbase); line-height:1.65;
   color:var(--t-light); background:#F6FBFE;
   overflow-x:hidden; -webkit-font-smoothing:antialiased;
@@ -101,7 +109,7 @@ header {
 .hdr { display:flex; align-items:center; justify-content:center; padding:var(--sp10) 0; }
 
 .logo {
-  font-family:'Outfit',sans-serif; font-weight:700; font-size:17px;
+  font-family:var(--font-display); font-weight:700; font-size:17px;
   color:#E4E8F5; letter-spacing:-0.02em;
   display:flex; align-items:center; gap:var(--sp4);
 }
@@ -115,12 +123,12 @@ header {
 
 .hdr-nav { display:flex; align-items:center; gap:var(--sp16); }
 .hdr-link {
-  font-size:var(--tsm); font-weight:600; color:#FFFFFF;
+  font-size:var(--tsm); font-weight:700; color:#FFFFFF;
   padding:8px var(--sp12); border-radius:var(--r-sm);
   border:1px solid rgba(255,255,255,0.45);
   min-height:38px; display:inline-flex; align-items:center; gap:var(--sp4);
   transition:border-color 0.2s, background 0.2s, color 0.2s;
-  background:transparent; cursor:pointer; font-family:'Outfit',sans-serif;
+  background:transparent; cursor:pointer; font-family:var(--font-body);
 }
 .hdr-link:hover {
   color:#E4E8F5;
@@ -137,7 +145,7 @@ header {
 .btn-a {
   display:inline-flex; align-items:center; gap:var(--sp4);
   background:var(--a); color:var(--s-dark);
-  font-family:'Outfit',sans-serif; font-size:var(--tsm); font-weight:600;
+  font-family:var(--font-body); font-size:var(--tsm); font-weight:700;
   padding:10px var(--sp12); border-radius:var(--r-sm); border:none; cursor:pointer;
   min-height:44px; transition:background 0.2s,transform 0.2s,box-shadow 0.2s;
 }
@@ -161,16 +169,16 @@ header {
 
 .eyebrow {
   display:inline-flex; align-items:center; gap:var(--sp6);
-  font-size:var(--txs); font-weight:600;
+  font-size:var(--txs); font-weight:700;
   text-transform:uppercase; letter-spacing:0.16em;
   color:#0369A1; margin-bottom:var(--sp10);
 }
 .eyebrow-rule { width:28px; height:1.5px; background:#0369A1; }
 
 .privacy-hero h1 {
-  font-family:'Playfair Display',serif; font-weight:700;
+  font-family:var(--font-display); font-weight:700;
   font-size:clamp(2rem,4.5vw,3.2rem);
-  line-height:1.1; letter-spacing:-0.02em; color:#E4E8F5;
+  line-height:1.1; letter-spacing:-0.025em; word-spacing:.06em; color:#E4E8F5;
 }
 .privacy-meta {
   margin-top:var(--sp8); font-size:var(--tsm);
@@ -187,12 +195,12 @@ header {
 .privacy-inner { max-width:720px; margin:0 auto; }
 
 .section-tag {
-  font-size:var(--txs); font-weight:600; text-transform:uppercase;
+  font-size:var(--txs); font-weight:700; text-transform:uppercase;
   letter-spacing:0.16em; margin-bottom:var(--sp8);
   color:#0369A1;
 }
 .section-h2 {
-  font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:-0.02em;
+  font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em; word-spacing:.08em;
   font-size:clamp(1.35rem,2.5vw,1.7rem); line-height:1.2; color:var(--t-light);
 }
 
@@ -250,7 +258,7 @@ header {
 }
 .privacy-section li strong {
   color:var(--t-light);
-  font-weight:600;
+  font-weight:700;
 }
 .privacy-section a.ext-link {
   color:var(--t-light-dim);
@@ -310,17 +318,17 @@ footer { background:var(--s-dark); padding:var(--sp16) 0; border-top:1px solid v
 }
 
 /* Presentación visual. El texto legal no cambia. */
-body { font-family:'Satoshi',sans-serif; color:#0A1926; background:#F6FBFE; }
+body { font-family:var(--font-body); color:#0A1926; background:#F6FBFE; }
 header {
   background:rgba(255,255,255,0.92) !important;
   border-bottom:2px solid #FF6A1A !important;
 }
 .hdr-link {
   color:#2C3E50; border-color:#CFEBF4; background:#FFFFFF;
-  font-family:'Satoshi',sans-serif;
+  font-family:var(--font-body);
 }
 .hdr-link:hover { color:#0A1926; border-color:#0284C7; background:#F6FBFE; }
-.btn-a { color:var(--btn-label); font-family:'Satoshi',sans-serif; }
+.btn-a { color:var(--btn-label); font-family:var(--font-body); }
 .btn-a:hover { box-shadow:0 4px 14px rgba(255,106,26,0.35); }
 .privacy-hero {
   background:linear-gradient(180deg,#EFF8FB 0%,#E6F5FA 52%,#DCF0F7 100%);
@@ -329,12 +337,17 @@ header {
   position:absolute; top:0; right:0; bottom:0; left:auto;
   width:46%; height:100%; z-index:0; pointer-events:none;
 }
-.eyebrow,.section-tag { color:#0369A1; font-family:'Space Mono',monospace; }
+.eyebrow,.section-tag { color:#0369A1; font-family:var(--font-mono); }
 .eyebrow-rule { background:#0284C7; }
-.privacy-hero h1,.section-h2 {
-  font-family:'Clash Display',sans-serif;
-  letter-spacing:-0.025em; color:#0A1926;
+.privacy-hero h1 {
+  font-family:var(--font-display);
+  letter-spacing:-0.025em; word-spacing:.06em; color:#0A1926;
 }
+.section-h2 {
+  font-family:var(--font-display);
+  letter-spacing:-0.01em; word-spacing:.08em; color:#0A1926;
+}
+p,.toc a,.privacy-meta,.ext-link,footer,.ftr-text { font-family:var(--font-body); }
 .privacy-meta,.privacy-meta a { color:#2C3E50; }
 .privacy-meta a { color:#0369A1; text-decoration:underline; text-underline-offset:3px; }
 .privacy-body { background:#F6FBFE; }
