@@ -765,10 +765,20 @@ header {
 /* ─── TOPOGRAPHY CANVAS ───────────────────────── */
 .hero::before { display:none !important; }
 .hero-anim {
-  position:absolute; top:0; right:0; bottom:0; left:auto;
-  width:42% !important; height:100%; z-index:0;
+  position:absolute; inset:0;
+  width:100% !important; height:100%; z-index:0;
   pointer-events:none;
 }
+.hero-anim .hud-labels,
+.hero-anim .orbit-node-1 text,
+.hero-anim .orbit-node-2 text,
+.hero-anim .orbit-node-3 text { display:none; }
+/* La caja del titular es más ancha que sus palabras y tapaba el hueco.
+   min-width:0 evita que esa caja empuje la columna de las fichas. */
+.hero-inner > div { min-width:0; }
+.hero h1 { width:max-content; max-width:min(680px, 100%); }
+.hero .hero-tagline { width:max-content; max-width:min(480px, 100%); }
+.hero .hero-desc { width:max-content; max-width:min(520px, 100%); }
 @media (max-width:919px) {
   .hero > .wrap {
     width:auto; max-width:none;
@@ -1188,73 +1198,74 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
   </style>
 <!-- Technical Background Grid -->
 <rect fill="url(#fineGridGearMicro)" height="100%" width="100%"></rect>
-<circle class="pulse-bg-gear" cx="510" cy="325" fill="url(#chronoGlowGearMicro)" r="330"></circle>
+<g id="hero-mech">
+<circle class="pulse-bg-gear" cx="510" cy="325" fill="url(#chronoGlowGearMicro)" r="74"></circle>
 <!-- Technical Blueprint Caliper Rings -->
 <g opacity="0.45">
-<circle cx="510" cy="325" fill="none" r="280" stroke="#0284c7" stroke-opacity="0.3" stroke-width="1.2"></circle>
-<circle cx="510" cy="325" fill="none" r="272" stroke="#0284c7" stroke-dasharray="3 5" stroke-opacity="0.45" stroke-width="0.8"></circle>
-<circle cx="510" cy="325" fill="none" r="215" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.1"></circle>
-<circle cx="510" cy="325" fill="none" r="150" stroke="#0284c7" stroke-dasharray="2 6" stroke-opacity="0.5" stroke-width="1.2"></circle>
-<circle cx="510" cy="325" fill="none" r="76" stroke="#0284c7" stroke-opacity="0.4" stroke-width="1.4"></circle>
+<circle cx="510" cy="325" fill="none" r="66" stroke="#0284c7" stroke-opacity="0.3" stroke-width="1.2"></circle>
+<circle cx="510" cy="325" fill="none" r="60" stroke="#0284c7" stroke-dasharray="3 5" stroke-opacity="0.45" stroke-width="0.8"></circle>
+<circle cx="510" cy="325" fill="none" r="46" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.1"></circle>
+<circle cx="510" cy="325" fill="none" r="24" stroke="#0284c7" stroke-dasharray="2 6" stroke-opacity="0.5" stroke-width="1.2"></circle>
+<circle cx="510" cy="325" fill="none" r="16" stroke="#0284c7" stroke-opacity="0.4" stroke-width="1.4"></circle>
 <!-- Crosshairs & Blueprint Alignment Lines -->
-<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="170" x2="850" y1="325" y2="325"></line>
-<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="510" x2="510" y1="45" y2="605"></line>
+<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="440" x2="580" y1="325" y2="325"></line>
+<line stroke="#0284c7" stroke-dasharray="5 7" stroke-opacity="0.25" stroke-width="0.8" x1="510" x2="510" y1="255" y2="395"></line>
 </g>
 <!-- 60-Second Swiss Horology Precision Dial (Reverse Slow Rotation) -->
 <g class="dial-slow-rev" opacity="0.65">
 <g opacity="0.5" stroke="#0f172a" stroke-linecap="round" stroke-width="2.5">
-<line x1="510" x2="510" y1="53" y2="72"></line>
-<line x1="510" x2="510" y1="578" y2="597"></line>
-<line x1="238" x2="257" y1="325" y2="325"></line>
-<line x1="763" x2="782" y1="325" y2="325"></line>
-<line x1="318" x2="331" y1="133" y2="146"></line>
-<line x1="702" x2="689" y1="517" y2="504"></line>
-<line x1="318" x2="331" y1="517" y2="504"></line>
-<line x1="702" x2="689" y1="133" y2="146"></line>
+<line x1="510" x2="510" y1="255" y2="263"></line>
+<line x1="510" x2="510" y1="387" y2="395"></line>
+<line x1="440" x2="448" y1="325" y2="325"></line>
+<line x1="572" x2="580" y1="325" y2="325"></line>
+<line x1="458" x2="464" y1="273" y2="279"></line>
+<line x1="562" x2="556" y1="377" y2="371"></line>
+<line x1="458" x2="464" y1="377" y2="371"></line>
+<line x1="562" x2="556" y1="273" y2="279"></line>
 </g>
 <!-- Calibration Ticks -->
-<circle cx="510" cy="325" fill="none" r="268" stroke="#0284c7" stroke-dasharray="1.2 11.5" stroke-opacity="0.45" stroke-width="3.5"></circle>
+<circle cx="510" cy="325" fill="none" r="62" stroke="#0284c7" stroke-dasharray="1.2 11.5" stroke-opacity="0.45" stroke-width="3.5"></circle>
 </g>
 <!-- Telemetry Sweep Sector Beam -->
 <g class="sweep-fast-arm">
-<path d="M 510 325 L 790 325 A 280 280 0 0 0 708 127 Z" fill="url(#radarSweepGradGearMicro)"></path>
+<path d="M 510 325 L 572 325 A 62 62 0 0 0 554 281 Z" fill="url(#radarSweepGradGearMicro)"></path>
 </g>
 <!-- Circuit Bus Lines with Active Packets -->
 <g opacity="0.75">
-<path d="M 160 380 L 320 380 L 375 325 L 510 325" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
-<path class="flow-stream" d="M 160 380 L 320 380 L 375 325 L 510 325" fill="none" opacity="0.85" stroke="#ea580c" stroke-width="2.2"></path>
-<path d="M 510 325 L 650 325 L 710 270 L 910 270" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
-<path class="flow-stream-fast" d="M 510 325 L 650 325 L 710 270 L 910 270" fill="none" opacity="0.85" stroke="#38bdf8" stroke-width="2"></path>
+<path d="M 450 348 L 478 348 L 498 325 L 510 325" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
+<path class="flow-stream" d="M 450 348 L 478 348 L 498 325 L 510 325" fill="none" opacity="0.85" stroke="#ea580c" stroke-width="2.2"></path>
+<path d="M 510 325 L 540 325 L 558 308 L 578 308" fill="none" stroke="#0284c7" stroke-opacity="0.35" stroke-width="1.8"></path>
+<path class="flow-stream-fast" d="M 510 325 L 540 325 L 558 308 L 578 308" fill="none" opacity="0.85" stroke="#38bdf8" stroke-width="2"></path>
 </g>
 <!-- Active Orbital Nodes (Applications & Services) -->
 <g class="orbit-node-1">
-<g transform="translate(660, 325)">
-<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(2,132,199,0.25))" r="16"></circle>
-<circle cx="0" cy="0" fill="#0284c7" filter="url(#glowFiltGearMicro)" r="6"></circle>
-<text fill="#0284c7" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" text-anchor="middle" dominant-baseline="central" x="0" y="-36" transform="rotate(-90 0 -36)">IA CORE</text>
+<g transform="translate(532, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(2,132,199,0.25))" r="7"></circle>
+<circle cx="0" cy="0" fill="#0284c7" filter="url(#glowFiltGearMicro)" r="3"></circle>
+<text fill="#0284c7" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" text-anchor="middle" dominant-baseline="central" x="0" y="-18" transform="rotate(-90 0 -18)">IA CORE</text>
 </g>
 </g>
 <g class="orbit-node-2">
-<g transform="translate(725, 325)">
-<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(234,88,12,0.25))" r="17"></circle>
-<circle cx="0" cy="0" fill="#ea580c" filter="url(#glowFiltGearMicro)" r="7"></circle>
-<text fill="#ea580c" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" text-anchor="middle" dominant-baseline="central" x="0" y="-36" transform="rotate(-90 0 -36)">WHATSAPP BOT</text>
+<g transform="translate(552, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(234,88,12,0.25))" r="8"></circle>
+<circle cx="0" cy="0" fill="#ea580c" filter="url(#glowFiltGearMicro)" r="3.5"></circle>
+<text fill="#ea580c" font-family="system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" text-anchor="middle" dominant-baseline="central" x="0" y="-18" transform="rotate(-90 0 -18)">WHATSAPP BOT</text>
 </g>
 </g>
 <g class="orbit-node-3">
-<g transform="translate(790, 325)">
-<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(15,23,42,0.25))" r="15"></circle>
-<circle cx="0" cy="0" fill="#0f172a" r="5"></circle>
-<text fill="#0f172a" font-family="system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="0.05em" text-anchor="middle" dominant-baseline="central" x="0" y="-36" transform="rotate(-90 0 -36)">ERP &amp; STOCK</text>
+<g transform="translate(572, 325)">
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 8px rgba(15,23,42,0.25))" r="7"></circle>
+<circle cx="0" cy="0" fill="#0f172a" r="3"></circle>
+<text fill="#0f172a" font-family="system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="0.05em" text-anchor="middle" dominant-baseline="central" x="0" y="-16" transform="rotate(-90 0 -16)">ERP &amp; STOCK</text>
 </g>
 </g>
 <!-- Sweeping Precision Needle in Mido/Pino Orange -->
 <g class="sweep-fast-arm">
-<line stroke="#0f172a" stroke-linecap="round" stroke-width="4" x1="510" x2="445" y1="325" y2="325"></line>
-<circle cx="445" cy="325" fill="#0f172a" r="5.5"></circle>
-<line filter="url(#glowFiltGearMicro)" stroke="#ea580c" stroke-linecap="round" stroke-width="2.5" x1="510" x2="785" y1="325" y2="325"></line>
-<polygon fill="#ea580c" points="785,325 770,320 773,325 770,330"></polygon>
-<circle cx="700" cy="325" fill="#ffffff" r="4.5" stroke="#ea580c" stroke-width="2"></circle>
+<line stroke="#0f172a" stroke-linecap="round" stroke-width="4" x1="510" x2="486" y1="325" y2="325"></line>
+<circle cx="486" cy="325" fill="#0f172a" r="5.5"></circle>
+<line filter="url(#glowFiltGearMicro)" stroke="#ea580c" stroke-linecap="round" stroke-width="2.5" x1="510" x2="568" y1="325" y2="325"></line>
+<polygon fill="#ea580c" points="568,325 556,321 558,325 556,329"></polygon>
+<circle cx="548" cy="325" fill="#ffffff" r="4.5" stroke="#ea580c" stroke-width="2"></circle>
 </g>
 <!-- ================= CENTRO: ENGRANAJE MICRO-CALIBRADO (TAMAÑO SUTIL Y DELICADO) ================= -->
 <g id="centro-icono-engranaje-micro">
@@ -1301,6 +1312,7 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
 </g>
 <!-- Destello sutil de precisión -->
 <circle cx="507.5" cy="322.5" fill="#ffffff" opacity="0.9" r="0.6"></circle>
+</g>
 </g>
 <!-- HUD Telemetry Indicator Labels -->
 <g class="hud-labels" fill="#0284c7" font-family="monospace" font-size="10" opacity="0.65">
@@ -2179,6 +2191,110 @@ footer { background:#0B1C2A; border-top:3px solid #0284C7; }
   apply();
   addEventListener('resize', apply);
   if (window.ResizeObserver) new ResizeObserver(apply).observe(header);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
+})();
+
+(function placeHomeGear() {
+  const hero = document.querySelector('.hero');
+  const svg = hero && hero.querySelector('.hero-anim');
+  const mech = document.getElementById('hero-mech');
+  const tech = hero && hero.querySelector('h1 em');
+  const cards = hero && hero.querySelector('.hero-stats');
+  if (!hero || !svg || !mech || !tech || !cards) return;
+  const REACH = 72;
+  const GEAR = 18;
+  const hits = (cx, cy, r, rect) => {
+    const x = Math.max(rect.left, Math.min(cx, rect.right));
+    const y = Math.max(rect.top, Math.min(cy, rect.bottom));
+    return (cx - x) * (cx - x) + (cy - y) * (cy - y) < r * r;
+  };
+  const textRects = (root) => {
+    const out = [];
+    const walk = (node) => {
+      if (node.nodeType === 3 && node.textContent.trim()) {
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        for (const b of range.getClientRects()) {
+          if (b.width > 1 && b.height > 1) out.push(b);
+        }
+      } else if (node.nodeType === 1) {
+        for (const child of node.childNodes) walk(child);
+      }
+    };
+    walk(root);
+    return out;
+  };
+  const apply = () => {
+    const hr = hero.getBoundingClientRect();
+    const w = Math.max(1, hr.width);
+    const h = Math.max(1, hr.height);
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const column = hero.querySelector('.hero-inner > div');
+    const textBoxes = [...hero.querySelectorAll('h1, .hero-tagline, .hero-desc, .eyebrow, .hero-cta-wrap')]
+      .map(el => el.getBoundingClientRect()).filter(r => r.width > 1 && r.height > 1);
+    const cardBoxes = [...hero.querySelectorAll('.stat-box, .hero-qr')]
+      .map(el => el.getBoundingClientRect()).filter(r => r.width > 1 && r.height > 1);
+    const ink = textRects(column);
+    const techR = tech.getBoundingClientRect();
+    const cardsR = cards.getBoundingClientRect();
+    const fits = (x, y, rad) => {
+      const cx = hr.left + x, cy = hr.top + y;
+      const gearR = 18 * (rad / REACH);
+      if (cx - rad < hr.left + 2 || cx + rad > hr.right - 2) return false;
+      if (cy - rad < hr.top + 2 || cy + rad > hr.bottom - 2) return false;
+      if ([...textBoxes, ...cardBoxes].some(r => hits(cx, cy, gearR + 1, r))) return false;
+      if (cx - gearR < techR.right + 16) return false;
+      if (cardBoxes.length && cx + gearR > Math.min(...cardBoxes.map(r => r.left)) - 16 && Math.min(...cardBoxes.map(r => r.left)) > hr.left + w * 0.45) return false;
+      return ![...ink, ...cardBoxes].some(r => hits(cx, cy, rad + 4, r));
+    };
+    const widest = (cy, minCx, maxCx) => {
+      let best = null;
+      let lo = 0.4, hi = 1;
+      for (let i = 0; i < 10; i++) {
+        const mid = (lo + hi) / 2;
+        let found = null;
+        const target = (minCx + maxCx) / 2;
+        for (let x = minCx; x <= maxCx; x += 6) {
+          if (!fits(x, cy, REACH * mid)) continue;
+          if (found === null || Math.abs(x - target) < Math.abs(found - target)) found = x;
+        }
+        if (found !== null) { best = { x: found, y: cy, scale: mid }; lo = mid; }
+        else hi = mid;
+      }
+      return best;
+    };
+    let placed;
+    if (w >= 920) {
+      const h1b = hero.querySelector('h1').getBoundingClientRect();
+      const slot = (h1b.right + cardsR.left) / 2 - hr.left;
+      placed = widest(h / 2, 8, w - 8);
+      if (placed) {
+        let best = null;
+        for (let x = 8; x <= w - 8; x += 4) {
+          if (!fits(x, h / 2, REACH * placed.scale)) continue;
+          if (best === null || Math.abs(x - slot) < Math.abs(best - slot)) best = x;
+        }
+        if (best !== null) placed.x = best;
+      }
+    } else {
+      const h1 = hero.querySelector('h1').getBoundingClientRect();
+      const desc = hero.querySelector('.hero-desc').getBoundingClientRect();
+      const beside = widest((h1.top + h1.bottom) / 2 - hr.top, GEAR + 8, w - GEAR - 8);
+      const gapTop = desc.bottom - hr.top;
+      const gapBot = cardsR.top - hr.top;
+      const between = gapBot - gapTop > 80 ? widest((gapTop + gapBot) / 2, GEAR + 8, w - GEAR - 8) : null;
+      const onScreen = (p) => p && (hr.top + p.y) < innerHeight - 40;
+      if (onScreen(beside) && !onScreen(between)) placed = beside;
+      else if (onScreen(between) && !onScreen(beside)) placed = between;
+      else placed = between && (!beside || between.scale >= beside.scale) ? between : beside;
+    }
+    if (!placed) placed = { x: Math.min(w - REACH, w * 0.62), y: h / 2, scale: 0.85 };
+    const cy = placed.y;
+    mech.setAttribute('transform', `translate(${placed.x.toFixed(2)} ${cy.toFixed(2)}) scale(${placed.scale.toFixed(3)}) translate(-510 -325)`);
+  };
+  apply();
+  addEventListener('resize', apply);
+  if (window.ResizeObserver) new ResizeObserver(apply).observe(hero);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
 })();
 
